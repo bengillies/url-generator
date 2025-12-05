@@ -23,6 +23,15 @@ type Handlers = Record<ParamKeys, HandlerFunction>;
 
 type ParamGetter = (params: ParamValues) => string;
 
+const namedParamStartRegExp = /:/;
+const identifierRegExp = /[\$_0-9\p{L}]+/u;
+const optionalRegExp = /\?/;
+const multipleRegExp = /[\*\+]/;
+const nonCaptureStartRegExp = /\{/;
+const nonCaptureEndRegExp = /\}/;
+const captureStartRegExp = /\(/;
+const captureEndRegExp = /(?<!\\)\)/;
+
 function defaultStringify(value: unknown): string {
   return String(value);
 }
