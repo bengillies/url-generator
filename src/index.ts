@@ -23,13 +23,13 @@ type Handlers = Record<ParamKeys, HandlerFunction>;
 
 type ParamGetter = (params: ParamValues) => string;
 
-const namedParamStartRegExp = /:/;
+type PatternState =
+  | 'TEXT'
+  | 'NAMED_PARAM'
+  | 'NON_CAPTURE_GROUP'
+  | 'CAPTURE_GROUP';
+
 const identifierRegExp = /[\$_0-9\p{L}]+/u;
-const optionalRegExp = /\?/;
-const multipleRegExp = /[\*\+]/;
-const nonCaptureStartRegExp = /\{/;
-const nonCaptureEndRegExp = /\}/;
-const captureStartRegExp = /\(/;
 const captureEndRegExp = /(?<!\\)\)/;
 
 function defaultStringify(value: unknown): string {
@@ -49,7 +49,83 @@ function get(paramName: string | number, stringifier: StringifyFunction = defaul
 }
 
 function splitPattern(pattern: string): Array<string | ParamGetter> {
-  const parts: Array<string | ParamGetter> = [pattern];
+  const parts: Array<string | ParamGetter> = [];
+
+  let part;
+  let state: PatternState = 'TEXT';
+  let char;
+  let codePoint;
+  let whole = pattern;
+  let next = pattern;
+  let paramName = '';
+  let paramNumber = 0;
+
+  while (codePoint = next.codePointAt(0)) {
+    char = String.fromCodePoint(codePoint);
+    whole = next;
+    next = whole.slice(char.length);
+
+    switch (char) {
+      case '?': // follow through and skip character as custom handling only affecting matching urls, not building them
+      case '+': // same as above
+      case '{': // same as above
+      case '}': // same as above
+        continue;
+      case '\\': // Skip escaped character
+        next = next.slice(1);
+        continue;
+      case '(':
+        state = 'CAPTURE_GROUP';
+        break;
+      case ':':
+        state = 'NAMED_PARAM';
+        paramName = '';
+        break;
+      case '*':
+        parts.push(get(paramNumber++));
+        continue;
+      default:
+        state = 'TEXT';
+        part ??= '';
+        part += char;
+    }
+
+    if (state !== 'TEXT' && typeof part === 'string' && part.length > 0) {
+      parts.push(part);
+      part = undefined;
+    }
+
+    if (state === 'CAPTURE_GROUP') { // Inside capture group, so skip ahead to the end and consume the param
+      const match = captureEndRegExp.exec(next);
+      if (match) {
+        state = 'TEXT';
+        next = next.slice(match.index);
+        parts.push(paramName ? get(paramName) : get(paramNumber++));
+        part = undefined;
+        continue;
+      } else {
+        throw new Error('Unterminated capture group in pattern');
+      }
+    }
+
+    if (state === 'NAMED_PARAM') { // Inside named param, so consume the identifier
+      const match = identifierRegExp.exec(next);
+      if (match) {
+        paramName = match[0];
+        next = next.slice(paramName.length);
+        state = 'TEXT';
+        parts.push(get(paramName));
+        part = undefined;
+        continue;
+      } else {
+        throw new Error('Invalid or missing identifier for named parameter in pattern');
+      }
+    }
+  }
+
+  if (!parts.length && typeof part === 'string' && part.length) {
+    parts.push(part);
+  }
 
   if (pattern === '*') {
     return [get(0)];
@@ -65,7 +141,8 @@ function defaultHandler(pattern: string, params: ParamValues, stringifier?: Stri
     }
 
     return part(params);
-  }).join();
+  }).join('');
+
 }
 
 const handlers: Handlers = {
