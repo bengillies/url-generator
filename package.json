@@ -4,14 +4,14 @@
   "description": "Lightweight URL/path building library based on URLPattern",
   "type": "module",
   "license": "BSD-3-Clause",
-  "main": "./dist/route-matcher.js",
-  "module": "./dist/route-matcher.js",
+  "main": "./dist/url-builder.js",
+  "module": "./dist/url-builder.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/types/index.d.ts",
-        "default": "./dist/route-matcher.js"
+        "default": "./dist/url-builder.js"
       }
     }
   },
