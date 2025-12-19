@@ -27,7 +27,8 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "vitest run --browser",
     "test:watch": "vitest --browser",
-    "test:types": "tsc --noEmit"
+    "test:types": "tsc --noEmit",
+    "transform:testdata": "node tests/transform-testdata.ts"
   },
   "keywords": [
     "routes",
