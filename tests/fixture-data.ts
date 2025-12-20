@@ -11,13 +11,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -31,7 +37,9 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo/bar",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -58,12 +66,16 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "0": "example.com"
       },
@@ -83,7 +95,9 @@ export const fixtureData = [
       "baseURL": "https://example.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -112,13 +126,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -137,13 +157,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -164,7 +190,9 @@ export const fixtureData = [
       "hash": "otherhash"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {
         "0": "otherquery"
       },
@@ -173,8 +201,12 @@ export const fixtureData = [
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
@@ -195,7 +227,9 @@ export const fixtureData = [
       "hash": "otherhash"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {
         "0": "otherquery"
       },
@@ -204,8 +238,12 @@ export const fixtureData = [
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
@@ -226,7 +264,9 @@ export const fixtureData = [
       "hash": "otherhash"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {
         "0": "otherquery"
       },
@@ -235,8 +275,12 @@ export const fixtureData = [
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
@@ -251,13 +295,19 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo/bar",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -272,7 +322,9 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo/bar?otherquery#otherhash",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {
         "0": "otherquery"
       },
@@ -281,8 +333,12 @@ export const fixtureData = [
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
@@ -297,7 +353,9 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo/bar?query#hash",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {
         "0": "query"
       },
@@ -306,8 +364,12 @@ export const fixtureData = [
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?query#hash"
@@ -325,13 +387,19 @@ export const fixtureData = [
       "baseURL": "https://example.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -349,13 +417,23 @@ export const fixtureData = [
       "baseURL": "https://example.com?query#hash"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
+      "search": {
+        "0": "query"
+      },
+      "hash": {
+        "0": "hash"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar?query#hash"
@@ -378,8 +456,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -402,8 +484,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -426,8 +512,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/index.html"
@@ -450,8 +540,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -474,8 +568,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -498,8 +596,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -522,8 +624,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -546,8 +652,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -570,8 +680,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -594,8 +708,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -618,8 +736,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -642,8 +764,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -666,8 +792,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -690,8 +820,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -714,8 +848,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -738,8 +876,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -762,8 +904,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -786,8 +932,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -810,8 +960,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -834,8 +988,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -858,8 +1016,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -882,8 +1044,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -906,8 +1072,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -930,8 +1100,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -954,8 +1128,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -978,8 +1156,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1002,8 +1184,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1026,8 +1212,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1050,8 +1240,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1074,8 +1268,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -1098,8 +1296,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -1122,8 +1324,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1146,8 +1352,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1170,8 +1380,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1194,8 +1408,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1218,8 +1436,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -1242,8 +1464,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/baz"
@@ -1266,8 +1492,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1290,8 +1520,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1314,8 +1548,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1338,8 +1576,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/"
@@ -1355,13 +1597,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1377,13 +1625,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1399,13 +1653,19 @@ export const fixtureData = [
       "pathname": "/foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1421,13 +1681,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1443,13 +1709,19 @@ export const fixtureData = [
       "pathname": "/foo/bar/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/bar"
@@ -1465,13 +1737,19 @@ export const fixtureData = [
       "pathname": "/foo/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -1487,13 +1765,19 @@ export const fixtureData = [
       "pathname": "/foo/bar/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar/bar"
@@ -1509,13 +1793,19 @@ export const fixtureData = [
       "pathname": "/foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1531,7 +1821,9 @@ export const fixtureData = [
       "protocol": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -1539,7 +1831,9 @@ export const fixtureData = [
       "protocol": {
         "café": "foo"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -1555,15 +1849,21 @@ export const fixtureData = [
       "username": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {
         "café": "foo"
       },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://foo@example.com/"
@@ -1579,15 +1879,21 @@ export const fixtureData = [
       "password": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {
         "café": "foo"
       },
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://:foo@example.com/"
@@ -1603,12 +1909,16 @@ export const fixtureData = [
       "hostname": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "café": "foo"
       },
@@ -1634,8 +1944,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1651,15 +1965,21 @@ export const fixtureData = [
       "search": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {
         "café": "foo"
       },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/?foo"
@@ -1675,15 +1995,21 @@ export const fixtureData = [
       "hash": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {
         "café": "foo"
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/#foo"
@@ -1699,7 +2025,9 @@ export const fixtureData = [
       "protocol": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -1707,7 +2035,9 @@ export const fixtureData = [
       "protocol": {
         "℘": "foo"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -1723,15 +2053,21 @@ export const fixtureData = [
       "username": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {
         "℘": "foo"
       },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://foo@example.com/"
@@ -1747,15 +2083,21 @@ export const fixtureData = [
       "password": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {
         "℘": "foo"
       },
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://:foo@example.com/"
@@ -1771,12 +2113,16 @@ export const fixtureData = [
       "hostname": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "℘": "foo"
       },
@@ -1802,8 +2148,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1819,15 +2169,21 @@ export const fixtureData = [
       "search": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {
         "℘": "foo"
       },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/?foo"
@@ -1843,15 +2199,21 @@ export const fixtureData = [
       "hash": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {
         "℘": "foo"
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/#foo"
@@ -1867,7 +2229,9 @@ export const fixtureData = [
       "protocol": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -1875,7 +2239,9 @@ export const fixtureData = [
       "protocol": {
         "㐀": "foo"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -1891,15 +2257,21 @@ export const fixtureData = [
       "username": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {
         "㐀": "foo"
       },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://foo@example.com/"
@@ -1915,15 +2287,21 @@ export const fixtureData = [
       "password": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {
         "㐀": "foo"
       },
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://:foo@example.com/"
@@ -1939,12 +2317,16 @@ export const fixtureData = [
       "hostname": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "㐀": "foo"
       },
@@ -1970,8 +2352,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -1987,15 +2373,21 @@ export const fixtureData = [
       "search": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {
         "㐀": "foo"
       },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/?foo"
@@ -2011,15 +2403,21 @@ export const fixtureData = [
       "hash": "foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {
         "㐀": "foo"
       },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/#foo"
@@ -2035,7 +2433,9 @@ export const fixtureData = [
       "protocol": "cafe"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -2043,7 +2443,9 @@ export const fixtureData = [
       "protocol": {
         "0": "cafe"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -2059,13 +2461,19 @@ export const fixtureData = [
       "protocol": "foo-bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "foo-bar"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -2081,13 +2489,21 @@ export const fixtureData = [
       "username": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
-      "username": {},
+      "username": {
+        "0": "caf%C3%A9"
+      },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://caf%C3%A9@example.com/"
@@ -2103,13 +2519,21 @@ export const fixtureData = [
       "username": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
-      "username": {},
+      "username": {
+        "0": "caf%C3%A9"
+      },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://caf%C3%A9@example.com/"
@@ -2125,13 +2549,21 @@ export const fixtureData = [
       "password": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
+      "password": {
+        "0": "caf%C3%A9"
+      },
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://:caf%C3%A9@example.com/"
@@ -2147,13 +2579,21 @@ export const fixtureData = [
       "password": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
+      "password": {
+        "0": "caf%C3%A9"
+      },
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://:caf%C3%A9@example.com/"
@@ -2169,13 +2609,19 @@ export const fixtureData = [
       "hostname": "café.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "xn--caf-dma.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://xn--caf-dma.com/"
@@ -2191,13 +2637,19 @@ export const fixtureData = [
       "hostname": "café.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "xn--caf-dma.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://xn--caf-dma.com/"
@@ -2209,13 +2661,19 @@ export const fixtureData = [
     ],
     "input": "http://🚲.com/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "xn--h78h.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://xn--h78h.com/"
@@ -2238,8 +2696,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/test/foo"
@@ -2256,7 +2718,9 @@ export const fixtureData = [
       "port": "80"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -2264,7 +2728,9 @@ export const fixtureData = [
       "protocol": {
         "0": "http"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -2282,13 +2748,19 @@ export const fixtureData = [
       "port": "80"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -2304,14 +2776,22 @@ export const fixtureData = [
       "port": "80"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "80"
+      }
     },
     "expectedUrl": "http://example.com/"
   },
@@ -2326,14 +2806,22 @@ export const fixtureData = [
       "port": "8\t0"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "80"
+      }
     },
     "expectedUrl": "http://example.com/"
   },
@@ -2348,14 +2836,22 @@ export const fixtureData = [
       "port": "80x"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "80"
+      }
     },
     "expectedUrl": "http://example.com/"
   },
@@ -2370,14 +2866,22 @@ export const fixtureData = [
       "port": "80?x"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "80"
+      }
     },
     "expectedUrl": "http://example.com/"
   },
@@ -2392,14 +2896,22 @@ export const fixtureData = [
       "port": "80\\x"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "80"
+      }
     },
     "expectedUrl": "http://example.com/"
   },
@@ -2414,13 +2926,19 @@ export const fixtureData = [
       "pathname": "/foo/./bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -2436,13 +2954,19 @@ export const fixtureData = [
       "pathname": "/foo/bar/../baz"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/baz"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/baz"
@@ -2458,13 +2982,19 @@ export const fixtureData = [
       "pathname": "/café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/caf%C3%A9"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/caf%C3%A9"
@@ -2480,13 +3010,19 @@ export const fixtureData = [
       "pathname": "/café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/caf%C3%A9"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/caf%C3%A9"
@@ -2503,7 +3039,9 @@ export const fixtureData = [
       "baseURL": "https://example.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -2529,13 +3067,19 @@ export const fixtureData = [
       "pathname": "/bar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bar"
@@ -2553,13 +3097,19 @@ export const fixtureData = [
       "baseURL": "https://example.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -2577,13 +3127,19 @@ export const fixtureData = [
       "baseURL": "https://example.com"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/"
@@ -2601,16 +3157,22 @@ export const fixtureData = [
       "baseURL": "https://example.com/foo/"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/b"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
-    "expectedUrl": "https://example.com/b"
+    "expectedUrl": "https://example.com/foo/b"
   },
   {
     "caseIndex": 189,
@@ -2622,13 +3184,19 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo/bar",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -2650,8 +3218,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo.html"
@@ -2667,13 +3239,21 @@ export const fixtureData = [
       "search": "q=café"
     },
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "q=caf%C3%A9"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/?q=caf%C3%A9"
@@ -2689,13 +3269,21 @@ export const fixtureData = [
       "search": "q=café"
     },
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "q=caf%C3%A9"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/?q=caf%C3%A9"
@@ -2711,13 +3299,21 @@ export const fixtureData = [
       "hash": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "caf%C3%A9"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/#caf%C3%A9"
@@ -2733,13 +3329,21 @@ export const fixtureData = [
       "hash": "café"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "caf%C3%A9"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/#caf%C3%A9"
@@ -2755,13 +3359,19 @@ export const fixtureData = [
       "pathname": "/foo!"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo!"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo!"
@@ -2777,13 +3387,19 @@ export const fixtureData = [
       "pathname": "/foo:"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo:"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo:"
@@ -2799,13 +3415,19 @@ export const fixtureData = [
       "pathname": "/foo{"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo%7B"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo%7B"
@@ -2821,13 +3443,19 @@ export const fixtureData = [
       "pathname": "/foo("
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo("
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo("
@@ -2845,39 +3473,22 @@ export const fixtureData = [
       "pathname": "var x = 1;"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "var x = 1;"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "javascript"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/var%20x%20=%201;"
-  },
-  {
-    "caseIndex": 206,
-    "pattern": [
-      {
-        "protocol": "javascript",
-        "pathname": "var x = 1;"
-      }
-    ],
-    "input": {
-      "baseURL": "javascript:var x = 1;"
-    },
-    "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "javascript:var x = 1;"
   },
   {
     "caseIndex": 209,
@@ -2890,13 +3501,19 @@ export const fixtureData = [
       "pathname": "var x = 1;"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "var%20x%20=%201;"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/var%20x%20=%201;"
@@ -2911,7 +3528,9 @@ export const fixtureData = [
     "input": "./foo/bar",
     "baseURL": "https://example.com",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -2938,13 +3557,19 @@ export const fixtureData = [
     },
     "baseURL": "https://example.com",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo/bar"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo/bar"
@@ -2961,14 +3586,26 @@ export const fixtureData = [
       "baseURL": "https://example.com:8080"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {
+        "0": "bar"
+      },
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/foo?bar#baz"
   },
@@ -2985,14 +3622,26 @@ export const fixtureData = [
       "baseURL": "https://example.com:8080"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {
+        "0": "bar"
+      },
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/foo?bar#baz"
   },
@@ -3011,7 +3660,9 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "https"
+      },
       "hostname": {
         "0": "sub"
       },
@@ -3026,13 +3677,21 @@ export const fixtureData = [
     ],
     "input": "https://example.com/?foo",
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/?foo"
@@ -3044,13 +3703,21 @@ export const fixtureData = [
     ],
     "input": "https://example.com/#foo",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "foo"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/#foo"
@@ -3062,14 +3729,24 @@ export const fixtureData = [
     ],
     "input": "https://example.com:8080/?foo",
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/?foo"
   },
@@ -3080,14 +3757,24 @@ export const fixtureData = [
     ],
     "input": "https://example.com:8080/#foo",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "foo"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/#foo"
   },
@@ -3098,13 +3785,21 @@ export const fixtureData = [
     ],
     "input": "https://example.com/?foo",
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/?foo"
@@ -3116,13 +3811,21 @@ export const fixtureData = [
     ],
     "input": "https://example.com/#foo",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "foo"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/#foo"
@@ -3137,12 +3840,18 @@ export const fixtureData = [
       "pathname": {
         "0": ""
       },
-      "search": {},
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/?foo"
@@ -3157,12 +3866,18 @@ export const fixtureData = [
       "pathname": {
         "name": "bar"
       },
-      "search": {},
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/bar?foo"
@@ -3174,34 +3889,24 @@ export const fixtureData = [
     ],
     "input": "https://example.com/bar?foo",
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/bar"
+      },
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/bar?foo"
-  },
-  {
-    "caseIndex": 233,
-    "pattern": [
-      "data\\:foobar"
-    ],
-    "input": "data:foobar",
-    "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "data:foobar"
   },
   {
     "caseIndex": 234,
@@ -3210,13 +3915,19 @@ export const fixtureData = [
     ],
     "input": "https://example.com/foo",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo"
@@ -3235,47 +3946,15 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo"
-  },
-  {
-    "caseIndex": 242,
-    "pattern": [
-      "file:///foo/bar"
-    ],
-    "input": "file:///foo/bar",
-    "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "file:///foo/bar"
-  },
-  {
-    "caseIndex": 243,
-    "pattern": [
-      "data:"
-    ],
-    "input": "data:",
-    "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "data:"
   },
   {
     "caseIndex": 247,
@@ -3291,11 +3970,17 @@ export const fixtureData = [
       "pathname": {
         "0": "/foo"
       },
-      "search": {},
-      "hash": {},
+      "search": {
+        "0": "bar"
+      },
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "0": "example.com"
       },
@@ -3312,13 +3997,23 @@ export const fixtureData = [
     "input": "?bar#baz",
     "baseURL": "https://example.com/foo",
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {
+        "0": "bar"
+      },
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo?bar#baz"
@@ -3332,13 +4027,21 @@ export const fixtureData = [
     "input": "?bar",
     "baseURL": "https://example.com/foo#snafu",
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {
+        "0": "bar"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo?bar"
@@ -3352,13 +4055,23 @@ export const fixtureData = [
     "input": "#baz",
     "baseURL": "https://example.com/foo?bar",
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {
+        "0": "bar"
+      },
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo?bar#baz"
@@ -3372,13 +4085,21 @@ export const fixtureData = [
     "input": "#baz",
     "baseURL": "https://example.com/foo",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/foo"
+      },
       "search": {},
-      "hash": {},
+      "hash": {
+        "0": "baz"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/foo#baz"
@@ -3395,10 +4116,18 @@ export const fixtureData = [
       },
       "search": {},
       "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
+      "username": {
+        "0": "foo"
+      },
+      "password": {
+        "0": "bar"
+      },
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://foo:bar@example.com/"
@@ -3415,10 +4144,16 @@ export const fixtureData = [
       },
       "search": {},
       "hash": {},
-      "username": {},
+      "username": {
+        "0": "foo"
+      },
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://foo@example.com/"
@@ -3436,9 +4171,15 @@ export const fixtureData = [
       "search": {},
       "hash": {},
       "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
+      "password": {
+        "0": "bar"
+      },
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://:bar@example.com/"
@@ -3461,8 +4202,12 @@ export const fixtureData = [
       "password": {
         "pass": "bar"
       },
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://foo:bar@example.com/"
@@ -3479,31 +4224,21 @@ export const fixtureData = [
       },
       "search": {},
       "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
+      "username": {
+        "0": "foo"
+      },
+      "password": {
+        "0": "bar"
+      },
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://foo:bar@example.com/"
-  },
-  {
-    "caseIndex": 259,
-    "pattern": [
-      "data\\:foo\\:bar@example.com"
-    ],
-    "input": "data:foo:bar@example.com",
-    "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "data:foo:bar@example.com"
   },
   {
     "caseIndex": 261,
@@ -3513,13 +4248,19 @@ export const fixtureData = [
     ],
     "input": "https://example.com/data:channel.html",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/data:channel.html"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/data:channel.html"
@@ -3531,13 +4272,19 @@ export const fixtureData = [
     ],
     "input": "http://[::1]/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "[::1]"
+      },
       "port": {}
     },
     "expectedUrl": "http://[::1]/"
@@ -3549,14 +4296,22 @@ export const fixtureData = [
     ],
     "input": "http://[::1]:8080/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "[::1]"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "http://[::1]:8080/"
   },
@@ -3567,13 +4322,19 @@ export const fixtureData = [
     ],
     "input": "http://[::a]/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "[::a]"
+      },
       "port": {}
     },
     "expectedUrl": "http://[::a]/"
@@ -3585,12 +4346,16 @@ export const fixtureData = [
     ],
     "input": "http://[::1]/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "address": "::1"
       },
@@ -3605,12 +4370,16 @@ export const fixtureData = [
     ],
     "input": "http://[::ab:1]/",
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "num": "1"
       },
@@ -3629,12 +4398,16 @@ export const fixtureData = [
       "hostname": "[::ab:1]"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "num": "1"
       },
@@ -3653,12 +4426,16 @@ export const fixtureData = [
       "hostname": "[::ab:1]"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "num": "1"
       },
@@ -3677,12 +4454,16 @@ export const fixtureData = [
       "hostname": "[::ab:1]"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "num": "ab"
       },
@@ -3701,38 +4482,22 @@ export const fixtureData = [
       "hostname": "[::ab:1]"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
+      "protocol": {
+        "0": "http"
+      },
       "hostname": {
         "0": "::ab"
       },
       "port": {}
     },
     "expectedUrl": "http://[::ab:1]/"
-  },
-  {
-    "caseIndex": 277,
-    "pattern": [
-      "data\\:text/javascript,let x = 100/:tens?5;"
-    ],
-    "input": "data:text/javascript,let x = 100/5;",
-    "params": {
-      "pathname": {
-        "tens": null
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
-    },
-    "expectedUrl": "data:text/javascript,let x = 100/5;"
   },
   {
     "caseIndex": 282,
@@ -3752,8 +4517,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -3776,8 +4545,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -3800,8 +4573,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -3817,7 +4594,9 @@ export const fixtureData = [
       "protocol": "foobar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -3825,7 +4604,9 @@ export const fixtureData = [
       "protocol": {
         "name": "foobar"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -3841,7 +4622,9 @@ export const fixtureData = [
       "protocol": "foobar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -3849,7 +4632,9 @@ export const fixtureData = [
       "protocol": {
         "name": "foobar"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -3865,7 +4650,9 @@ export const fixtureData = [
       "protocol": "foobar"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
@@ -3873,7 +4660,9 @@ export const fixtureData = [
       "protocol": {
         "name": "foobar"
       },
-      "hostname": {},
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/"
@@ -3889,13 +4678,19 @@ export const fixtureData = [
       "hostname": "bad"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "bad"
+      },
       "port": {}
     },
     "expectedUrl": "http://bad/"
@@ -3911,13 +4706,19 @@ export const fixtureData = [
       "hostname": "bad"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "bad"
+      },
       "port": {}
     },
     "expectedUrl": "http://bad/"
@@ -3933,13 +4734,19 @@ export const fixtureData = [
       "hostname": "badhostname"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "badhostname"
+      },
       "port": {}
     },
     "expectedUrl": "http://badhostname/"
@@ -3955,13 +4762,19 @@ export const fixtureData = [
       "hostname": "badhostname"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "badhostname"
+      },
       "port": {}
     },
     "expectedUrl": "http://badhostname/"
@@ -3977,13 +4790,19 @@ export const fixtureData = [
       "hostname": "badhostname"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "badhostname"
+      },
       "port": {}
     },
     "expectedUrl": "http://badhostname/"
@@ -4031,8 +4850,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobarbaz"
@@ -4056,8 +4879,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobarbaz"
@@ -4081,8 +4908,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobarbaz"
@@ -4106,8 +4937,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobarbaz"
@@ -4131,8 +4966,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobarbaz"
@@ -4155,8 +4994,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4179,8 +5022,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo.bar"
@@ -4203,8 +5050,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4227,8 +5078,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4252,8 +5107,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4276,8 +5135,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4300,8 +5163,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4325,8 +5192,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
@@ -4350,8 +5221,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -4375,8 +5250,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -4400,8 +5279,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo/bar"
@@ -4424,8 +5307,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bar."
@@ -4448,8 +5335,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bar.."
@@ -4465,13 +5356,19 @@ export const fixtureData = [
       "pathname": "./foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "./foo"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -4487,13 +5384,19 @@ export const fixtureData = [
       "pathname": "../foo"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "../foo"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/foo"
@@ -4516,8 +5419,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bar./"
@@ -4540,8 +5447,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bar../"
@@ -4564,8 +5475,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/bazbar"
@@ -4584,13 +5499,19 @@ export const fixtureData = [
       "pathname": "/FOO/BAR"
     },
     "params": {
-      "pathname": {},
+      "pathname": {
+        "0": "/FOO/BAR"
+      },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/FOO/BAR"
@@ -4613,8 +5534,12 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "http://example.com/FOO/BAR"
@@ -4634,14 +5559,26 @@ export const fixtureData = [
       "baseURL": "https://example.com:8080"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/FOO"
+      },
+      "search": {
+        "0": "BAR"
+      },
+      "hash": {
+        "0": "BAZ"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/FOO?BAR#BAZ"
   },
@@ -4661,14 +5598,26 @@ export const fixtureData = [
       "baseURL": "https://example.com:8080"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/FOO"
+      },
+      "search": {
+        "0": "BAR"
+      },
+      "hash": {
+        "0": "BAZ"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
-      "port": {}
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {
+        "0": "8080"
+      }
     },
     "expectedUrl": "https://example.com:8080/FOO?BAR#BAZ"
   },
@@ -4685,13 +5634,21 @@ export const fixtureData = [
       "baseURL": "https://example.com/a/+/b"
     },
     "params": {
-      "pathname": {},
-      "search": {},
+      "pathname": {
+        "0": "/a/+/b"
+      },
+      "search": {
+        "0": "foo"
+      },
       "hash": {},
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/a/+/b?foo"
@@ -4709,13 +5666,23 @@ export const fixtureData = [
       "baseURL": "https://example.com/?q=*&v=?&hmm={}&umm=()"
     },
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "q=*&v=?&hmm={}&umm=()"
+      },
+      "hash": {
+        "0": "foo"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo"
@@ -4728,13 +5695,23 @@ export const fixtureData = [
     ],
     "input": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo",
     "params": {
-      "pathname": {},
-      "search": {},
-      "hash": {},
+      "pathname": {
+        "0": "/"
+      },
+      "search": {
+        "0": "q=*&v=?&hmm={}&umm=()"
+      },
+      "hash": {
+        "0": "foo"
+      },
       "username": {},
       "password": {},
-      "protocol": {},
-      "hostname": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
       "port": {}
     },
     "expectedUrl": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo"

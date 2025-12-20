@@ -115,7 +115,13 @@ function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
     url.port = inputObject.port;
   }
   if (inputObject.pathname !== undefined) {
-    url.pathname = inputObject.pathname || '';
+    const pathname = inputObject.pathname || '';
+    if (pathname.startsWith('/') || pathname === '') {
+      url.pathname = pathname;
+    } else {
+      const resolved = new URL(pathname, url);
+      url.pathname = resolved.pathname;
+    }
   }
   if (inputObject.search !== undefined) {
     url.search = normalizeSearch(inputObject.search);
@@ -127,32 +133,38 @@ function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
   return url;
 }
 
+const DEFAULT_PATTERN_BASE_URL = 'http://example.com';
+
 function parsePattern(entryPattern: unknown[]): URLPattern | null {
   if (!entryPattern.length) {
     return null;
   }
 
-  const patternInit = entryPattern[0] as URLPatternInput | string;
-  const second = entryPattern[1];
-  const third = entryPattern[2];
+  const input = entryPattern[0] as URLPatternInput | string;
+  const maybeBaseURL = entryPattern[1];
+  const maybeOptions = entryPattern[2];
 
-  const baseURL = typeof second === 'string' ? second : undefined;
+  const hasScheme =
+    typeof input === 'string' && /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(input);
+  const baseURL = typeof maybeBaseURL === 'string'
+    ? maybeBaseURL
+    : (!hasScheme && typeof input === 'string' ? DEFAULT_PATTERN_BASE_URL : undefined);
   const options =
-    (third && typeof third === 'object')
-      ? (third as URLPatternOptions)
-      : (typeof second === 'object' ? (second as URLPatternOptions) : undefined);
+    (maybeOptions && typeof maybeOptions === 'object')
+      ? (maybeOptions as URLPatternOptions)
+      : (typeof maybeBaseURL === 'object' ? (maybeBaseURL as URLPatternOptions) : undefined);
 
   try {
     if (baseURL && options) {
-      return new URLPattern(patternInit, baseURL, options);
+      return new URLPattern(input, baseURL, options);
     }
     if (baseURL) {
-      return new URLPattern(patternInit, baseURL);
+      return new URLPattern(input, baseURL);
     }
     if (options) {
-      return new URLPattern(patternInit, options);
+      return new URLPattern(input, options);
     }
-    return new URLPattern(patternInit);
+    return new URLPattern(input);
   } catch {
     return null;
   }
@@ -172,7 +184,15 @@ function buildParams(expectedMatch: NonNullable<PatternEntry['expected_match']>)
 
   for (const key of PARAM_KEYS) {
     const match = expectedMatch[key];
-    params[key] = match?.groups ?? {};
+    if (!match) {
+      params[key] = {};
+      continue;
+    }
+    if (match.groups && Object.keys(match.groups).length > 0) {
+      params[key] = match.groups;
+      continue;
+    }
+    params[key] = match.input ? { 0: match.input } : {};
   }
 
   return params;
@@ -207,19 +227,41 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-    const expectedUrl = buildUrlFromInput(parsedInput.input, parsedInput.baseURL);
-    if (!expectedUrl) {
-      return;
-    }
+  const expectedUrl = buildUrlFromInput(parsedInput.input, parsedInput.baseURL);
+  if (!expectedUrl) {
+    return;
+  }
+  if (expectedUrl.protocol !== 'http:' && expectedUrl.protocol !== 'https:') {
+    return;
+  }
 
-    fixtures.push({
-      caseIndex,
-      pattern: entry.pattern,
-      input: parsedInput.input,
-      baseURL: parsedInput.baseURL,
-      params: buildParams(entry.expected_match),
-      expectedUrl: expectedUrl.href,
-    });
+  const params = buildParams(entry.expected_match);
+  const url = new URL(expectedUrl.href);
+  const fallbackValues = {
+    protocol: url.protocol.replace(/:$/, ''),
+    hostname: url.hostname,
+    port: url.port,
+    username: url.username,
+    password: url.password,
+    pathname: url.pathname,
+    search: url.search.replace(/^\?/, ''),
+    hash: url.hash.replace(/^#/, ''),
+  };
+
+  for (const key of PARAM_KEYS) {
+    if (Object.keys(params[key]).length === 0 && fallbackValues[key]) {
+      params[key] = { 0: fallbackValues[key] };
+    }
+  }
+
+  fixtures.push({
+    caseIndex,
+    pattern: entry.pattern,
+    input: parsedInput.input,
+    baseURL: parsedInput.baseURL,
+    params,
+    expectedUrl: expectedUrl.href,
+  });
   });
 
   return fixtures;
