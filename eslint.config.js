@@ -22,8 +22,10 @@ const typeScriptAdjustments = {
   files: ['**/*.ts'],
 };
 
-const typeCheckedRules = tseslint.configs['flat/recommended-type-checked'][2]?.rules ?? {};
-const stylisticRules = tseslint.configs['flat/stylistic-type-checked'][2]?.rules ?? {};
+const typeCheckedRules =
+  tseslint.configs['flat/recommended-type-checked'][2]?.rules ?? {};
+const stylisticRules =
+  tseslint.configs['flat/stylistic-type-checked'][2]?.rules ?? {};
 
 const sharedTypeScriptRules = {
   ...typeCheckedRules,
@@ -42,6 +44,12 @@ const sharedTypeScriptRules = {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_',
     },
+  ],
+  'padding-line-between-statements': [
+    'error',
+    { blankLine: 'always', prev: 'block-like', next: '*' },
+    { blankLine: 'always', prev: '*', next: 'return' },
+    { blankLine: 'always', prev: 'multiline-expression', next: '*' },
   ],
 };
 

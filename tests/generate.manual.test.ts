@@ -16,7 +16,10 @@ function emptyParams(): Params {
 
 describe('generate manual cases', () => {
   it('uses wildcard search params when provided', () => {
-    const pattern = new URLPattern({ search: '*', baseURL: 'https://example.com' });
+    const pattern = new URLPattern({
+      search: '*',
+      baseURL: 'https://example.com',
+    });
     const params = emptyParams();
     params.protocol = { 0: 'https' };
     params.hostname = { 0: 'example.com' };

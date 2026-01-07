@@ -9,14 +9,14 @@ const PARAM_KEYS = [
   'port',
 ] as const;
 
-export type ParamKeys = typeof PARAM_KEYS[number];
+export type ParamKeys = (typeof PARAM_KEYS)[number];
 export type ParamValues = Record<string | number, unknown>;
 export type Params = Record<ParamKeys, ParamValues>;
 
 export type StringifyFunction = (value: unknown) => string;
-export type GenerateOptions = {
+export interface GenerateOptions {
   stringifier?: StringifyFunction;
-};
+}
 
 type HandlerFunction = (
   pattern: string,
@@ -25,55 +25,47 @@ type HandlerFunction = (
 ) => string;
 type Handlers = Record<ParamKeys, HandlerFunction>;
 
-type ParamGetter = (params: ParamValues) => string;
-
-const identifierRegExp = /[\p{ID_Start}\p{ID_Continue}\$_0-9]+/u;
+const identifierRegExp = /[\p{ID_Start}\p{ID_Continue}$_0-9]+/u;
 
 type ParamModifier = '' | '?' | '*' | '+';
-type ParamToken = {
+interface ParamToken {
   type: 'param';
   name: string | number;
   modifier: ParamModifier;
   prefix: string;
-};
-type GroupToken = {
+}
+interface GroupToken {
   type: 'group';
   tokens: PatternToken[];
   modifier: ParamModifier;
-};
+}
 type PatternToken = string | ParamToken | GroupToken;
 
 function defaultStringify(value: unknown): string {
   return String(value);
 }
 
-function get(paramName: string | number, stringifier: StringifyFunction = defaultStringify): ParamGetter {
-  return function paramGetter(params: ParamValues): string {
-    const value = params[paramName];
-
-    if (value === undefined || value === null) {
-      return '';
-    }
-
-    return stringifier(value);
-  }
-}
-
 function isModifier(char?: string): char is ParamModifier {
   return char === '?' || char === '*' || char === '+';
 }
 
-function findClosing(pattern: string, startIndex: number, closingChar: string): number {
+function findClosing(
+  pattern: string,
+  startIndex: number,
+  closingChar: string,
+): number {
   for (let i = startIndex; i < pattern.length; i += 1) {
     const current = pattern[i];
     if (current === '\\') {
       i += 1;
       continue;
     }
+
     if (current === closingChar) {
       return i;
     }
   }
+
   return -1;
 }
 
@@ -81,6 +73,7 @@ function takeOptionalPrefix(literal: string): { prefix: string; rest: string } {
   if (!literal.endsWith('/')) {
     return { prefix: '', rest: literal };
   }
+
   return { prefix: '/', rest: literal.slice(0, -1) };
 }
 
@@ -102,6 +95,7 @@ function tokenizePattern(
         index += 2;
         continue;
       }
+
       index += 1;
       continue;
     }
@@ -113,6 +107,7 @@ function tokenizePattern(
         index += 1;
         continue;
       }
+
       const groupValue = pattern.slice(index + 1, end);
       index = end + 1;
       let modifier: ParamModifier = '';
@@ -120,17 +115,24 @@ function tokenizePattern(
         modifier = pattern[index] as ParamModifier;
         index += 1;
       }
+
       if (literal) {
         tokens.push(literal);
         literal = '';
       }
-      tokens.push({ type: 'group', tokens: tokenizePattern(groupValue, counter), modifier });
+
+      tokens.push({
+        type: 'group',
+        tokens: tokenizePattern(groupValue, counter),
+        modifier,
+      });
+
       continue;
     }
 
     if (char === ':') {
       const match = identifierRegExp.exec(pattern.slice(index + 1));
-      if (match && match.index === 0) {
+      if (match?.index === 0) {
         const name = match[0];
         index += name.length + 1;
         let modifier: ParamModifier = '';
@@ -138,19 +140,23 @@ function tokenizePattern(
           modifier = pattern[index] as ParamModifier;
           index += 1;
         }
+
         let prefix = '';
         if (modifier === '?' || modifier === '*') {
           const prefixResult = takeOptionalPrefix(literal);
           prefix = prefixResult.prefix;
           literal = prefixResult.rest;
         }
+
         if (literal) {
           tokens.push(literal);
           literal = '';
         }
+
         tokens.push({ type: 'param', name, modifier, prefix });
         continue;
       }
+
       literal += char;
       index += 1;
       continue;
@@ -163,16 +169,19 @@ function tokenizePattern(
         modifier = pattern[index] as ParamModifier;
         index += 1;
       }
+
       let prefix = '';
       if (modifier === '?' || modifier === '*') {
         const prefixResult = takeOptionalPrefix(literal);
         prefix = prefixResult.prefix;
         literal = prefixResult.rest;
       }
+
       if (literal) {
         tokens.push(literal);
         literal = '';
       }
+
       tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
       continue;
     }
@@ -184,22 +193,26 @@ function tokenizePattern(
         index += 1;
         continue;
       }
+
       index = end + 1;
       let modifier: ParamModifier = '';
       if (isModifier(pattern[index])) {
         modifier = pattern[index] as ParamModifier;
         index += 1;
       }
+
       let prefix = '';
       if (modifier === '?' || modifier === '*') {
         const prefixResult = takeOptionalPrefix(literal);
         prefix = prefixResult.prefix;
         literal = prefixResult.rest;
       }
+
       if (literal) {
         tokens.push(literal);
         literal = '';
       }
+
       tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
       continue;
     }
@@ -231,13 +244,15 @@ function buildFromTokens(
 
     if (token.type === 'group') {
       const groupResult = buildFromTokens(token.tokens, params, stringifier);
-      const shouldInclude = token.modifier === '' || token.modifier === '+'
-        ? true
-        : groupResult.usedParam;
+      const shouldInclude =
+        token.modifier === '' || token.modifier === '+'
+          ? true
+          : groupResult.usedParam;
       if (shouldInclude) {
         output += groupResult.value;
         usedParam = usedParam || groupResult.usedParam;
       }
+
       continue;
     }
 
@@ -261,13 +276,15 @@ function buildFromTokens(
 }
 
 function tokensHaveParams(tokens: PatternToken[]): boolean {
-  return tokens.some(token => {
+  return tokens.some((token) => {
     if (typeof token === 'string') {
       return false;
     }
+
     if (token.type === 'param') {
       return true;
     }
+
     return tokensHaveParams(token.tokens);
   });
 }
@@ -284,12 +301,13 @@ function defaultHandler(
       return (stringifier ?? defaultStringify)(fallback);
     }
   }
+
   return buildFromTokens(tokens, params, stringifier).value;
 }
 
 const handlers: Handlers = {
   pathname: defaultHandler,
-  search : defaultHandler,
+  search: defaultHandler,
   hash: defaultHandler,
   username: defaultHandler,
   password: defaultHandler,
@@ -297,7 +315,6 @@ const handlers: Handlers = {
   hostname: defaultHandler,
   port: defaultHandler,
 };
-
 
 export function generate(
   pattern: URLPattern,
@@ -315,16 +332,21 @@ export function generate(
   }
 
   const protocol = built.protocol
-    ? (built.protocol.endsWith(':') ? built.protocol : `${built.protocol}:`)
+    ? built.protocol.endsWith(':')
+      ? built.protocol
+      : `${built.protocol}:`
     : '';
   const host = built.hostname
-    ? (built.port ? `${built.hostname}:${built.port}` : built.hostname)
+    ? built.port
+      ? `${built.hostname}:${built.port}`
+      : built.hostname
     : '';
-  const url = protocol && host
-    ? new URL(`${protocol}//${host}`)
-    : protocol
-      ? new URL(`${protocol}${built.pathname ?? ''}`)
-      : new URL(`${host}${built.pathname ?? ''}`);
+  const url =
+    protocol && host
+      ? new URL(`${protocol}//${host}`)
+      : protocol
+        ? new URL(`${protocol}${built.pathname ?? ''}`)
+        : new URL(`${host}${built.pathname ?? ''}`);
 
   if (host) {
     if (built.username) {
@@ -345,7 +367,9 @@ export function generate(
   }
 
   if (built.search) {
-    url.search = built.search.startsWith('?') ? built.search : `?${built.search}`;
+    url.search = built.search.startsWith('?')
+      ? built.search
+      : `?${built.search}`;
   } else {
     url.search = '';
   }

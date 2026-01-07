@@ -1,14 +1,18 @@
 import fs from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import {
+  fileURLToPath,
+  type URLPatternOptions,
+  type URLPatternInit,
+} from 'node:url';
 
-type PatternEntry = {
+interface PatternEntry {
   pattern?: unknown[];
   inputs?: unknown[];
   expected_match?: Record<
     string,
     { input: string; groups: Record<string, string | null> }
   > | null;
-};
+}
 
 type InputObject = Record<string, unknown> & {
   baseURL?: string;
@@ -31,10 +35,10 @@ type Params = Record<
   | 'protocol'
   | 'hostname'
   | 'port',
-  Record<string, string>
+  Record<string, string | null>
 >;
 
-export type Fixture = {
+export interface Fixture {
   caseIndex: number;
   pattern: unknown[];
   urlPatternArgs: unknown[];
@@ -42,7 +46,7 @@ export type Fixture = {
   baseURL?: string;
   params: Params;
   expectedUrl: string;
-};
+}
 
 const PARAM_KEYS = [
   'pathname',
@@ -59,6 +63,7 @@ function normalizeSearch(value?: string): string {
   if (!value) {
     return '';
   }
+
   return value.startsWith('?') ? value : `?${value}`;
 }
 
@@ -66,6 +71,7 @@ function normalizeHash(value?: string): string {
   if (!value) {
     return '';
   }
+
   return value.startsWith('#') ? value : `#${value}`;
 }
 
@@ -75,13 +81,17 @@ function buildBaseUrl(input: InputObject, fallback?: string): string {
   if (fallback) {
     return fallback;
   }
+
   if (input.baseURL) {
     return input.baseURL;
   }
+
   if (input.protocol && input.hostname) {
     const port = input.port ? `:${input.port}` : '';
+
     return `${input.protocol}://${input.hostname}${port}`;
   }
+
   return DEFAULT_BASE_URL;
 }
 
@@ -103,10 +113,7 @@ function buildOpaqueUrl(
   }
 }
 
-function buildUrlFromInput(
-  input: unknown,
-  baseURL?: string,
-): URL | null {
+function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
   if (typeof input === 'string') {
     try {
       return baseURL ? new URL(input, baseURL) : new URL(input);
@@ -124,11 +131,13 @@ function buildUrlFromInput(
     if (inputObject.protocol === 'javascript') {
       return buildOpaqueUrl(inputObject.protocol, inputObject);
     }
+
     const opaque = buildOpaqueUrl(inputObject.protocol, inputObject);
     if (opaque) {
       return opaque;
     }
   }
+
   if (!inputObject.protocol && !inputObject.hostname && inputObject.pathname) {
     if (isJavascriptPathname(inputObject.pathname)) {
       return buildOpaqueUrl('javascript', inputObject);
@@ -142,18 +151,23 @@ function buildUrlFromInput(
   if (inputObject.protocol) {
     url.protocol = `${inputObject.protocol}:`;
   }
+
   if (inputObject.username) {
     url.username = inputObject.username;
   }
+
   if (inputObject.password) {
     url.password = inputObject.password;
   }
+
   if (inputObject.hostname) {
     url.hostname = inputObject.hostname;
   }
+
   if (inputObject.port) {
     url.port = inputObject.port;
   }
+
   if (inputObject.pathname !== undefined) {
     const pathname = inputObject.pathname || '';
     if (pathname.startsWith('/') || pathname === '') {
@@ -163,9 +177,11 @@ function buildUrlFromInput(
       url.pathname = resolved.pathname;
     }
   }
+
   if (inputObject.search !== undefined) {
     url.search = normalizeSearch(inputObject.search);
   }
+
   if (inputObject.hash !== undefined) {
     url.hash = normalizeHash(inputObject.hash);
   }
@@ -175,29 +191,37 @@ function buildUrlFromInput(
 
 const DEFAULT_PATTERN_BASE_URL = 'http://example.com';
 
-function buildUrlPatternArgs(entryPattern: unknown[]): unknown[] | null {
+function buildUrlPatternArgs(
+  entryPattern: unknown[],
+): ConstructorParameters<typeof URLPattern> | null {
   if (!entryPattern.length) {
     return null;
   }
 
-  const input = entryPattern[0] as URLPatternInput | string;
+  const input = entryPattern[0] as URLPatternInit | string;
   const maybeBaseURL = entryPattern[1];
   const maybeOptions = entryPattern[2];
 
   const hasScheme =
     typeof input === 'string' && /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(input);
-  const baseURL = typeof maybeBaseURL === 'string'
-    ? maybeBaseURL
-    : (!hasScheme && typeof input === 'string' ? DEFAULT_PATTERN_BASE_URL : undefined);
+  const baseURL =
+    typeof maybeBaseURL === 'string'
+      ? maybeBaseURL
+      : !hasScheme && typeof input === 'string'
+        ? DEFAULT_PATTERN_BASE_URL
+        : undefined;
   const options =
-    (maybeOptions && typeof maybeOptions === 'object')
+    maybeOptions && typeof maybeOptions === 'object'
       ? (maybeOptions as URLPatternOptions)
-      : (typeof maybeBaseURL === 'object' ? (maybeBaseURL as URLPatternOptions) : undefined);
+      : typeof maybeBaseURL === 'object'
+        ? (maybeBaseURL as URLPatternOptions)
+        : undefined;
 
-  const args: unknown[] = [input];
+  const args: ConstructorParameters<typeof URLPattern> = [input];
   if (baseURL !== undefined) {
     args.push(baseURL);
   }
+
   if (options !== undefined) {
     if (baseURL === undefined) {
       args.push(options);
@@ -205,6 +229,7 @@ function buildUrlPatternArgs(entryPattern: unknown[]): unknown[] | null {
       args.push(options);
     }
   }
+
   return args;
 }
 
@@ -229,10 +254,12 @@ function buildParams(
       params[key] = {};
       continue;
     }
+
     if (match.groups && Object.keys(match.groups).length > 0) {
       params[key] = match.groups;
       continue;
     }
+
     const inputValue = inputObject?.[key];
     if (
       typeof inputValue === 'string' &&
@@ -242,19 +269,23 @@ function buildParams(
       params[key] = { 0: inputValue };
       continue;
     }
+
     params[key] = match.input ? { 0: match.input } : {};
   }
 
   return params;
 }
 
-function parseInput(entryInputs: unknown[]): { input: unknown; baseURL?: string } | null {
+function parseInput(
+  entryInputs: unknown[],
+): { input: unknown; baseURL?: string } | null {
   if (!entryInputs.length) {
     return null;
   }
 
   const input = entryInputs[0];
-  const baseURL = typeof entryInputs[1] === 'string' ? entryInputs[1] : undefined;
+  const baseURL =
+    typeof entryInputs[1] === 'string' ? entryInputs[1] : undefined;
 
   return { input, baseURL };
 }
@@ -278,6 +309,7 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
     } catch {
       return;
     }
+
     if (pattern.hasRegExpGroups) {
       return;
     }
@@ -287,10 +319,14 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-    const expectedUrl = buildUrlFromInput(parsedInput.input, parsedInput.baseURL);
+    const expectedUrl = buildUrlFromInput(
+      parsedInput.input,
+      parsedInput.baseURL,
+    );
     if (!expectedUrl) {
       return;
     }
+
     if (
       expectedUrl.protocol !== 'http:' &&
       expectedUrl.protocol !== 'https:' &&
@@ -338,7 +374,10 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const dataUrl = new URL('./raw-fixtures/urlpatterntestdata.json', import.meta.url);
+  const dataUrl = new URL(
+    './raw-fixtures/urlpatterntestdata.json',
+    import.meta.url,
+  );
   const outputUrl = new URL('./fixture-data.ts', import.meta.url);
 
   const raw = fs.readFileSync(dataUrl, 'utf8');
