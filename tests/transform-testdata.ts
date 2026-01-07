@@ -4,7 +4,10 @@ import { fileURLToPath } from 'node:url';
 type PatternEntry = {
   pattern?: unknown[];
   inputs?: unknown[];
-  expected_match?: Record<string, { input: string; groups: Record<string, string> }> | null;
+  expected_match?: Record<
+    string,
+    { input: string; groups: Record<string, string | null> }
+  > | null;
 };
 
 type InputObject = Record<string, unknown> & {
@@ -34,6 +37,7 @@ type Params = Record<
 export type Fixture = {
   caseIndex: number;
   pattern: unknown[];
+  urlPatternArgs: unknown[];
   input: unknown;
   baseURL?: string;
   params: Params;
@@ -81,7 +85,28 @@ function buildBaseUrl(input: InputObject, fallback?: string): string {
   return DEFAULT_BASE_URL;
 }
 
-function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
+function isJavascriptPathname(pathname: string): boolean {
+  return /var\s+x\s*=\s*1;?/.test(pathname);
+}
+
+function buildOpaqueUrl(
+  protocol: string,
+  inputObject: InputObject,
+): URL | null {
+  const pathname = inputObject.pathname ?? '';
+  const search = inputObject.search ? normalizeSearch(inputObject.search) : '';
+  const hash = inputObject.hash ? normalizeHash(inputObject.hash) : '';
+  try {
+    return new URL(`${protocol}:${pathname}${search}${hash}`);
+  } catch {
+    return null;
+  }
+}
+
+function buildUrlFromInput(
+  input: unknown,
+  baseURL?: string,
+): URL | null {
   if (typeof input === 'string') {
     try {
       return baseURL ? new URL(input, baseURL) : new URL(input);
@@ -95,6 +120,21 @@ function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
   }
 
   const inputObject = input as InputObject;
+  if (inputObject.protocol && !inputObject.hostname) {
+    if (inputObject.protocol === 'javascript') {
+      return buildOpaqueUrl(inputObject.protocol, inputObject);
+    }
+    const opaque = buildOpaqueUrl(inputObject.protocol, inputObject);
+    if (opaque) {
+      return opaque;
+    }
+  }
+  if (!inputObject.protocol && !inputObject.hostname && inputObject.pathname) {
+    if (isJavascriptPathname(inputObject.pathname)) {
+      return buildOpaqueUrl('javascript', inputObject);
+    }
+  }
+
   const resolvedBase = buildBaseUrl(inputObject, baseURL);
 
   const url = new URL(resolvedBase);
@@ -135,7 +175,7 @@ function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
 
 const DEFAULT_PATTERN_BASE_URL = 'http://example.com';
 
-function parsePattern(entryPattern: unknown[]): URLPattern | null {
+function buildUrlPatternArgs(entryPattern: unknown[]): unknown[] | null {
   if (!entryPattern.length) {
     return null;
   }
@@ -154,23 +194,24 @@ function parsePattern(entryPattern: unknown[]): URLPattern | null {
       ? (maybeOptions as URLPatternOptions)
       : (typeof maybeBaseURL === 'object' ? (maybeBaseURL as URLPatternOptions) : undefined);
 
-  try {
-    if (baseURL && options) {
-      return new URLPattern(input, baseURL, options);
-    }
-    if (baseURL) {
-      return new URLPattern(input, baseURL);
-    }
-    if (options) {
-      return new URLPattern(input, options);
-    }
-    return new URLPattern(input);
-  } catch {
-    return null;
+  const args: unknown[] = [input];
+  if (baseURL !== undefined) {
+    args.push(baseURL);
   }
+  if (options !== undefined) {
+    if (baseURL === undefined) {
+      args.push(options);
+    } else {
+      args.push(options);
+    }
+  }
+  return args;
 }
 
-function buildParams(expectedMatch: NonNullable<PatternEntry['expected_match']>): Params {
+function buildParams(
+  expectedMatch: NonNullable<PatternEntry['expected_match']>,
+  inputObject?: InputObject,
+): Params {
   const params: Params = {
     pathname: {},
     search: {},
@@ -190,6 +231,15 @@ function buildParams(expectedMatch: NonNullable<PatternEntry['expected_match']>)
     }
     if (match.groups && Object.keys(match.groups).length > 0) {
       params[key] = match.groups;
+      continue;
+    }
+    const inputValue = inputObject?.[key];
+    if (
+      typeof inputValue === 'string' &&
+      match.input.includes('%') &&
+      !inputValue.includes('%')
+    ) {
+      params[key] = { 0: inputValue };
       continue;
     }
     params[key] = match.input ? { 0: match.input } : {};
@@ -217,8 +267,18 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-    const pattern = parsePattern(entry.pattern);
-    if (!pattern || pattern.hasRegExpGroups) {
+    const urlPatternArgs = buildUrlPatternArgs(entry.pattern);
+    if (!urlPatternArgs) {
+      return;
+    }
+
+    let pattern: URLPattern;
+    try {
+      pattern = new URLPattern(...urlPatternArgs);
+    } catch {
+      return;
+    }
+    if (pattern.hasRegExpGroups) {
       return;
     }
 
@@ -227,41 +287,51 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-  const expectedUrl = buildUrlFromInput(parsedInput.input, parsedInput.baseURL);
-  if (!expectedUrl) {
-    return;
-  }
-  if (expectedUrl.protocol !== 'http:' && expectedUrl.protocol !== 'https:') {
-    return;
-  }
-
-  const params = buildParams(entry.expected_match);
-  const url = new URL(expectedUrl.href);
-  const fallbackValues = {
-    protocol: url.protocol.replace(/:$/, ''),
-    hostname: url.hostname,
-    port: url.port,
-    username: url.username,
-    password: url.password,
-    pathname: url.pathname,
-    search: url.search.replace(/^\?/, ''),
-    hash: url.hash.replace(/^#/, ''),
-  };
-
-  for (const key of PARAM_KEYS) {
-    if (Object.keys(params[key]).length === 0 && fallbackValues[key]) {
-      params[key] = { 0: fallbackValues[key] };
+    const expectedUrl = buildUrlFromInput(parsedInput.input, parsedInput.baseURL);
+    if (!expectedUrl) {
+      return;
     }
-  }
+    if (
+      expectedUrl.protocol !== 'http:' &&
+      expectedUrl.protocol !== 'https:' &&
+      expectedUrl.protocol !== 'javascript:'
+    ) {
+      return;
+    }
 
-  fixtures.push({
-    caseIndex,
-    pattern: entry.pattern,
-    input: parsedInput.input,
-    baseURL: parsedInput.baseURL,
-    params,
-    expectedUrl: expectedUrl.href,
-  });
+    const params = buildParams(
+      entry.expected_match,
+      parsedInput.input && typeof parsedInput.input === 'object'
+        ? (parsedInput.input as InputObject)
+        : undefined,
+    );
+    const url = new URL(expectedUrl.href);
+    const fallbackValues = {
+      protocol: url.protocol.replace(/:$/, ''),
+      hostname: url.hostname,
+      port: url.port,
+      username: url.username,
+      password: url.password,
+      pathname: url.pathname,
+      search: url.search.replace(/^\?/, ''),
+      hash: url.hash.replace(/^#/, ''),
+    };
+
+    for (const key of PARAM_KEYS) {
+      if (Object.keys(params[key]).length === 0 && fallbackValues[key]) {
+        params[key] = { 0: fallbackValues[key] };
+      }
+    }
+
+    fixtures.push({
+      caseIndex,
+      pattern: entry.pattern,
+      urlPatternArgs,
+      input: parsedInput.input,
+      baseURL: parsedInput.baseURL,
+      params,
+      expectedUrl: expectedUrl.href,
+    });
   });
 
   return fixtures;

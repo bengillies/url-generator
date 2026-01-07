@@ -36,12 +36,10 @@ describe('generate manual cases', () => {
     expect(result.href).toBe('https://example.com/foo');
   });
 
-  it('fails without protocol and hostname to avoid leaking defaults', () => {
+  it('fails without protocol and hostname when URL construction is invalid', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
 
-    expect(() => generate(pattern, params, {})).toThrow(
-      'Cannot generate URL without protocol and hostname',
-    );
+    expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
   });
 });

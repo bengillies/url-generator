@@ -7,6 +7,11 @@ export const fixtureData = [
         "pathname": "/foo/bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -35,6 +40,11 @@ export const fixtureData = [
         "pathname": "/foo/bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
     "input": "https://example.com/foo/bar",
     "params": {
       "pathname": {
@@ -57,6 +67,11 @@ export const fixtureData = [
   {
     "caseIndex": 6,
     "pattern": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar"
       }
@@ -90,6 +105,11 @@ export const fixtureData = [
         "pathname": "/foo/bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar",
       "baseURL": "https://example.com"
@@ -115,6 +135,12 @@ export const fixtureData = [
   {
     "caseIndex": 12,
     "pattern": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar",
         "baseURL": "https://example.com?query#hash"
@@ -151,6 +177,12 @@ export const fixtureData = [
         "baseURL": "https://example.com"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com"
+      }
+    ],
     "input": {
       "protocol": "https",
       "hostname": "example.com",
@@ -177,6 +209,12 @@ export const fixtureData = [
   {
     "caseIndex": 15,
     "pattern": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar",
         "baseURL": "https://example.com?query#hash"
@@ -219,6 +257,12 @@ export const fixtureData = [
         "baseURL": "https://example.com"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com"
+      }
+    ],
     "input": {
       "protocol": "https",
       "hostname": "example.com",
@@ -251,6 +295,12 @@ export const fixtureData = [
   {
     "caseIndex": 17,
     "pattern": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?otherquery#otherhash"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar",
         "baseURL": "https://example.com?otherquery#otherhash"
@@ -293,6 +343,12 @@ export const fixtureData = [
         "baseURL": "https://example.com?query#hash"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
     "input": "https://example.com/foo/bar",
     "params": {
       "pathname": {
@@ -315,6 +371,12 @@ export const fixtureData = [
   {
     "caseIndex": 19,
     "pattern": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar",
         "baseURL": "https://example.com?query#hash"
@@ -351,6 +413,12 @@ export const fixtureData = [
         "baseURL": "https://example.com?query#hash"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
     "input": "https://example.com/foo/bar?query#hash",
     "params": {
       "pathname": {
@@ -382,6 +450,12 @@ export const fixtureData = [
         "baseURL": "https://example.com?query#hash"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar",
       "baseURL": "https://example.com"
@@ -407,6 +481,12 @@ export const fixtureData = [
   {
     "caseIndex": 25,
     "pattern": [
+      {
+        "pathname": "/foo/bar",
+        "baseURL": "https://example.com?query#hash"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar",
         "baseURL": "https://example.com?query#hash"
@@ -445,6 +525,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -469,6 +554,11 @@ export const fixtureData = [
   {
     "caseIndex": 30,
     "pattern": [
+      {
+        "pathname": "/foo/([^\\/]+?)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/([^\\/]+?)"
       }
@@ -501,6 +591,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/index.html"
     },
@@ -525,6 +620,11 @@ export const fixtureData = [
   {
     "caseIndex": 34,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)"
       }
@@ -557,6 +657,11 @@ export const fixtureData = [
         "pathname": "/foo/*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -581,6 +686,11 @@ export const fixtureData = [
   {
     "caseIndex": 36,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)"
       }
@@ -613,6 +723,11 @@ export const fixtureData = [
         "pathname": "/foo/*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar/baz"
     },
@@ -637,6 +752,11 @@ export const fixtureData = [
   {
     "caseIndex": 38,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)"
       }
@@ -669,6 +789,11 @@ export const fixtureData = [
         "pathname": "/foo/*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*"
+      }
+    ],
     "input": {
       "pathname": "/foo/"
     },
@@ -693,6 +818,11 @@ export const fixtureData = [
   {
     "caseIndex": 42,
     "pattern": [
+      {
+        "pathname": "/foo/:bar(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/:bar(.*)"
       }
@@ -725,6 +855,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar(.*)"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar(.*)"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar/baz"
     },
@@ -749,6 +884,11 @@ export const fixtureData = [
   {
     "caseIndex": 44,
     "pattern": [
+      {
+        "pathname": "/foo/:bar(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/:bar(.*)"
       }
@@ -781,6 +921,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar?"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -805,6 +950,11 @@ export const fixtureData = [
   {
     "caseIndex": 47,
     "pattern": [
+      {
+        "pathname": "/foo/:bar?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/:bar?"
       }
@@ -837,6 +987,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar+"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -861,6 +1016,11 @@ export const fixtureData = [
   {
     "caseIndex": 52,
     "pattern": [
+      {
+        "pathname": "/foo/:bar+"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/:bar+"
       }
@@ -893,6 +1053,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar*"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -917,6 +1082,11 @@ export const fixtureData = [
   {
     "caseIndex": 57,
     "pattern": [
+      {
+        "pathname": "/foo/:bar*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/:bar*"
       }
@@ -949,6 +1119,11 @@ export const fixtureData = [
         "pathname": "/foo/:bar*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/:bar*"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -973,6 +1148,11 @@ export const fixtureData = [
   {
     "caseIndex": 61,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)?"
       }
@@ -1005,6 +1185,11 @@ export const fixtureData = [
         "pathname": "/foo/*?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*?"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1029,6 +1214,11 @@ export const fixtureData = [
   {
     "caseIndex": 63,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)?"
       }
@@ -1061,6 +1251,11 @@ export const fixtureData = [
         "pathname": "/foo/*?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*?"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar/baz"
     },
@@ -1085,6 +1280,11 @@ export const fixtureData = [
   {
     "caseIndex": 65,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)?"
       }
@@ -1117,6 +1317,11 @@ export const fixtureData = [
         "pathname": "/foo/*?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*?"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -1141,6 +1346,11 @@ export const fixtureData = [
   {
     "caseIndex": 67,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)?"
       }
@@ -1173,6 +1383,11 @@ export const fixtureData = [
         "pathname": "/foo/*?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*?"
+      }
+    ],
     "input": {
       "pathname": "/foo/"
     },
@@ -1197,6 +1412,11 @@ export const fixtureData = [
   {
     "caseIndex": 73,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)+"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)+"
       }
@@ -1229,6 +1449,11 @@ export const fixtureData = [
         "pathname": "/foo/*+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*+"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1253,6 +1478,11 @@ export const fixtureData = [
   {
     "caseIndex": 75,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)+"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)+"
       }
@@ -1285,6 +1515,11 @@ export const fixtureData = [
         "pathname": "/foo/*+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*+"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar/baz"
     },
@@ -1309,6 +1544,11 @@ export const fixtureData = [
   {
     "caseIndex": 79,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)+"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)+"
       }
@@ -1341,6 +1581,11 @@ export const fixtureData = [
         "pathname": "/foo/*+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/*+"
+      }
+    ],
     "input": {
       "pathname": "/foo/"
     },
@@ -1365,6 +1610,11 @@ export const fixtureData = [
   {
     "caseIndex": 85,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)*"
       }
@@ -1397,6 +1647,11 @@ export const fixtureData = [
         "pathname": "/foo/**"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/**"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1421,6 +1676,11 @@ export const fixtureData = [
   {
     "caseIndex": 87,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)*"
       }
@@ -1453,6 +1713,11 @@ export const fixtureData = [
         "pathname": "/foo/**"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/**"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar/baz"
     },
@@ -1477,6 +1742,11 @@ export const fixtureData = [
   {
     "caseIndex": 89,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)*"
       }
@@ -1509,6 +1779,11 @@ export const fixtureData = [
         "pathname": "/foo/**"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/**"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -1533,6 +1808,11 @@ export const fixtureData = [
   {
     "caseIndex": 91,
     "pattern": [
+      {
+        "pathname": "/foo/(.*)*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/(.*)*"
       }
@@ -1565,6 +1845,11 @@ export const fixtureData = [
         "pathname": "/foo/**"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/**"
+      }
+    ],
     "input": {
       "pathname": "/foo/"
     },
@@ -1589,6 +1874,11 @@ export const fixtureData = [
   {
     "caseIndex": 97,
     "pattern": [
+      {
+        "pathname": "/foo{/bar}"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo{/bar}"
       }
@@ -1621,6 +1911,11 @@ export const fixtureData = [
         "pathname": "/foo{/bar}?"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo{/bar}?"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1645,6 +1940,11 @@ export const fixtureData = [
   {
     "caseIndex": 103,
     "pattern": [
+      {
+        "pathname": "/foo{/bar}?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo{/bar}?"
       }
@@ -1677,6 +1977,11 @@ export const fixtureData = [
         "pathname": "/foo{/bar}+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo{/bar}+"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1701,6 +2006,11 @@ export const fixtureData = [
   {
     "caseIndex": 106,
     "pattern": [
+      {
+        "pathname": "/foo{/bar}+"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo{/bar}+"
       }
@@ -1733,6 +2043,11 @@ export const fixtureData = [
         "pathname": "/foo{/bar}*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo{/bar}*"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -1757,6 +2072,11 @@ export const fixtureData = [
   {
     "caseIndex": 111,
     "pattern": [
+      {
+        "pathname": "/foo{/bar}*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo{/bar}*"
       }
@@ -1789,6 +2109,11 @@ export const fixtureData = [
         "pathname": "/foo{/bar}*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo{/bar}*"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -1811,36 +2136,13 @@ export const fixtureData = [
     "expectedUrl": "http://example.com/foo"
   },
   {
-    "caseIndex": 122,
-    "pattern": [
-      {
-        "protocol": ":café"
-      }
-    ],
-    "input": {
-      "protocol": "foo"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "café": "foo"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
     "caseIndex": 123,
     "pattern": [
+      {
+        "username": ":café"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "username": ":café"
       }
@@ -1875,6 +2177,11 @@ export const fixtureData = [
         "password": ":café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "password": ":café"
+      }
+    ],
     "input": {
       "password": "foo"
     },
@@ -1901,6 +2208,11 @@ export const fixtureData = [
   {
     "caseIndex": 125,
     "pattern": [
+      {
+        "hostname": ":café"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": ":café"
       }
@@ -1933,6 +2245,11 @@ export const fixtureData = [
         "pathname": "/:café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/:café"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -1957,6 +2274,11 @@ export const fixtureData = [
   {
     "caseIndex": 127,
     "pattern": [
+      {
+        "search": ":café"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "search": ":café"
       }
@@ -1991,6 +2313,11 @@ export const fixtureData = [
         "hash": ":café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hash": ":café"
+      }
+    ],
     "input": {
       "hash": "foo"
     },
@@ -2015,36 +2342,13 @@ export const fixtureData = [
     "expectedUrl": "http://example.com/#foo"
   },
   {
-    "caseIndex": 129,
-    "pattern": [
-      {
-        "protocol": ":℘"
-      }
-    ],
-    "input": {
-      "protocol": "foo"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "℘": "foo"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
     "caseIndex": 130,
     "pattern": [
+      {
+        "username": ":℘"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "username": ":℘"
       }
@@ -2079,6 +2383,11 @@ export const fixtureData = [
         "password": ":℘"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "password": ":℘"
+      }
+    ],
     "input": {
       "password": "foo"
     },
@@ -2105,6 +2414,11 @@ export const fixtureData = [
   {
     "caseIndex": 132,
     "pattern": [
+      {
+        "hostname": ":℘"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": ":℘"
       }
@@ -2137,6 +2451,11 @@ export const fixtureData = [
         "pathname": "/:℘"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/:℘"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -2161,6 +2480,11 @@ export const fixtureData = [
   {
     "caseIndex": 134,
     "pattern": [
+      {
+        "search": ":℘"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "search": ":℘"
       }
@@ -2195,6 +2519,11 @@ export const fixtureData = [
         "hash": ":℘"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hash": ":℘"
+      }
+    ],
     "input": {
       "hash": "foo"
     },
@@ -2219,36 +2548,13 @@ export const fixtureData = [
     "expectedUrl": "http://example.com/#foo"
   },
   {
-    "caseIndex": 136,
-    "pattern": [
-      {
-        "protocol": ":㐀"
-      }
-    ],
-    "input": {
-      "protocol": "foo"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "㐀": "foo"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
     "caseIndex": 137,
     "pattern": [
+      {
+        "username": ":㐀"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "username": ":㐀"
       }
@@ -2283,6 +2589,11 @@ export const fixtureData = [
         "password": ":㐀"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "password": ":㐀"
+      }
+    ],
     "input": {
       "password": "foo"
     },
@@ -2309,6 +2620,11 @@ export const fixtureData = [
   {
     "caseIndex": 139,
     "pattern": [
+      {
+        "hostname": ":㐀"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": ":㐀"
       }
@@ -2341,6 +2657,11 @@ export const fixtureData = [
         "pathname": "/:㐀"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/:㐀"
+      }
+    ],
     "input": {
       "pathname": "/foo"
     },
@@ -2365,6 +2686,11 @@ export const fixtureData = [
   {
     "caseIndex": 141,
     "pattern": [
+      {
+        "search": ":㐀"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "search": ":㐀"
       }
@@ -2399,6 +2725,11 @@ export const fixtureData = [
         "hash": ":㐀"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hash": ":㐀"
+      }
+    ],
     "input": {
       "hash": "foo"
     },
@@ -2423,64 +2754,13 @@ export const fixtureData = [
     "expectedUrl": "http://example.com/#foo"
   },
   {
-    "caseIndex": 144,
-    "pattern": [
-      {
-        "protocol": "(.*)"
-      }
-    ],
-    "input": {
-      "protocol": "cafe"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "cafe"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
-    "caseIndex": 145,
-    "pattern": [
-      {
-        "protocol": "foo-bar"
-      }
-    ],
-    "input": {
-      "protocol": "foo-bar"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "foo-bar"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
     "caseIndex": 146,
     "pattern": [
+      {
+        "username": "caf%C3%A9"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "username": "caf%C3%A9"
       }
@@ -2495,7 +2775,7 @@ export const fixtureData = [
       "search": {},
       "hash": {},
       "username": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "password": {},
       "protocol": {
@@ -2515,6 +2795,11 @@ export const fixtureData = [
         "username": "café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "username": "café"
+      }
+    ],
     "input": {
       "username": "café"
     },
@@ -2525,7 +2810,7 @@ export const fixtureData = [
       "search": {},
       "hash": {},
       "username": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "password": {},
       "protocol": {
@@ -2545,6 +2830,11 @@ export const fixtureData = [
         "password": "caf%C3%A9"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "password": "caf%C3%A9"
+      }
+    ],
     "input": {
       "password": "café"
     },
@@ -2556,7 +2846,7 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "protocol": {
         "0": "http"
@@ -2575,6 +2865,11 @@ export const fixtureData = [
         "password": "café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "password": "café"
+      }
+    ],
     "input": {
       "password": "café"
     },
@@ -2586,7 +2881,7 @@ export const fixtureData = [
       "hash": {},
       "username": {},
       "password": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "protocol": {
         "0": "http"
@@ -2601,6 +2896,11 @@ export const fixtureData = [
   {
     "caseIndex": 152,
     "pattern": [
+      {
+        "hostname": "xn--caf-dma.com"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "xn--caf-dma.com"
       }
@@ -2633,6 +2933,11 @@ export const fixtureData = [
         "hostname": "café.com"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hostname": "café.com"
+      }
+    ],
     "input": {
       "hostname": "café.com"
     },
@@ -2657,6 +2962,9 @@ export const fixtureData = [
   {
     "caseIndex": 154,
     "pattern": [
+      "http://🚲.com/"
+    ],
+    "urlPatternArgs": [
       "http://🚲.com/"
     ],
     "input": "http://🚲.com/",
@@ -2685,6 +2993,11 @@ export const fixtureData = [
         "pathname": "test/:a𐑐b"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "test/:a𐑐b"
+      }
+    ],
     "input": {
       "pathname": "test/foo"
     },
@@ -2709,6 +3022,11 @@ export const fixtureData = [
   {
     "caseIndex": 162,
     "pattern": [
+      {
+        "port": ""
+      }
+    ],
+    "urlPatternArgs": [
       {
         "port": ""
       }
@@ -2743,6 +3061,12 @@ export const fixtureData = [
         "port": "80"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "protocol": "http",
+        "port": "80"
+      }
+    ],
     "input": {
       "protocol": "http",
       "port": "80"
@@ -2768,6 +3092,11 @@ export const fixtureData = [
   {
     "caseIndex": 169,
     "pattern": [
+      {
+        "port": "80"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "port": "80"
       }
@@ -2802,6 +3131,11 @@ export const fixtureData = [
         "port": "80"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "port": "80"
+      }
+    ],
     "input": {
       "port": "8\t0"
     },
@@ -2828,6 +3162,11 @@ export const fixtureData = [
   {
     "caseIndex": 171,
     "pattern": [
+      {
+        "port": "80"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "port": "80"
       }
@@ -2862,6 +3201,11 @@ export const fixtureData = [
         "port": "80"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "port": "80"
+      }
+    ],
     "input": {
       "port": "80?x"
     },
@@ -2888,6 +3232,11 @@ export const fixtureData = [
   {
     "caseIndex": 173,
     "pattern": [
+      {
+        "port": "80"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "port": "80"
       }
@@ -2922,6 +3271,11 @@ export const fixtureData = [
         "pathname": "/foo/bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/./bar"
     },
@@ -2946,6 +3300,11 @@ export const fixtureData = [
   {
     "caseIndex": 176,
     "pattern": [
+      {
+        "pathname": "/foo/baz"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/baz"
       }
@@ -2978,12 +3337,17 @@ export const fixtureData = [
         "pathname": "/caf%C3%A9"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/caf%C3%A9"
+      }
+    ],
     "input": {
       "pathname": "/café"
     },
     "params": {
       "pathname": {
-        "0": "/caf%C3%A9"
+        "0": "/café"
       },
       "search": {},
       "hash": {},
@@ -3006,12 +3370,17 @@ export const fixtureData = [
         "pathname": "/café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/café"
+      }
+    ],
     "input": {
       "pathname": "/café"
     },
     "params": {
       "pathname": {
-        "0": "/caf%C3%A9"
+        "0": "/café"
       },
       "search": {},
       "hash": {},
@@ -3030,6 +3399,11 @@ export const fixtureData = [
   {
     "caseIndex": 181,
     "pattern": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar"
       }
@@ -3063,6 +3437,11 @@ export const fixtureData = [
         "pathname": "/foo/../bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/../bar"
+      }
+    ],
     "input": {
       "pathname": "/bar"
     },
@@ -3087,6 +3466,12 @@ export const fixtureData = [
   {
     "caseIndex": 183,
     "pattern": [
+      {
+        "pathname": "./foo/bar",
+        "baseURL": "https://example.com"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "./foo/bar",
         "baseURL": "https://example.com"
@@ -3122,6 +3507,12 @@ export const fixtureData = [
         "baseURL": "https://example.com"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "",
+        "baseURL": "https://example.com"
+      }
+    ],
     "input": {
       "pathname": "/",
       "baseURL": "https://example.com"
@@ -3147,6 +3538,12 @@ export const fixtureData = [
   {
     "caseIndex": 187,
     "pattern": [
+      {
+        "pathname": "b",
+        "baseURL": "https://example.com/foo/"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "b",
         "baseURL": "https://example.com/foo/"
@@ -3182,6 +3579,12 @@ export const fixtureData = [
         "baseURL": "https://example.com"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "foo/bar",
+        "baseURL": "https://example.com"
+      }
+    ],
     "input": "https://example.com/foo/bar",
     "params": {
       "pathname": {
@@ -3204,6 +3607,12 @@ export const fixtureData = [
   {
     "caseIndex": 190,
     "pattern": [
+      {
+        "pathname": ":name.html",
+        "baseURL": "https://example.com"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": ":name.html",
         "baseURL": "https://example.com"
@@ -3235,6 +3644,11 @@ export const fixtureData = [
         "search": "q=caf%C3%A9"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "search": "q=caf%C3%A9"
+      }
+    ],
     "input": {
       "search": "q=café"
     },
@@ -3243,7 +3657,7 @@ export const fixtureData = [
         "0": "/"
       },
       "search": {
-        "0": "q=caf%C3%A9"
+        "0": "q=café"
       },
       "hash": {},
       "username": {},
@@ -3265,6 +3679,11 @@ export const fixtureData = [
         "search": "q=café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "search": "q=café"
+      }
+    ],
     "input": {
       "search": "q=café"
     },
@@ -3273,7 +3692,7 @@ export const fixtureData = [
         "0": "/"
       },
       "search": {
-        "0": "q=caf%C3%A9"
+        "0": "q=café"
       },
       "hash": {},
       "username": {},
@@ -3295,6 +3714,11 @@ export const fixtureData = [
         "hash": "caf%C3%A9"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hash": "caf%C3%A9"
+      }
+    ],
     "input": {
       "hash": "café"
     },
@@ -3304,7 +3728,7 @@ export const fixtureData = [
       },
       "search": {},
       "hash": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "username": {},
       "password": {},
@@ -3325,6 +3749,11 @@ export const fixtureData = [
         "hash": "café"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hash": "café"
+      }
+    ],
     "input": {
       "hash": "café"
     },
@@ -3334,7 +3763,7 @@ export const fixtureData = [
       },
       "search": {},
       "hash": {
-        "0": "caf%C3%A9"
+        "0": "café"
       },
       "username": {},
       "password": {},
@@ -3351,6 +3780,11 @@ export const fixtureData = [
   {
     "caseIndex": 200,
     "pattern": [
+      {
+        "pathname": "/foo!"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo!"
       }
@@ -3383,6 +3817,11 @@ export const fixtureData = [
         "pathname": "/foo\\:"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo\\:"
+      }
+    ],
     "input": {
       "pathname": "/foo:"
     },
@@ -3411,12 +3850,17 @@ export const fixtureData = [
         "pathname": "/foo\\{"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo\\{"
+      }
+    ],
     "input": {
       "pathname": "/foo{"
     },
     "params": {
       "pathname": {
-        "0": "/foo%7B"
+        "0": "/foo{"
       },
       "search": {},
       "hash": {},
@@ -3435,6 +3879,11 @@ export const fixtureData = [
   {
     "caseIndex": 203,
     "pattern": [
+      {
+        "pathname": "/foo\\("
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo\\("
       }
@@ -3468,6 +3917,12 @@ export const fixtureData = [
         "pathname": "var x = 1;"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "protocol": "javascript",
+        "pathname": "var x = 1;"
+      }
+    ],
     "input": {
       "protocol": "javascript",
       "pathname": "var x = 1;"
@@ -3483,16 +3938,52 @@ export const fixtureData = [
       "protocol": {
         "0": "javascript"
       },
-      "hostname": {
-        "0": "example.com"
-      },
+      "hostname": {},
       "port": {}
     },
-    "expectedUrl": "http://example.com/var%20x%20=%201;"
+    "expectedUrl": "javascript:var x = 1;"
+  },
+  {
+    "caseIndex": 206,
+    "pattern": [
+      {
+        "protocol": "javascript",
+        "pathname": "var x = 1;"
+      }
+    ],
+    "urlPatternArgs": [
+      {
+        "protocol": "javascript",
+        "pathname": "var x = 1;"
+      }
+    ],
+    "input": {
+      "baseURL": "javascript:var x = 1;"
+    },
+    "params": {
+      "pathname": {
+        "0": "var x = 1;"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "javascript"
+      },
+      "hostname": {},
+      "port": {}
+    },
+    "expectedUrl": "javascript:var x = 1;"
   },
   {
     "caseIndex": 209,
     "pattern": [
+      {
+        "pathname": "var x = 1;"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "var x = 1;"
       }
@@ -3502,25 +3993,28 @@ export const fixtureData = [
     },
     "params": {
       "pathname": {
-        "0": "var%20x%20=%201;"
+        "0": "var x = 1;"
       },
       "search": {},
       "hash": {},
       "username": {},
       "password": {},
       "protocol": {
-        "0": "http"
+        "0": "javascript"
       },
-      "hostname": {
-        "0": "example.com"
-      },
+      "hostname": {},
       "port": {}
     },
-    "expectedUrl": "http://example.com/var%20x%20=%201;"
+    "expectedUrl": "javascript:var x = 1;"
   },
   {
     "caseIndex": 210,
     "pattern": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/foo/bar"
       }
@@ -3552,6 +4046,11 @@ export const fixtureData = [
         "pathname": "/foo/bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      }
+    ],
     "input": {
       "pathname": "/foo/bar"
     },
@@ -3577,6 +4076,9 @@ export const fixtureData = [
   {
     "caseIndex": 212,
     "pattern": [
+      "https://example.com:8080/foo?bar#baz"
+    ],
+    "urlPatternArgs": [
       "https://example.com:8080/foo?bar#baz"
     ],
     "input": {
@@ -3615,6 +4117,10 @@ export const fixtureData = [
       "/foo?bar#baz",
       "https://example.com:8080"
     ],
+    "urlPatternArgs": [
+      "/foo?bar#baz",
+      "https://example.com:8080"
+    ],
     "input": {
       "pathname": "/foo",
       "search": "bar",
@@ -3650,6 +4156,10 @@ export const fixtureData = [
     "pattern": [
       "http{s}?://{*.}?example.com/:product/:endpoint"
     ],
+    "urlPatternArgs": [
+      "http{s}?://{*.}?example.com/:product/:endpoint",
+      "http://example.com"
+    ],
     "input": "https://sub.example.com/foo/bar",
     "params": {
       "pathname": {
@@ -3673,6 +4183,9 @@ export const fixtureData = [
   {
     "caseIndex": 217,
     "pattern": [
+      "https://example.com?foo"
+    ],
+    "urlPatternArgs": [
       "https://example.com?foo"
     ],
     "input": "https://example.com/?foo",
@@ -3701,6 +4214,9 @@ export const fixtureData = [
     "pattern": [
       "https://example.com#foo"
     ],
+    "urlPatternArgs": [
+      "https://example.com#foo"
+    ],
     "input": "https://example.com/#foo",
     "params": {
       "pathname": {
@@ -3725,6 +4241,9 @@ export const fixtureData = [
   {
     "caseIndex": 219,
     "pattern": [
+      "https://example.com:8080?foo"
+    ],
+    "urlPatternArgs": [
       "https://example.com:8080?foo"
     ],
     "input": "https://example.com:8080/?foo",
@@ -3755,6 +4274,9 @@ export const fixtureData = [
     "pattern": [
       "https://example.com:8080#foo"
     ],
+    "urlPatternArgs": [
+      "https://example.com:8080#foo"
+    ],
     "input": "https://example.com:8080/#foo",
     "params": {
       "pathname": {
@@ -3783,6 +4305,9 @@ export const fixtureData = [
     "pattern": [
       "https://example.com/?foo"
     ],
+    "urlPatternArgs": [
+      "https://example.com/?foo"
+    ],
     "input": "https://example.com/?foo",
     "params": {
       "pathname": {
@@ -3807,6 +4332,9 @@ export const fixtureData = [
   {
     "caseIndex": 222,
     "pattern": [
+      "https://example.com/#foo"
+    ],
+    "urlPatternArgs": [
       "https://example.com/#foo"
     ],
     "input": "https://example.com/#foo",
@@ -3835,6 +4363,9 @@ export const fixtureData = [
     "pattern": [
       "https://example.com/*\\?foo"
     ],
+    "urlPatternArgs": [
+      "https://example.com/*\\?foo"
+    ],
     "input": "https://example.com/?foo",
     "params": {
       "pathname": {
@@ -3859,6 +4390,9 @@ export const fixtureData = [
   {
     "caseIndex": 226,
     "pattern": [
+      "https://example.com/:name\\?foo"
+    ],
+    "urlPatternArgs": [
       "https://example.com/:name\\?foo"
     ],
     "input": "https://example.com/bar?foo",
@@ -3887,6 +4421,9 @@ export const fixtureData = [
     "pattern": [
       "https://example.com/{bar}\\?foo"
     ],
+    "urlPatternArgs": [
+      "https://example.com/{bar}\\?foo"
+    ],
     "input": "https://example.com/bar?foo",
     "params": {
       "pathname": {
@@ -3913,6 +4450,9 @@ export const fixtureData = [
     "pattern": [
       "https://{sub.}?example.com/foo"
     ],
+    "urlPatternArgs": [
+      "https://{sub.}?example.com/foo"
+    ],
     "input": "https://example.com/foo",
     "params": {
       "pathname": {
@@ -3937,6 +4477,9 @@ export const fixtureData = [
     "pattern": [
       "https://{sub.}?example{.com/}foo"
     ],
+    "urlPatternArgs": [
+      "https://{sub.}?example{.com/}foo"
+    ],
     "input": "https://example.com/foo",
     "params": {
       "pathname": {
@@ -3959,6 +4502,13 @@ export const fixtureData = [
   {
     "caseIndex": 247,
     "pattern": [
+      {
+        "protocol": "http{s}?:",
+        "search": "?bar",
+        "hash": "#baz"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "protocol": "http{s}?:",
         "search": "?bar",
@@ -3994,6 +4544,10 @@ export const fixtureData = [
       "?bar#baz",
       "https://example.com/foo"
     ],
+    "urlPatternArgs": [
+      "?bar#baz",
+      "https://example.com/foo"
+    ],
     "input": "?bar#baz",
     "baseURL": "https://example.com/foo",
     "params": {
@@ -4024,6 +4578,10 @@ export const fixtureData = [
       "?bar",
       "https://example.com/foo#baz"
     ],
+    "urlPatternArgs": [
+      "?bar",
+      "https://example.com/foo#baz"
+    ],
     "input": "?bar",
     "baseURL": "https://example.com/foo#snafu",
     "params": {
@@ -4049,6 +4607,10 @@ export const fixtureData = [
   {
     "caseIndex": 250,
     "pattern": [
+      "#baz",
+      "https://example.com/foo?bar"
+    ],
+    "urlPatternArgs": [
       "#baz",
       "https://example.com/foo?bar"
     ],
@@ -4082,6 +4644,10 @@ export const fixtureData = [
       "#baz",
       "https://example.com/foo"
     ],
+    "urlPatternArgs": [
+      "#baz",
+      "https://example.com/foo"
+    ],
     "input": "#baz",
     "baseURL": "https://example.com/foo",
     "params": {
@@ -4107,6 +4673,9 @@ export const fixtureData = [
   {
     "caseIndex": 254,
     "pattern": [
+      "https://foo\\:bar@example.com"
+    ],
+    "urlPatternArgs": [
       "https://foo\\:bar@example.com"
     ],
     "input": "https://foo:bar@example.com",
@@ -4137,6 +4706,9 @@ export const fixtureData = [
     "pattern": [
       "https://foo@example.com"
     ],
+    "urlPatternArgs": [
+      "https://foo@example.com"
+    ],
     "input": "https://foo@example.com",
     "params": {
       "pathname": {
@@ -4163,6 +4735,9 @@ export const fixtureData = [
     "pattern": [
       "https://\\:bar@example.com"
     ],
+    "urlPatternArgs": [
+      "https://\\:bar@example.com"
+    ],
     "input": "https://:bar@example.com",
     "params": {
       "pathname": {
@@ -4187,6 +4762,9 @@ export const fixtureData = [
   {
     "caseIndex": 257,
     "pattern": [
+      "https://:user::pass@example.com"
+    ],
+    "urlPatternArgs": [
       "https://:user::pass@example.com"
     ],
     "input": "https://foo:bar@example.com",
@@ -4217,6 +4795,10 @@ export const fixtureData = [
     "pattern": [
       "https\\:foo\\:bar@example.com"
     ],
+    "urlPatternArgs": [
+      "https\\:foo\\:bar@example.com",
+      "http://example.com"
+    ],
     "input": "https:foo:bar@example.com",
     "params": {
       "pathname": {
@@ -4246,6 +4828,10 @@ export const fixtureData = [
       "data{\\:}channel.html",
       "https://example.com"
     ],
+    "urlPatternArgs": [
+      "data{\\:}channel.html",
+      "https://example.com"
+    ],
     "input": "https://example.com/data:channel.html",
     "params": {
       "pathname": {
@@ -4270,6 +4856,9 @@ export const fixtureData = [
     "pattern": [
       "http://[\\:\\:1]/"
     ],
+    "urlPatternArgs": [
+      "http://[\\:\\:1]/"
+    ],
     "input": "http://[::1]/",
     "params": {
       "pathname": {
@@ -4292,6 +4881,9 @@ export const fixtureData = [
   {
     "caseIndex": 263,
     "pattern": [
+      "http://[\\:\\:1]:8080/"
+    ],
+    "urlPatternArgs": [
       "http://[\\:\\:1]:8080/"
     ],
     "input": "http://[::1]:8080/",
@@ -4320,6 +4912,9 @@ export const fixtureData = [
     "pattern": [
       "http://[\\:\\:a]/"
     ],
+    "urlPatternArgs": [
+      "http://[\\:\\:a]/"
+    ],
     "input": "http://[::a]/",
     "params": {
       "pathname": {
@@ -4342,6 +4937,9 @@ export const fixtureData = [
   {
     "caseIndex": 265,
     "pattern": [
+      "http://[:address]/"
+    ],
+    "urlPatternArgs": [
       "http://[:address]/"
     ],
     "input": "http://[::1]/",
@@ -4368,6 +4966,9 @@ export const fixtureData = [
     "pattern": [
       "http://[\\:\\:AB\\::num]/"
     ],
+    "urlPatternArgs": [
+      "http://[\\:\\:AB\\::num]/"
+    ],
     "input": "http://[::ab:1]/",
     "params": {
       "pathname": {
@@ -4390,6 +4991,11 @@ export const fixtureData = [
   {
     "caseIndex": 267,
     "pattern": [
+      {
+        "hostname": "[\\:\\:AB\\::num]"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "[\\:\\:AB\\::num]"
       }
@@ -4422,6 +5028,11 @@ export const fixtureData = [
         "hostname": "{[\\:\\:ab\\::num]}"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hostname": "{[\\:\\:ab\\::num]}"
+      }
+    ],
     "input": {
       "hostname": "[::ab:1]"
     },
@@ -4446,6 +5057,11 @@ export const fixtureData = [
   {
     "caseIndex": 271,
     "pattern": [
+      {
+        "hostname": "{[\\:\\::num\\:1]}"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "{[\\:\\::num\\:1]}"
       }
@@ -4478,6 +5094,11 @@ export const fixtureData = [
         "hostname": "[*\\:1]"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hostname": "[*\\:1]"
+      }
+    ],
     "input": {
       "hostname": "[::ab:1]"
     },
@@ -4502,6 +5123,11 @@ export const fixtureData = [
   {
     "caseIndex": 282,
     "pattern": [
+      {
+        "pathname": ":name*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": ":name*"
       }
@@ -4534,6 +5160,11 @@ export const fixtureData = [
         "pathname": ":name+"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":name+"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -4562,6 +5193,11 @@ export const fixtureData = [
         "pathname": ":name"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":name"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -4584,92 +5220,13 @@ export const fixtureData = [
     "expectedUrl": "http://example.com/foobar"
   },
   {
-    "caseIndex": 285,
-    "pattern": [
-      {
-        "protocol": ":name*"
-      }
-    ],
-    "input": {
-      "protocol": "foobar"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "name": "foobar"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
-    "caseIndex": 286,
-    "pattern": [
-      {
-        "protocol": ":name+"
-      }
-    ],
-    "input": {
-      "protocol": "foobar"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "name": "foobar"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
-    "caseIndex": 287,
-    "pattern": [
-      {
-        "protocol": ":name"
-      }
-    ],
-    "input": {
-      "protocol": "foobar"
-    },
-    "params": {
-      "pathname": {
-        "0": "/"
-      },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "name": "foobar"
-      },
-      "hostname": {
-        "0": "example.com"
-      },
-      "port": {}
-    },
-    "expectedUrl": "http://example.com/"
-  },
-  {
     "caseIndex": 289,
     "pattern": [
+      {
+        "hostname": "bad#hostname"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "bad#hostname"
       }
@@ -4702,6 +5259,11 @@ export const fixtureData = [
         "hostname": "bad/hostname"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hostname": "bad/hostname"
+      }
+    ],
     "input": {
       "hostname": "bad"
     },
@@ -4726,6 +5288,11 @@ export const fixtureData = [
   {
     "caseIndex": 302,
     "pattern": [
+      {
+        "hostname": "bad\nhostname"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "bad\nhostname"
       }
@@ -4758,6 +5325,11 @@ export const fixtureData = [
         "hostname": "bad\rhostname"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "hostname": "bad\rhostname"
+      }
+    ],
     "input": {
       "hostname": "badhostname"
     },
@@ -4782,6 +5354,11 @@ export const fixtureData = [
   {
     "caseIndex": 304,
     "pattern": [
+      {
+        "hostname": "bad\thostname"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hostname": "bad\thostname"
       }
@@ -4812,6 +5389,9 @@ export const fixtureData = [
     "pattern": [
       {}
     ],
+    "urlPatternArgs": [
+      {}
+    ],
     "input": "https://example.com/",
     "params": {
       "pathname": {
@@ -4834,6 +5414,11 @@ export const fixtureData = [
   {
     "caseIndex": 312,
     "pattern": [
+      {
+        "pathname": "{:foo}(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "{:foo}(.*)"
       }
@@ -4867,6 +5452,11 @@ export const fixtureData = [
         "pathname": "{:foo}{(.*)}"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo}{(.*)}"
+      }
+    ],
     "input": {
       "pathname": "foobarbaz"
     },
@@ -4892,6 +5482,11 @@ export const fixtureData = [
   {
     "caseIndex": 316,
     "pattern": [
+      {
+        "pathname": "{:foo}{bar(.*)}"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "{:foo}{bar(.*)}"
       }
@@ -4925,6 +5520,11 @@ export const fixtureData = [
         "pathname": "{:foo}:bar(.*)"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo}:bar(.*)"
+      }
+    ],
     "input": {
       "pathname": "foobarbaz"
     },
@@ -4950,6 +5550,11 @@ export const fixtureData = [
   {
     "caseIndex": 318,
     "pattern": [
+      {
+        "pathname": "{:foo}?(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "{:foo}?(.*)"
       }
@@ -4983,6 +5588,11 @@ export const fixtureData = [
         "pathname": "{:foo\\bar}"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo\\bar}"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -5007,6 +5617,11 @@ export const fixtureData = [
   {
     "caseIndex": 320,
     "pattern": [
+      {
+        "pathname": "{:foo\\.bar}"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "{:foo\\.bar}"
       }
@@ -5039,6 +5654,11 @@ export const fixtureData = [
         "pathname": "{:foo}bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo}bar"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -5067,6 +5687,11 @@ export const fixtureData = [
         "pathname": ":foo\\bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo\\bar"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -5091,6 +5716,11 @@ export const fixtureData = [
   {
     "caseIndex": 324,
     "pattern": [
+      {
+        "pathname": ":foo{}(.*)"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": ":foo{}(.*)"
       }
@@ -5124,6 +5754,11 @@ export const fixtureData = [
         "pathname": ":foo{}bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo{}bar"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -5152,6 +5787,11 @@ export const fixtureData = [
         "pathname": ":foo{}?bar"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo{}?bar"
+      }
+    ],
     "input": {
       "pathname": "foobar"
     },
@@ -5176,6 +5816,11 @@ export const fixtureData = [
   {
     "caseIndex": 327,
     "pattern": [
+      {
+        "pathname": "*{}**?"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "*{}**?"
       }
@@ -5209,6 +5854,11 @@ export const fixtureData = [
         "pathname": "*/*"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "*/*"
+      }
+    ],
     "input": {
       "pathname": "foo/bar"
     },
@@ -5234,6 +5884,11 @@ export const fixtureData = [
   {
     "caseIndex": 331,
     "pattern": [
+      {
+        "pathname": "*\\/*"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "*\\/*"
       }
@@ -5267,6 +5922,11 @@ export const fixtureData = [
         "pathname": "*/{*}"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "*/{*}"
+      }
+    ],
     "input": {
       "pathname": "foo/bar"
     },
@@ -5292,6 +5952,11 @@ export const fixtureData = [
   {
     "caseIndex": 334,
     "pattern": [
+      {
+        "pathname": "/:foo."
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/:foo."
       }
@@ -5324,6 +5989,11 @@ export const fixtureData = [
         "pathname": "/:foo.."
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/:foo.."
+      }
+    ],
     "input": {
       "pathname": "/bar.."
     },
@@ -5348,6 +6018,11 @@ export const fixtureData = [
   {
     "caseIndex": 336,
     "pattern": [
+      {
+        "pathname": "./foo"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "./foo"
       }
@@ -5380,6 +6055,11 @@ export const fixtureData = [
         "pathname": "../foo"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "../foo"
+      }
+    ],
     "input": {
       "pathname": "../foo"
     },
@@ -5404,6 +6084,11 @@ export const fixtureData = [
   {
     "caseIndex": 338,
     "pattern": [
+      {
+        "pathname": ":foo./"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": ":foo./"
       }
@@ -5436,6 +6121,11 @@ export const fixtureData = [
         "pathname": ":foo../"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo../"
+      }
+    ],
     "input": {
       "pathname": "bar../"
     },
@@ -5460,6 +6150,11 @@ export const fixtureData = [
   {
     "caseIndex": 340,
     "pattern": [
+      {
+        "pathname": "/:foo\\bar"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "pathname": "/:foo\\bar"
       }
@@ -5495,6 +6190,14 @@ export const fixtureData = [
         "ignoreCase": true
       }
     ],
+    "urlPatternArgs": [
+      {
+        "pathname": "/foo/bar"
+      },
+      {
+        "ignoreCase": true
+      }
+    ],
     "input": {
       "pathname": "/FOO/BAR"
     },
@@ -5523,6 +6226,11 @@ export const fixtureData = [
         "ignoreCase": true
       }
     ],
+    "urlPatternArgs": [
+      {
+        "ignoreCase": true
+      }
+    ],
     "input": {
       "pathname": "/FOO/BAR"
     },
@@ -5547,6 +6255,12 @@ export const fixtureData = [
   {
     "caseIndex": 343,
     "pattern": [
+      "https://example.com:8080/foo?bar#baz",
+      {
+        "ignoreCase": true
+      }
+    ],
+    "urlPatternArgs": [
       "https://example.com:8080/foo?bar#baz",
       {
         "ignoreCase": true
@@ -5591,6 +6305,13 @@ export const fixtureData = [
         "ignoreCase": true
       }
     ],
+    "urlPatternArgs": [
+      "/foo?bar#baz",
+      "https://example.com:8080",
+      {
+        "ignoreCase": true
+      }
+    ],
     "input": {
       "pathname": "/FOO",
       "search": "BAR",
@@ -5629,6 +6350,12 @@ export const fixtureData = [
         "baseURL": "https://example.com/a/+/b"
       }
     ],
+    "urlPatternArgs": [
+      {
+        "search": "foo",
+        "baseURL": "https://example.com/a/+/b"
+      }
+    ],
     "input": {
       "search": "foo",
       "baseURL": "https://example.com/a/+/b"
@@ -5656,6 +6383,12 @@ export const fixtureData = [
   {
     "caseIndex": 347,
     "pattern": [
+      {
+        "hash": "foo",
+        "baseURL": "https://example.com/?q=*&v=?&hmm={}&umm=()"
+      }
+    ],
+    "urlPatternArgs": [
       {
         "hash": "foo",
         "baseURL": "https://example.com/?q=*&v=?&hmm={}&umm=()"
@@ -5690,6 +6423,10 @@ export const fixtureData = [
   {
     "caseIndex": 348,
     "pattern": [
+      "#foo",
+      "https://example.com/?q=*&v=?&hmm={}&umm=()"
+    ],
+    "urlPatternArgs": [
       "#foo",
       "https://example.com/?q=*&v=?&hmm={}&umm=()"
     ],

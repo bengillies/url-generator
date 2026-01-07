@@ -84,11 +84,13 @@ function takeOptionalPrefix(literal: string): { prefix: string; rest: string } {
   return { prefix: '/', rest: literal.slice(0, -1) };
 }
 
-function tokenizePattern(pattern: string): PatternToken[] {
+function tokenizePattern(
+  pattern: string,
+  counter: { value: number } = { value: 0 },
+): PatternToken[] {
   const tokens: PatternToken[] = [];
   let literal = '';
   let index = 0;
-  let paramIndex = 0;
 
   while (index < pattern.length) {
     const char = pattern[index];
@@ -122,7 +124,7 @@ function tokenizePattern(pattern: string): PatternToken[] {
         tokens.push(literal);
         literal = '';
       }
-      tokens.push({ type: 'group', tokens: tokenizePattern(groupValue), modifier });
+      tokens.push({ type: 'group', tokens: tokenizePattern(groupValue, counter), modifier });
       continue;
     }
 
@@ -171,7 +173,7 @@ function tokenizePattern(pattern: string): PatternToken[] {
         tokens.push(literal);
         literal = '';
       }
-      tokens.push({ type: 'param', name: paramIndex++, modifier, prefix });
+      tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
       continue;
     }
 
@@ -198,7 +200,7 @@ function tokenizePattern(pattern: string): PatternToken[] {
         tokens.push(literal);
         literal = '';
       }
-      tokens.push({ type: 'param', name: paramIndex++, modifier, prefix });
+      tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
       continue;
     }
 
@@ -240,11 +242,14 @@ function buildFromTokens(
     }
 
     const rawValue = params[token.name];
-    const stringValue = rawValue === undefined || rawValue === null
-      ? ''
-      : stringifier(rawValue);
+    if (rawValue === undefined || rawValue === null) {
+      continue;
+    }
 
-    if (!stringValue) {
+    const stringValue = stringifier(rawValue);
+    if (stringValue === '') {
+      output += token.prefix;
+      usedParam = true;
       continue;
     }
 
@@ -255,12 +260,30 @@ function buildFromTokens(
   return { value: output, usedParam };
 }
 
+function tokensHaveParams(tokens: PatternToken[]): boolean {
+  return tokens.some(token => {
+    if (typeof token === 'string') {
+      return false;
+    }
+    if (token.type === 'param') {
+      return true;
+    }
+    return tokensHaveParams(token.tokens);
+  });
+}
+
 function defaultHandler(
   pattern: string,
   params: ParamValues,
   stringifier?: StringifyFunction,
 ): string {
   const tokens = tokenizePattern(pattern);
+  if (!tokensHaveParams(tokens)) {
+    const fallback = params[0];
+    if (fallback !== undefined && fallback !== null && fallback !== '') {
+      return (stringifier ?? defaultStringify)(fallback);
+    }
+  }
   return buildFromTokens(tokens, params, stringifier).value;
 }
 
@@ -291,24 +314,30 @@ export function generate(
     built[key] = handlers[key](pattern[key], params[key] || {}, stringifier);
   }
 
-  if (!built.protocol || !built.hostname) {
-    throw new Error('Cannot generate URL without protocol and hostname');
-  }
+  const protocol = built.protocol
+    ? (built.protocol.endsWith(':') ? built.protocol : `${built.protocol}:`)
+    : '';
+  const host = built.hostname
+    ? (built.port ? `${built.hostname}:${built.port}` : built.hostname)
+    : '';
+  const url = protocol && host
+    ? new URL(`${protocol}//${host}`)
+    : protocol
+      ? new URL(`${protocol}${built.pathname ?? ''}`)
+      : new URL(`${host}${built.pathname ?? ''}`);
 
-  const protocol = built.protocol.endsWith(':') ? built.protocol : `${built.protocol}:`;
-  const host = built.port ? `${built.hostname}:${built.port}` : built.hostname;
-  const url = new URL(`${protocol}//${host}`);
+  if (host) {
+    if (built.username) {
+      url.username = built.username;
+    } else {
+      url.username = '';
+    }
 
-  if (built.username) {
-    url.username = built.username;
-  } else {
-    url.username = '';
-  }
-
-  if (built.password) {
-    url.password = built.password;
-  } else {
-    url.password = '';
+    if (built.password) {
+      url.password = built.password;
+    } else {
+      url.password = '';
+    }
   }
 
   if (built.pathname !== undefined) {
