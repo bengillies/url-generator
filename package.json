@@ -25,7 +25,7 @@
     "dist": "vite build",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
-    "test": "vitest run --browser",
+    "test": "vitest run --browser=chromium",
     "test:watch": "vitest --browser",
     "test:types": "tsc --noEmit -p tsconfig.vitest.json",
     "transform:testdata": "node tests/transform-testdata.ts"
