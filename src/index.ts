@@ -54,6 +54,7 @@ function findClosing(
   startIndex: number,
   closingChar: string,
 ): number {
+  let closingIndex = pattern.length;
   for (let i = startIndex; i < pattern.length; i += 1) {
     const current = pattern[i];
     if (current === '\\') {
@@ -62,11 +63,12 @@ function findClosing(
     }
 
     if (current === closingChar) {
-      return i;
+      closingIndex = i;
+      break;
     }
   }
 
-  return -1;
+  return closingIndex;
 }
 
 function takeOptionalPrefix(literal: string): { prefix: string; rest: string } {
@@ -89,25 +91,14 @@ function tokenizePattern(
     const char = pattern[index];
 
     if (char === '\\') {
-      const next = pattern[index + 1];
-      if (next) {
-        literal += next;
-        index += 2;
-        continue;
-      }
-
-      index += 1;
+      const next = pattern[index + 1] as string;
+      literal += next;
+      index += 2;
       continue;
     }
 
     if (char === '{') {
       const end = findClosing(pattern, index + 1, '}');
-      if (end === -1) {
-        literal += char;
-        index += 1;
-        continue;
-      }
-
       const groupValue = pattern.slice(index + 1, end);
       index = end + 1;
       let modifier: ParamModifier = '';
@@ -131,34 +122,30 @@ function tokenizePattern(
     }
 
     if (char === ':') {
-      const match = identifierRegExp.exec(pattern.slice(index + 1));
-      if (match?.index === 0) {
-        const name = match[0];
-        index += name.length + 1;
-        let modifier: ParamModifier = '';
-        if (isModifier(pattern[index])) {
-          modifier = pattern[index] as ParamModifier;
-          index += 1;
-        }
-
-        let prefix = '';
-        if (modifier === '?' || modifier === '*') {
-          const prefixResult = takeOptionalPrefix(literal);
-          prefix = prefixResult.prefix;
-          literal = prefixResult.rest;
-        }
-
-        if (literal) {
-          tokens.push(literal);
-          literal = '';
-        }
-
-        tokens.push({ type: 'param', name, modifier, prefix });
-        continue;
+      const match = identifierRegExp.exec(
+        pattern.slice(index + 1),
+      ) as RegExpExecArray;
+      const name = match[0];
+      index += name.length + 1;
+      let modifier: ParamModifier = '';
+      if (isModifier(pattern[index])) {
+        modifier = pattern[index] as ParamModifier;
+        index += 1;
       }
 
-      literal += char;
-      index += 1;
+      let prefix = '';
+      if (modifier === '?' || modifier === '*') {
+        const prefixResult = takeOptionalPrefix(literal);
+        prefix = prefixResult.prefix;
+        literal = prefixResult.rest;
+      }
+
+      if (literal) {
+        tokens.push(literal);
+        literal = '';
+      }
+
+      tokens.push({ type: 'param', name, modifier, prefix });
       continue;
     }
 
@@ -188,12 +175,6 @@ function tokenizePattern(
 
     if (char === '(') {
       const end = findClosing(pattern, index + 1, ')');
-      if (end === -1) {
-        literal += char;
-        index += 1;
-        continue;
-      }
-
       index = end + 1;
       let modifier: ParamModifier = '';
       if (isModifier(pattern[index])) {
