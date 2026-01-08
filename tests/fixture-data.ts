@@ -3013,6 +3013,30 @@ export const fixtureData: FixtureEntry[] = [
     "expectedUrl": "javascript:var x = 1;"
   },
   {
+    "caseIndex": 207,
+    "urlPatternArgs": [
+      {
+        "protocol": "(data|javascript)",
+        "pathname": "var x = 1;"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "var x = 1;"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "javascript"
+      },
+      "hostname": {},
+      "port": {}
+    },
+    "expectedUrl": "javascript:var x = 1;"
+  },
+  {
     "caseIndex": 209,
     "urlPatternArgs": [
       {
@@ -3374,6 +3398,31 @@ export const fixtureData: FixtureEntry[] = [
     "expectedUrl": "https://example.com/bar?foo"
   },
   {
+    "caseIndex": 228,
+    "urlPatternArgs": [
+      "https://example.com/(bar)\\?foo"
+    ],
+    "params": {
+      "pathname": {
+        "0": "bar"
+      },
+      "search": {
+        "0": "foo"
+      },
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "https://example.com/bar?foo"
+  },
+  {
     "caseIndex": 230,
     "urlPatternArgs": [
       "https://example.com/{bar}\\?foo"
@@ -3439,6 +3488,52 @@ export const fixtureData: FixtureEntry[] = [
       },
       "hostname": {
         "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "https://example.com/foo"
+  },
+  {
+    "caseIndex": 237,
+    "urlPatternArgs": [
+      "https://(sub.)?example.com/foo"
+    ],
+    "params": {
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": null
+      },
+      "port": {}
+    },
+    "expectedUrl": "https://example.com/foo"
+  },
+  {
+    "caseIndex": 241,
+    "urlPatternArgs": [
+      "https://(sub(?:.))?example.com/foo"
+    ],
+    "params": {
+      "pathname": {
+        "0": "/foo"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "https"
+      },
+      "hostname": {
+        "0": null
       },
       "port": {}
     },
@@ -4180,6 +4275,84 @@ export const fixtureData: FixtureEntry[] = [
     "expectedUrl": "https://example.com/"
   },
   {
+    "caseIndex": 309,
+    "urlPatternArgs": [
+      {
+        "pathname": "(foo)(.*)"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "foo",
+        "1": "barbaz"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/foobarbaz"
+  },
+  {
+    "caseIndex": 310,
+    "urlPatternArgs": [
+      {
+        "pathname": "{(foo)bar}(.*)"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "foo",
+        "1": "baz"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/foobarbaz"
+  },
+  {
+    "caseIndex": 311,
+    "urlPatternArgs": [
+      {
+        "pathname": "(foo)?(.*)"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "foo",
+        "1": "barbaz"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/foobarbaz"
+  },
+  {
     "caseIndex": 312,
     "urlPatternArgs": [
       {
@@ -4190,6 +4363,32 @@ export const fixtureData: FixtureEntry[] = [
       "pathname": {
         "0": "oobarbaz",
         "foo": "f"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/foobarbaz"
+  },
+  {
+    "caseIndex": 313,
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo}(barbaz)"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "barbaz",
+        "foo": "foo"
       },
       "search": {},
       "hash": {},
@@ -4360,6 +4559,31 @@ export const fixtureData: FixtureEntry[] = [
     "expectedUrl": "http://example.com/foo.bar"
   },
   {
+    "caseIndex": 321,
+    "urlPatternArgs": [
+      {
+        "pathname": "{:foo(foo)bar}"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "foo": "foo"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/foobar"
+  },
+  {
     "caseIndex": 322,
     "urlPatternArgs": [
       {
@@ -4510,6 +4734,57 @@ export const fixtureData: FixtureEntry[] = [
       "port": {}
     },
     "expectedUrl": "http://example.com/foobar"
+  },
+  {
+    "caseIndex": 328,
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo(baz)(.*)"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "bar",
+        "foo": "baz"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/bazbar"
+  },
+  {
+    "caseIndex": 329,
+    "urlPatternArgs": [
+      {
+        "pathname": ":foo(baz)bar"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "foo": "baz"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/bazbar"
   },
   {
     "caseIndex": 330,
@@ -4967,5 +5242,55 @@ export const fixtureData: FixtureEntry[] = [
       "port": {}
     },
     "expectedUrl": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo"
+  },
+  {
+    "caseIndex": 350,
+    "urlPatternArgs": [
+      {
+        "pathname": "/([[a-z]--a])"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "z"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/z"
+  },
+  {
+    "caseIndex": 351,
+    "urlPatternArgs": [
+      {
+        "pathname": "/([\\d&&[0-1]])"
+      }
+    ],
+    "params": {
+      "pathname": {
+        "0": "0"
+      },
+      "search": {},
+      "hash": {},
+      "username": {},
+      "password": {},
+      "protocol": {
+        "0": "http"
+      },
+      "hostname": {
+        "0": "example.com"
+      },
+      "port": {}
+    },
+    "expectedUrl": "http://example.com/0"
   }
 ];

@@ -73,6 +73,16 @@ describe('generate manual cases', () => {
     expect(result.href).toBe('https://example.com/foo');
   });
 
+  it('omits optional groups when no params are provided', () => {
+    const pattern = new URLPattern({ pathname: '/foo{/bar}?' });
+    const params = emptyParams();
+    params.protocol = { 0: 'https' };
+    params.hostname = { 0: 'example.com' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo');
+  });
+
   it('fails without protocol and hostname when URL construction is invalid', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();

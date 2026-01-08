@@ -71,6 +71,49 @@ function findClosing(
   return closingIndex;
 }
 
+function findClosingGroup(pattern: string, startIndex: number): number {
+  let depth = 0;
+  let inClass = false;
+  let i = startIndex;
+
+  // URLPattern requires balanced groups; no fallback path needed here.
+  while (true) {
+    i += 1;
+    const current = pattern[i];
+    if (current === '\\') {
+      i += 1;
+      continue;
+    }
+
+    if (current === '[') {
+      inClass = true;
+      continue;
+    }
+
+    if (current === ']' && inClass) {
+      inClass = false;
+      continue;
+    }
+
+    if (inClass) {
+      continue;
+    }
+
+    if (current === '(') {
+      depth += 1;
+      continue;
+    }
+
+    if (current === ')') {
+      if (depth === 0) {
+        return i;
+      }
+
+      depth -= 1;
+    }
+  }
+}
+
 function takeOptionalPrefix(literal: string): { prefix: string; rest: string } {
   if (!literal.endsWith('/')) {
     return { prefix: '', rest: literal };
@@ -127,6 +170,10 @@ function tokenizePattern(
       ) as RegExpExecArray;
       const name = match[0];
       index += name.length + 1;
+      if (pattern[index] === '(') {
+        const end = findClosingGroup(pattern, index + 1);
+        index = end + 1;
+      }
       let modifier: ParamModifier = '';
       if (isModifier(pattern[index])) {
         modifier = pattern[index] as ParamModifier;
@@ -174,7 +221,7 @@ function tokenizePattern(
     }
 
     if (char === '(') {
-      const end = findClosing(pattern, index + 1, ')');
+      const end = findClosingGroup(pattern, index + 1);
       index = end + 1;
       let modifier: ParamModifier = '';
       if (isModifier(pattern[index])) {
@@ -302,10 +349,6 @@ export function generate(
   params: Params,
   { stringifier }: GenerateOptions,
 ): URL {
-  if (pattern.hasRegExpGroups) {
-    throw new Error('Cannot generate URL for patterns with RegExp groups');
-  }
-
   const built: Partial<Record<ParamKeys, string>> = {};
 
   for (const key of PARAM_KEYS) {
@@ -326,8 +369,8 @@ export function generate(
     protocol && host
       ? new URL(`${protocol}//${host}`)
       : protocol
-        ? new URL(`${protocol}${built.pathname ?? ''}`)
-        : new URL(`${host}${built.pathname ?? ''}`);
+        ? new URL(`${protocol}${built.pathname}`)
+        : new URL(`${host}${built.pathname}`);
 
   if (host) {
     if (built.username) {
@@ -343,9 +386,7 @@ export function generate(
     }
   }
 
-  if (built.pathname !== undefined) {
-    url.pathname = built.pathname;
-  }
+  url.pathname = built.pathname;
 
   if (built.search) {
     url.search = built.search.startsWith('?')

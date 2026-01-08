@@ -303,10 +303,6 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-    if (pattern.hasRegExpGroups) {
-      return;
-    }
-
     const parsedInput = parseInput(entry.inputs);
     if (!parsedInput) {
       return;
