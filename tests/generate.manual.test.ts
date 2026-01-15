@@ -506,3 +506,328 @@ describe('generate manual cases', () => {
     expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
   });
 });
+
+describe('generate encoding behavior', () => {
+  it('should encode pathname params with encodeURIComponent by default', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a%20b');
+  });
+
+  it('should preserve slashes for pathname params with + modifier', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar+',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a/b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a/b');
+  });
+
+  it('should preserve slashes for pathname params with * modifier', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar*',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a/b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a/b');
+  });
+
+  it('should preserve slashes for wildcard pathname params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo/*',
+    });
+    const params = emptyParams();
+    params.pathname = { 0: 'a/b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo/a/b');
+  });
+
+  it('should preserve slashes for pathname params with explicit regex groups', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar(.*)',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a/b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a/b');
+  });
+
+  it('should still encode ? and # within slash-preserving pathname params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar+',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a/b?c#d' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a/b%3Fc%23d');
+  });
+
+  it('should encode pathname params when stringifier returns non-string values', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 5 };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/num%205');
+  });
+
+  it('should not double-encode pathname params that already contain percent sequences', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a%2Fb' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/a%2Fb');
+  });
+
+  it('should encode search pattern params using URLSearchParams-style encoding (spaces to +)', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=:q',
+    });
+    const params = emptyParams();
+    params.search = { q: 'bar baz' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz');
+  });
+
+  it('should keep literal & and = in search patterns while encoding param values', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=:q&literal=a=b',
+    });
+    const params = emptyParams();
+    params.search = { q: 'x&y' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo?q=x%26y&literal=a=b');
+  });
+
+  it('should apply stringifier to non-string search pattern params before encoding', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=:q&limit=:limit',
+    });
+    const params = emptyParams();
+    params.search = { q: 'bar baz', limit: 5 };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+5');
+  });
+
+  it('should treat search=* string input as a preformatted query string without re-encoding', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: 'q=bar+baz' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz');
+  });
+
+  it('should serialize search=* URLSearchParams input as-is', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: new URLSearchParams([['q', 'bar baz']]) };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz');
+  });
+
+  it('should serialize search=* tuple array input using URLSearchParams', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: [['q', 'bar baz'], ['limit', 1]] };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+1');
+  });
+
+  it('should serialize search=* object input using URLSearchParams', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: { q: 'bar baz', limit: 10 } };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+10');
+  });
+
+  it('should apply stringifier to non-string values in search=* inputs before serialization', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: { q: 2 } };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo?q=num+2');
+  });
+
+  it('should stringify nested objects/arrays in search=* inputs via stringifier (no expansion)', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: { filter: { a: 1 } } };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : JSON.stringify(value);
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe(
+      'https://example.com/foo?filter=%7B%22a%22%3A1%7D',
+    );
+  });
+
+  it('should encode hash pattern params with encodeURIComponent', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      hash: ':frag',
+    });
+    const params = emptyParams();
+    params.hash = { frag: 'a b' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo#a%20b');
+  });
+
+  it('should apply stringifier to non-string hash params before encoding', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      hash: ':frag',
+    });
+    const params = emptyParams();
+    params.hash = { frag: 5 };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string' ? value : `num ${String(value)}`;
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo#num%205');
+  });
+
+  it('should not pre-encode username and password values (URL setter handles encoding)', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+    });
+    const params = emptyParams();
+    params.username = { 0: 'user%20name' };
+    params.password = { 0: 'p%40ss' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://user%20name:p%40ss@example.com/foo');
+  });
+
+  it('should not pre-encode hostname and should allow URL normalization (lowercase)', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      pathname: '/foo',
+    });
+    const params = emptyParams();
+    params.hostname = { 0: 'Example.COM.' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com./foo');
+  });
+
+  it('should allow punycode normalization for unicode hostnames', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      pathname: '/foo',
+    });
+    const params = emptyParams();
+    params.hostname = { 0: 'm\u00fcnich.com' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://xn--mnich-kva.com/foo');
+  });
+
+  it('should not pre-encode protocol and port values (URL parsing validates)', () => {
+    const pattern = new URLPattern({ pathname: '/foo' });
+    const params = emptyParams();
+    params.protocol = { 0: 'git+ssh' };
+    params.hostname = { 0: 'example.com' };
+    params.port = { 0: '8080' };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('git+ssh://example.com:8080/foo');
+  });
+});
