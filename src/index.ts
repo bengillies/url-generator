@@ -16,12 +16,14 @@ export type Params = Record<ParamKeys, ParamValues>;
 export type StringifyFunction = (value: unknown) => string;
 export interface GenerateOptions {
   stringifier?: StringifyFunction;
+  hierarchicalSchemes?: string[];
 }
 
 type HandlerFunction = (
   pattern: string,
   params: ParamValues,
   stringifier?: StringifyFunction,
+  encoder?: EncodeFunction,
 ) => string;
 type Handlers = Record<ParamKeys, HandlerFunction>;
 
@@ -33,6 +35,7 @@ interface ParamToken {
   name: string | number;
   modifier: ParamModifier;
   prefix: string;
+  allowSlash?: boolean;
 }
 interface GroupToken {
   type: 'group';
@@ -40,9 +43,17 @@ interface GroupToken {
   modifier: ParamModifier;
 }
 type PatternToken = string | ParamToken | GroupToken;
+type EncodeFunction = (value: string, token?: ParamToken) => string;
 
 function defaultStringify(value: unknown): string {
   return String(value);
+}
+
+function stringifyValue(
+  value: unknown,
+  stringifier: StringifyFunction = defaultStringify,
+): string {
+  return typeof value === 'string' ? value : stringifier(value);
 }
 
 function isModifier(char?: string): char is ParamModifier {
@@ -170,8 +181,10 @@ function tokenizePattern(
       ) as RegExpExecArray;
       const name = match[0];
       index += name.length + 1;
+      let allowSlash = false;
       if (pattern[index] === '(') {
         const end = findClosingGroup(pattern, index + 1);
+        allowSlash = true;
         index = end + 1;
       }
       let modifier: ParamModifier = '';
@@ -179,6 +192,7 @@ function tokenizePattern(
         modifier = pattern[index] as ParamModifier;
         index += 1;
       }
+      allowSlash = allowSlash || modifier === '*' || modifier === '+';
 
       let prefix = '';
       if (modifier === '?' || modifier === '*') {
@@ -192,7 +206,7 @@ function tokenizePattern(
         literal = '';
       }
 
-      tokens.push({ type: 'param', name, modifier, prefix });
+      tokens.push({ type: 'param', name, modifier, prefix, allowSlash });
       continue;
     }
 
@@ -216,7 +230,13 @@ function tokenizePattern(
         literal = '';
       }
 
-      tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
+      tokens.push({
+        type: 'param',
+        name: counter.value++,
+        modifier,
+        prefix,
+        allowSlash: true,
+      });
       continue;
     }
 
@@ -241,7 +261,13 @@ function tokenizePattern(
         literal = '';
       }
 
-      tokens.push({ type: 'param', name: counter.value++, modifier, prefix });
+      tokens.push({
+        type: 'param',
+        name: counter.value++,
+        modifier,
+        prefix,
+        allowSlash: true,
+      });
       continue;
     }
 
@@ -260,6 +286,7 @@ function buildFromTokens(
   tokens: PatternToken[],
   params: ParamValues,
   stringifier: StringifyFunction = defaultStringify,
+  encoder: EncodeFunction = encodeURIComponent,
 ): { value: string; usedParam: boolean } {
   let output = '';
   let usedParam = false;
@@ -271,7 +298,12 @@ function buildFromTokens(
     }
 
     if (token.type === 'group') {
-      const groupResult = buildFromTokens(token.tokens, params, stringifier);
+      const groupResult = buildFromTokens(
+        token.tokens,
+        params,
+        stringifier,
+        encoder,
+      );
       const shouldInclude =
         token.modifier === '' || token.modifier === '+'
           ? true
@@ -289,14 +321,14 @@ function buildFromTokens(
       continue;
     }
 
-    const stringValue = stringifier(rawValue);
+    const stringValue = stringifyValue(rawValue, stringifier);
     if (stringValue === '') {
       output += token.prefix;
       usedParam = true;
       continue;
     }
 
-    output += token.prefix + stringValue;
+    output += token.prefix + encoder(stringValue, token);
     usedParam = true;
   }
 
@@ -321,21 +353,22 @@ function defaultHandler(
   pattern: string,
   params: ParamValues,
   stringifier?: StringifyFunction,
+  encoder?: EncodeFunction,
 ): string {
   const tokens = tokenizePattern(pattern);
   if (!tokensHaveParams(tokens)) {
     const fallback = params[0];
     if (fallback !== undefined && fallback !== null && fallback !== '') {
-      return (stringifier ?? defaultStringify)(fallback);
+      return stringifyValue(fallback, stringifier ?? defaultStringify);
     }
   }
 
-  return buildFromTokens(tokens, params, stringifier).value;
+  return buildFromTokens(tokens, params, stringifier, encoder).value;
 }
 
 const handlers: Handlers = {
   pathname: defaultHandler,
-  search: defaultHandler,
+  search: searchHandler,
   hash: defaultHandler,
   username: defaultHandler,
   password: defaultHandler,
@@ -344,15 +377,140 @@ const handlers: Handlers = {
   port: defaultHandler,
 };
 
+function encodePreservingPercents(
+  value: string,
+  encoder: (segment: string) => string,
+): string {
+  const parts = value.split(/(%[0-9A-Fa-f]{2})/g);
+  return parts
+    .map((part) =>
+      /%[0-9A-Fa-f]{2}/.test(part) ? part : encoder(part),
+    )
+    .join('');
+}
+
+function encodePathname(value: string, token?: ParamToken): string {
+  const encoded = encodePreservingPercents(value, encodeURIComponent);
+  if (token?.allowSlash) {
+    return encoded.replace(/%2F/gi, '/');
+  }
+  return encoded;
+}
+
+function encodeSearchComponent(value: string): string {
+  const params = new URLSearchParams();
+  params.set('value', value);
+  return params.toString().replace(/^value=/, '');
+}
+
+function serializeSearchInput(
+  input: unknown,
+  stringifier: StringifyFunction = defaultStringify,
+): string {
+  if (typeof input === 'string') {
+    return input;
+  }
+
+  if (input instanceof URLSearchParams) {
+    return input.toString();
+  }
+
+  const coerceValue = (value: unknown) => stringifyValue(value, stringifier);
+
+  if (Array.isArray(input)) {
+    const entries: Array<[string, string]> = [];
+    for (const entry of input) {
+      if (Array.isArray(entry)) {
+        const [key, value] = entry as [unknown, unknown];
+        entries.push([String(key), coerceValue(value)]);
+      }
+    }
+    return new URLSearchParams(entries).toString();
+  }
+
+  if (input && typeof input === 'object') {
+    const entries = Object.entries(input as Record<string, unknown>).map(
+      ([key, value]) => [key, coerceValue(value)] as [string, string],
+    );
+    return new URLSearchParams(entries).toString();
+  }
+
+  return coerceValue(input);
+}
+
+function searchHandler(
+  pattern: string,
+  params: ParamValues,
+  stringifier?: StringifyFunction,
+  encoder?: EncodeFunction,
+): string {
+  const tokens = tokenizePattern(pattern);
+  const fallback = params[0];
+  const hasParams = tokensHaveParams(tokens);
+
+  if (!hasParams || pattern === '*') {
+    if (fallback === undefined || fallback === null || fallback === '') {
+      return '';
+    }
+    return serializeSearchInput(fallback, stringifier ?? defaultStringify);
+  }
+
+  return buildFromTokens(tokens, params, stringifier, encoder).value;
+}
+
+const DEFAULT_HIERARCHICAL_SCHEMES = [
+  'http',
+  'https',
+  'ws',
+  'wss',
+  'ftp',
+  'file',
+] as const;
+
 export function generate(
   pattern: URLPattern,
   params: Params,
-  { stringifier }: GenerateOptions,
+  { stringifier, hierarchicalSchemes }: GenerateOptions,
 ): URL {
-  const built: Partial<Record<ParamKeys, string>> = {};
+  const schemeSet = new Set(
+    (hierarchicalSchemes ?? DEFAULT_HIERARCHICAL_SCHEMES).map((scheme) =>
+      scheme.replace(/:$/, '').toLowerCase(),
+    ),
+  );
+  const protocolValue = handlers.protocol(
+    pattern.protocol,
+    params.protocol || {},
+    stringifier,
+    (value) => value,
+  );
+  const scheme = protocolValue
+    ? protocolValue.replace(/:$/, '').toLowerCase()
+    : '';
+  const pathnameEncoder =
+    !scheme || schemeSet.has(scheme) ? encodePathname : (value: string) => value;
+  const built: Partial<Record<ParamKeys, string>> = {
+    protocol: protocolValue,
+  };
+  const encodeByKey: Partial<Record<ParamKeys, EncodeFunction>> = {
+    pathname: pathnameEncoder,
+    search: encodeSearchComponent,
+    hash: encodeURIComponent,
+    username: (value) => value,
+    password: (value) => value,
+    hostname: (value) => value,
+    port: (value) => value,
+  };
 
   for (const key of PARAM_KEYS) {
-    built[key] = handlers[key](pattern[key], params[key] || {}, stringifier);
+    if (key === 'protocol') {
+      continue;
+    }
+    built[key] = handlers[key](
+      pattern[key],
+      params[key] || {},
+      stringifier,
+      encodeByKey[key],
+    );
   }
 
   const protocol = built.protocol
@@ -397,7 +555,7 @@ export function generate(
   }
 
   if (built.hash) {
-    url.hash = built.hash.startsWith('#') ? built.hash : `#${built.hash}`;
+    url.hash = `#${built.hash}`;
   } else {
     url.hash = '';
   }

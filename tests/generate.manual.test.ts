@@ -127,7 +127,7 @@ describe('generate manual cases', () => {
     params.hash = { 0: '#frag' };
 
     const result = generate(pattern, params, {});
-    expect(result.href).toBe('https://example.com/foo#frag');
+    expect(result.href).toBe('https://example.com/foo#%23frag');
   });
 
   it('supports protocol-only URLs with a pathname', () => {
@@ -231,7 +231,7 @@ describe('generate manual cases', () => {
     params.pathname = { path: 'https://evil.com' };
 
     const result = generate(pattern, params, {});
-    expect(result.href).toBe('https://example.com/https://evil.com');
+    expect(result.href).toBe('https://example.com/https%3A%2F%2Fevil.com');
   });
 
   it('keeps required pathname segments when param is empty string', () => {
@@ -252,7 +252,7 @@ describe('generate manual cases', () => {
       pathname: '/foo/:bar?',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'value' };
+    params.pathname = { bar: 5 };
 
     const result = generate(pattern, params, { stringifier: () => '' });
     expect(result.href).toBe('https://example.com/foo/');
@@ -263,18 +263,18 @@ describe('generate manual cases', () => {
     const baseParams = emptyParams();
     baseParams.protocol = { 0: 'https' };
     baseParams.hostname = { 0: 'example.com' };
-    const stringifier = (value: unknown) => String(value);
+    const stringifier = () => 'a/b?c#d';
 
     const pathnameParams = { ...baseParams };
-    pathnameParams.pathname = { path: 'a/b?c#d' };
+    pathnameParams.pathname = { path: 1 };
     const pathnameResult = generate(pattern, pathnameParams as Params, {
       stringifier,
     });
-    expect(pathnameResult.href).toBe('https://example.com/a/b%3Fc%23d');
+    expect(pathnameResult.href).toBe('https://example.com/a%2Fb%3Fc%23d');
 
     const searchPattern = new URLPattern({ pathname: '/foo' });
     const searchParams = { ...baseParams };
-    searchParams.search = { 0: 'a/b?c#d' };
+    searchParams.search = { 0: 2 };
     const searchResult = generate(searchPattern, searchParams as Params, {
       stringifier,
     });
@@ -282,11 +282,11 @@ describe('generate manual cases', () => {
 
     const hashPattern = new URLPattern({ pathname: '/foo' });
     const hashParams = { ...baseParams };
-    hashParams.hash = { 0: 'a/b?c#d' };
+    hashParams.hash = { 0: 3 };
     const hashResult = generate(hashPattern, hashParams as Params, {
       stringifier,
     });
-    expect(hashResult.href).toBe('https://example.com/foo#a/b?c#d');
+    expect(hashResult.href).toBe('https://example.com/foo#a%2Fb%3Fc%23d');
   });
 
   it('handles wildcard params with multiple segments and empty strings', () => {
@@ -415,7 +415,7 @@ describe('generate manual cases', () => {
     params.hash = { 0: 'frag?x=1#y=2' };
 
     const result = generate(pattern, params, {});
-    expect(result.href).toBe('https://example.com/foo#frag?x=1#y=2');
+    expect(result.href).toBe('https://example.com/foo#frag%3Fx%3D1%23y%3D2');
   });
 
   it('preserves leading ? and # in search and hash params', () => {
@@ -427,7 +427,7 @@ describe('generate manual cases', () => {
     params.hash = { 0: '#frag' };
 
     const result = generate(pattern, params, {});
-    expect(result.href).toBe('https://example.com/foo?q=1#frag');
+    expect(result.href).toBe('https://example.com/foo?q=1#%23frag');
   });
 
   it('fails with an invalid protocol and no host', () => {
@@ -614,6 +614,19 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/a%2Fb');
   });
 
+  it('should default-stringify non-string params when no stringifier is provided', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 5 };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/5');
+  });
+
   it('should encode search pattern params using URLSearchParams-style encoding (spaces to +)', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -702,6 +715,20 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+1');
   });
 
+  it('should ignore non-tuple entries in search=* tuple arrays', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: [['q', 'bar baz'], 'skip'] };
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo?q=bar+baz');
+  });
+
   it('should serialize search=* object input using URLSearchParams', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -782,6 +809,19 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo#num%205');
   });
 
+  it('should keep hash patterns that include a leading # literal', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      hash: '#frag',
+    });
+    const params = emptyParams();
+
+    const result = generate(pattern, params, {});
+    expect(result.href).toBe('https://example.com/foo#frag');
+  });
+
   it('should not pre-encode username and password values (URL setter handles encoding)', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -829,5 +869,20 @@ describe('generate encoding behavior', () => {
 
     const result = generate(pattern, params, {});
     expect(result.href).toBe('git+ssh://example.com:8080/foo');
+  });
+
+  it('should allow configuring hierarchical schemes for custom protocols', () => {
+    const pattern = new URLPattern({
+      protocol: 'myapp',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname = { bar: 'a b' };
+
+    const result = generate(pattern, params, {
+      hierarchicalSchemes: ['myapp'],
+    });
+    expect(result.href).toBe('myapp://example.com/a%20b');
   });
 });
