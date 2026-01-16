@@ -1,0 +1,10 @@
+- [x] Figure out better stringify functionality
+- [x] Figure out query string handling (URLSearchParams?)
+- [x] Figure out encoding behaviour
+- [ ] Clean up parsing code
+- [ ] Performance
+- [ ] Review code
+- [ ] add missing tests
+- [x] read only URL types (e.g. mailto) that cannot set pathname <- test these
+- [ ] check hash fragments set correctly
+- [ ] Make it work in node (URLSearchParams)

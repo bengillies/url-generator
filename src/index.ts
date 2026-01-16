@@ -470,7 +470,7 @@ const DEFAULT_HIERARCHICAL_SCHEMES = [
 export function generate(
   pattern: URLPattern,
   params: Params,
-  { stringifier, hierarchicalSchemes }: GenerateOptions,
+  { stringifier, hierarchicalSchemes }: GenerateOptions = {},
 ): URL {
   const schemeSet = new Set(
     (hierarchicalSchemes ?? DEFAULT_HIERARCHICAL_SCHEMES).map((scheme) =>
@@ -513,49 +513,51 @@ export function generate(
     );
   }
 
-  const protocol = built.protocol
-    ? built.protocol.endsWith(':')
-      ? built.protocol
-      : `${built.protocol}:`
+  const urlParts: Record<ParamKeys, string> = built as Record<ParamKeys, string>;
+
+  const protocol = urlParts.protocol
+    ? urlParts.protocol.endsWith(':')
+      ? urlParts.protocol
+      : `${urlParts.protocol}:`
     : '';
-  const host = built.hostname
-    ? built.port
-      ? `${built.hostname}:${built.port}`
-      : built.hostname
+  const host = urlParts.hostname
+    ? urlParts.port
+      ? `${urlParts.hostname}:${urlParts.port}`
+      : urlParts.hostname
     : '';
   const url =
     protocol && host
       ? new URL(`${protocol}//${host}`)
       : protocol
-        ? new URL(`${protocol}${built.pathname}`)
-        : new URL(`${host}${built.pathname}`);
+        ? new URL(`${protocol}${urlParts.pathname}`)
+        : new URL(`${host}${urlParts.pathname}`);
 
   if (host) {
-    if (built.username) {
-      url.username = built.username;
+    if (urlParts.username) {
+      url.username = urlParts.username;
     } else {
       url.username = '';
     }
 
-    if (built.password) {
-      url.password = built.password;
+    if (urlParts.password) {
+      url.password = urlParts.password;
     } else {
       url.password = '';
     }
   }
 
-  url.pathname = built.pathname;
+  url.pathname = urlParts.pathname;
 
-  if (built.search) {
-    url.search = built.search.startsWith('?')
-      ? built.search
-      : `?${built.search}`;
+  if (urlParts.search) {
+    url.search = urlParts.search.startsWith('?')
+      ? urlParts.search
+      : `?${urlParts.search}`;
   } else {
     url.search = '';
   }
 
-  if (built.hash) {
-    url.hash = `#${built.hash}`;
+  if (urlParts.hash) {
+    url.hash = `#${urlParts.hash}`;
   } else {
     url.hash = '';
   }
