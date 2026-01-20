@@ -50,9 +50,6 @@
 - `stringifier` applies to non-strings only, for all components.
 - Nested objects/arrays passed via `params.search[0]` should be handled by `stringifier` (no automatic expansion).
 
-### Scheme-aware pathname encoding
-- Pathname encoding applies only to hierarchical schemes. Default list: `http`, `https`, `ws`, `wss`, `ftp`, `file`.
-- Provide a configurable list (`hierarchicalSchemes`) so app-specific protocols can opt into pathname encoding.
 
 ## Testing plan (test names)
 - [x] it('should encode pathname params with encodeURIComponent by default')

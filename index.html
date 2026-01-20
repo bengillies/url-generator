@@ -178,12 +178,11 @@
 
       <section class="panel">
         <h2>Options</h2>
-        <label for="schemes">hierarchicalSchemes (comma-separated)</label>
-        <input id="schemes" value="http, https, ws, wss, ftp, file" />
-        <label for="stringifier" style="margin-top: 12px;">stringifier</label>
+        <label for="stringifier">stringifier</label>
         <select id="stringifier">
           <option value="default">default (String)</option>
           <option value="json">JSON.stringify for non-strings</option>
+          <option value="urlsearch">URLSearchParams for objects</option>
         </select>
         <p class="small" style="margin-top: 12px;">
           For <code>search='*'</code>, set params.search[0] to an object, tuple
@@ -250,18 +249,15 @@
       }
 
       function readOptions() {
-        const schemes = document
-          .getElementById('schemes')
-          .value.split(',')
-          .map((value) => value.trim())
-          .filter(Boolean);
         const stringifierSelect = document.getElementById('stringifier').value;
         const stringifier =
           stringifierSelect === 'json'
             ? (value) => JSON.stringify(value)
-            : undefined;
+            : stringifierSelect === 'urlsearch'
+              ? (value) =>
+                  new URLSearchParams(value).toString()
+              : undefined;
         return {
-          hierarchicalSchemes: schemes.length ? schemes : undefined,
           stringifier,
         };
       }

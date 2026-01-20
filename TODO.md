@@ -3,8 +3,11 @@
 - [x] Figure out encoding behaviour
 - [ ] Clean up parsing code
 - [ ] Performance
-- [ ] Review code
 - [ ] add missing tests
 - [x] read only URL types (e.g. mailto) that cannot set pathname <- test these
-- [ ] check hash fragments set correctly
+- [x] check hash fragments set correctly
 - [ ] Make it work in node (URLSearchParams)
+- [x] TSDoc
+- [ ] stringify function - should there be separate ones for separate parts?
+- [ ] URLSearchParams - should this apply to has fragment by default as well?
+- [ ] Review code

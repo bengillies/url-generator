@@ -131,12 +131,12 @@ describe('generate manual cases', () => {
   });
 
   it('supports protocol-only URLs with a pathname', () => {
-    const pattern = new URLPattern({ protocol: 'mailto', pathname: ':addr' });
+    const pattern = new URLPattern({ protocol: 'myapp', pathname: ':addr' });
     const params = emptyParams();
-    params.pathname = { addr: 'foo@example.com' };
+    params.pathname = { addr: 'foo/bar' };
 
     const result = generate(pattern, params, {});
-    expect(result.href).toBe('mailto:foo@example.com');
+    expect(result.href).toBe('myapp:foo%2Fbar');
   });
 
   it('fails with a hostname but no protocol', () => {
@@ -444,7 +444,7 @@ describe('generate manual cases', () => {
       hostname: 'example.com',
       pathname: '/foo',
     });
-    const params = { search: { 0: 'q=1' } } as Params;
+    const params = { search: { 0: 'q=1' } };
 
     const result = generate(pattern, params, {});
     expect(result.href).toBe('https://example.com/foo?q=1');
@@ -761,6 +761,24 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo?q=num+2');
   });
 
+  it('should allow URLSearchParams-based stringifier for non-string values', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search = { 0: { q: { a: 1 } } };
+    const stringifier = (value: unknown) =>
+      typeof value === 'string'
+        ? value
+        : new URLSearchParams(value as Record<string, string>).toString();
+
+    const result = generate(pattern, params, { stringifier });
+    expect(result.href).toBe('https://example.com/foo?q=a%3D1');
+  });
+
   it('should stringify nested objects/arrays in search=* inputs via stringifier (no expansion)', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -869,20 +887,5 @@ describe('generate encoding behavior', () => {
 
     const result = generate(pattern, params, {});
     expect(result.href).toBe('git+ssh://example.com:8080/foo');
-  });
-
-  it('should allow configuring hierarchical schemes for custom protocols', () => {
-    const pattern = new URLPattern({
-      protocol: 'myapp',
-      hostname: 'example.com',
-      pathname: '/:bar',
-    });
-    const params = emptyParams();
-    params.pathname = { bar: 'a b' };
-
-    const result = generate(pattern, params, {
-      hierarchicalSchemes: ['myapp'],
-    });
-    expect(result.href).toBe('myapp://example.com/a%20b');
   });
 });
