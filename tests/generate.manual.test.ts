@@ -39,6 +39,16 @@ describe('generate manual cases', () => {
     expect(result.href).toBe('https://example.com/foo');
   });
 
+  it('adds pathname and query when specified in params', () => {
+    const pattern = new URLPattern('http://example.com/foo/:bar\\?q=:q');
+    const params = emptyParams();
+    params.pathname.groups = { bar: 'baz' };
+    params.search.groups = { q: '1' };
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('http://example.com/foo/baz?q=1');
+  });
+
   it('adds search params when the pattern has no search component', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();

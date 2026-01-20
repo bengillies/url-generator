@@ -11,3 +11,4 @@
 - [ ] stringify function - should there be separate ones for separate parts?
 - [ ] URLSearchParams - should this apply to has fragment by default as well?
 - [ ] Review code
+- [ ] Compile a README with edge cases and instructions (e.g. escaping '?' for query string in URLPattern when immediately after param
