@@ -1,14 +1,15 @@
 - [x] Figure out better stringify functionality
 - [x] Figure out query string handling (URLSearchParams?)
 - [x] Figure out encoding behaviour
-- [ ] Clean up parsing code
-- [ ] Performance
-- [ ] add missing tests
 - [x] read only URL types (e.g. mailto) that cannot set pathname <- test these
 - [x] check hash fragments set correctly
-- [ ] Make it work in node (URLSearchParams)
 - [x] TSDoc
-- [ ] stringify function - should there be separate ones for separate parts?
-- [ ] URLSearchParams - should this apply to has fragment by default as well?
+- [x] stringify function - should there be separate ones for separate parts?
+- [x] URLSearchParams - should this apply to has fragment by default as well?
+- [x] Compile a README with edge cases and instructions (e.g. escaping '?' for query string in URLPattern when immediately after param
+- [x] add missing tests
+- [ ] add a decodeGroups function to work with URLPattern.exec output, add tests for it, and update the readme and index.html
+- [ ] Clean up parsing code
+- [ ] Performance
+- [ ] Make it work in node (URLSearchParams)
 - [ ] Review code
-- [ ] Compile a README with edge cases and instructions (e.g. escaping '?' for query string in URLPattern when immediately after param
