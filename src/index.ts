@@ -13,24 +13,26 @@ const PARAM_KEYS = [
 /** Union of supported URLPattern component keys. */
 export type ParamKeys = (typeof PARAM_KEYS)[number];
 /** Map of parameter names/positions to values for a single component. */
-export type ParamValues = Record<string | number, unknown>;
+export type ParamGroups = Record<string | number, unknown>;
+/** Parameter configuration for a single component. */
+export interface ParamValues {
+  /** Custom stringifier for non-string values in this component. */
+  stringify?: StringifyFunction;
+  /** When true, skips encoding for inserted params in this component. */
+  disableEncoding?: boolean;
+  /** Parameter values keyed by name or position. */
+  groups: ParamGroups;
+}
 /** Parameter map keyed by URLPattern component, with optional component entries. */
 export type Params = Partial<Record<ParamKeys, ParamValues>>;
 
 /** Converts a value to a string when building components. */
 export type StringifyFunction = (value: unknown) => string;
-/** Options for URL generation behavior. */
-export interface GenerateOptions {
-  /** Custom stringifier for non-string values. */
-  stringifier?: StringifyFunction;
-}
-
 /** Component handler signature for building a component from a pattern. */
 type HandlerFunction = (
   pattern: string,
-  params: ParamValues,
-  stringifier?: StringifyFunction,
-  encoder?: EncodeFunction,
+  group: ParamValues,
+  encoder: EncodeFunction,
 ) => string;
 /** Handler map by URLPattern component key. */
 type Handlers = Record<ParamKeys, HandlerFunction>;
@@ -345,7 +347,7 @@ function tokenizePattern(
  */
 function buildFromTokens(
   tokens: PatternToken[],
-  params: ParamValues,
+  params: ParamGroups,
   stringifier: StringifyFunction = defaultStringify,
   encoder: EncodeFunction = encodeURIComponent,
 ): { value: string; usedParam: boolean } {
@@ -418,26 +420,26 @@ function tokensHaveParams(tokens: PatternToken[]): boolean {
 /**
  * Default handler for building a URL component from a pattern and params.
  * @param pattern - Pattern string for the component.
- * @param params - Param values for the component.
- * @param stringifier - Stringifier for non-string values.
+ * @param group - Param configuration for the component.
  * @param encoder - Encoder for inserted values.
  * @returns Built component string.
  */
 function defaultHandler(
   pattern: string,
-  params: ParamValues,
-  stringifier?: StringifyFunction,
-  encoder?: EncodeFunction,
+  group: ParamValues,
+  encoder: EncodeFunction,
 ): string {
   const tokens = tokenizePattern(pattern);
+  const stringifier = group.stringify ?? defaultStringify;
+  const groups = group.groups ?? {};
   if (!tokensHaveParams(tokens)) {
-    const fallback = params[0];
+    const fallback = groups[0];
     if (fallback !== undefined && fallback !== null && fallback !== '') {
-      return stringifyValue(fallback, stringifier ?? defaultStringify);
+      return stringifyValue(fallback, stringifier);
     }
   }
 
-  return buildFromTokens(tokens, params, stringifier, encoder).value;
+  return buildFromTokens(tokens, groups, stringifier, encoder).value;
 }
 
 /** Handler table per URL component. */
@@ -539,47 +541,45 @@ function serializeSearchInput(
 /**
  * Builds the search component, handling wildcard/no-param patterns specially.
  * @param pattern - Search pattern string.
- * @param params - Param values for the search component.
- * @param stringifier - Stringifier for non-string values.
+ * @param group - Param configuration for the search component.
  * @param encoder - Encoder for inserted values.
  * @returns Built search string without leading '?'.
  */
 function searchHandler(
   pattern: string,
-  params: ParamValues,
-  stringifier?: StringifyFunction,
-  encoder?: EncodeFunction,
+  group: ParamValues,
+  encoder: EncodeFunction,
 ): string {
   const tokens = tokenizePattern(pattern);
-  const fallback = params[0];
+  const stringifier = group.stringify ?? defaultStringify;
+  const groups = group.groups ?? {};
+  const fallback = groups[0];
   const hasParams = tokensHaveParams(tokens);
 
   if (!hasParams || pattern === '*') {
     if (fallback === undefined || fallback === null || fallback === '') {
       return '';
     }
-    return serializeSearchInput(fallback, stringifier ?? defaultStringify);
+    return serializeSearchInput(fallback, stringifier);
   }
 
-  return buildFromTokens(tokens, params, stringifier, encoder).value;
+  return buildFromTokens(tokens, groups, stringifier, encoder).value;
 }
 
 /**
  * Generates a URL from a URLPattern and params, applying encoding rules per component.
  * @param pattern - URLPattern instance used for generation.
  * @param params - Param values for each URLPattern component.
- * @param options - Generation options such as a stringifier.
  * @returns Generated URL instance.
  */
 export function generate(
   pattern: URLPattern,
   params: Params,
-  { stringifier }: GenerateOptions = {},
 ): URL {
+  const defaultGroup: ParamValues = { groups: {} };
   const protocolValue = handlers.protocol(
     pattern.protocol,
-    params.protocol || {},
-    stringifier,
+    params.protocol ?? defaultGroup,
     (value) => value,
   );
   const built: Partial<Record<ParamKeys, string>> = {
@@ -599,11 +599,14 @@ export function generate(
     if (key === 'protocol') {
       continue;
     }
+    const group = params[key] ?? defaultGroup;
+    const encoder = group.disableEncoding
+      ? (value: string) => value
+      : (encodeByKey[key] as EncodeFunction);
     built[key] = handlers[key](
       pattern[key],
-      params[key] || {},
-      stringifier,
-      encodeByKey[key],
+      group,
+      encoder,
     );
   }
 

@@ -1,5 +1,5 @@
 import type { URLPatternInit, URLPatternOptions } from 'node:url';
-import type { Params } from '../src/index';
+import type { ParamKeys } from '../src/index';
 
 export type UrlPatternArgs = [
   string | URLPatternInit,
@@ -10,6 +10,6 @@ export type UrlPatternArgs = [
 export type FixtureEntry = {
   caseIndex: number;
   urlPatternArgs: UrlPatternArgs;
-  params: Params;
+  params: Record<ParamKeys, Record<string, string | null>>;
   expectedUrl: string;
 };

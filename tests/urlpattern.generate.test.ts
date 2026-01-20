@@ -6,7 +6,13 @@ describe('generate matches urlpattern test data', () => {
   fixtureData.forEach((fixture) => {
     it(`case ${fixture.caseIndex}`, () => {
       const pattern = new URLPattern(...fixture.urlPatternArgs);
-      const result = generate(pattern, fixture.params as Params, {});
+      const params = Object.fromEntries(
+        Object.entries(fixture.params).map(([key, groups]) => [
+          key,
+          { groups },
+        ]),
+      ) as Params;
+      const result = generate(pattern, params);
       expect(
         result.href,
         `case ${fixture.caseIndex} produced ${result.href}`,

@@ -3,14 +3,14 @@ import { generate, type Params } from '../src/index';
 
 function emptyParams(): Params {
   return {
-    pathname: {},
-    search: {},
-    hash: {},
-    username: {},
-    password: {},
-    protocol: {},
-    hostname: {},
-    port: {},
+    pathname: { groups: {} },
+    search: { groups: {} },
+    hash: { groups: {} },
+    username: { groups: {} },
+    password: { groups: {} },
+    protocol: { groups: {} },
+    hostname: { groups: {} },
+    port: { groups: {} },
   };
 }
 
@@ -21,63 +21,63 @@ describe('generate manual cases', () => {
       baseURL: 'https://example.com',
     });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: 'q=1' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: 'q=1' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/?q=1');
   });
 
   it('allows providing protocol and hostname via params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');
   });
 
   it('adds search params when the pattern has no search component', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: 'q=1' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: 'q=1' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1');
   });
 
   it('adds hash params when the pattern has no hash component', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.hash = { 0: 'frag' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.hash.groups = { 0: 'frag' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#frag');
   });
 
   it('adds search and hash when the pattern has neither', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: 'q=1' };
-    params.hash = { 0: 'frag' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: 'q=1' };
+    params.hash.groups = { 0: 'frag' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1#frag');
   });
 
   it('clears empty search/hash values', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const baseParams = emptyParams();
-    baseParams.protocol = { 0: 'https' };
-    baseParams.hostname = { 0: 'example.com' };
+    baseParams.protocol.groups = { 0: 'https' };
+    baseParams.hostname.groups = { 0: 'example.com' };
 
     const searchCases: Array<[string, unknown]> = [
       ['empty string', ''],
@@ -85,11 +85,11 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of searchCases) {
-      const params = { ...baseParams, search: {} } as Params;
+      const params = { ...baseParams, search: { groups: {} } } as Params;
       if (value !== undefined) {
-        params.search = { 0: value };
+        params.search.groups = { 0: value };
       }
-      const result = generate(pattern, params, {});
+      const result = generate(pattern, params);
       expect(result.href).toBe('https://example.com/foo');
     }
 
@@ -99,11 +99,11 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of hashCases) {
-      const params = { ...baseParams, hash: {} } as Params;
+      const params = { ...baseParams, hash: { groups: {} } } as Params;
       if (value !== undefined) {
-        params.hash = { 0: value };
+        params.hash.groups = { 0: value };
       }
-      const result = generate(pattern, params, {});
+      const result = generate(pattern, params);
       expect(result.href).toBe('https://example.com/foo');
     }
   });
@@ -111,137 +111,137 @@ describe('generate manual cases', () => {
   it('does not double-prefix search strings that already start with ?', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: '?q=1' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: '?q=1' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1');
   });
 
   it('does not double-prefix hash strings that already start with #', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.hash = { 0: '#frag' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.hash.groups = { 0: '#frag' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#%23frag');
   });
 
   it('supports protocol-only URLs with a pathname', () => {
     const pattern = new URLPattern({ protocol: 'myapp', pathname: ':addr' });
     const params = emptyParams();
-    params.pathname = { addr: 'foo/bar' };
+    params.pathname.groups = { addr: 'foo/bar' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('myapp:foo%2Fbar');
   });
 
   it('fails with a hostname but no protocol', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.hostname = { 0: 'example.com' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
+    expect(() => generate(pattern, params)).toThrow('Invalid URL');
   });
 
   it('fails with credentials and host but no protocol', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.hostname = { 0: 'example.com' };
-    params.username = { 0: 'user' };
-    params.password = { 0: 'pass' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.username.groups = { 0: 'user' };
+    params.password.groups = { 0: 'pass' };
 
-    expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
+    expect(() => generate(pattern, params)).toThrow('Invalid URL');
   });
 
   it('renders credentials with protocol and host', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
 
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.username = { 0: 'user name' };
-    params.password = { 0: 'p@ss' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.username.groups = { 0: 'user name' };
+    params.password.groups = { 0: 'p@ss' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://user%20name:p%40ss@example.com/foo');
 
     const emptyUser = emptyParams();
-    emptyUser.protocol = { 0: 'https' };
-    emptyUser.hostname = { 0: 'example.com' };
-    emptyUser.username = { 0: '' };
-    emptyUser.password = { 0: 'pass' };
+    emptyUser.protocol.groups = { 0: 'https' };
+    emptyUser.hostname.groups = { 0: 'example.com' };
+    emptyUser.username.groups = { 0: '' };
+    emptyUser.password.groups = { 0: 'pass' };
 
-    const emptyResult = generate(pattern, emptyUser, {});
+    const emptyResult = generate(pattern, emptyUser);
     expect(emptyResult.href).toBe('https://:pass@example.com/foo');
   });
 
   it('treats hostname and port as a scheme when no protocol is provided', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.hostname = { 0: 'example.com' };
-    params.port = { 0: '8080' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.port.groups = { 0: '8080' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('example.com:8080/foo');
   });
 
   it('supports IPv6 hosts with credentials and port', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: '[::1]' };
-    params.port = { 0: '8080' };
-    params.username = { 0: 'user' };
-    params.password = { 0: 'pass' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: '[::1]' };
+    params.port.groups = { 0: '8080' };
+    params.username.groups = { 0: 'user' };
+    params.password.groups = { 0: 'pass' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://user:pass@[::1]:8080/foo');
   });
 
   it('accepts protocol params that already include a colon', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https:' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https:' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');
   });
 
   it('accepts protocol params with colon plus hostname and port', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https:' };
-    params.hostname = { 0: 'example.com' };
-    params.port = { 0: '8080' };
+    params.protocol.groups = { 0: 'https:' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.port.groups = { 0: '8080' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com:8080/foo');
   });
 
   it('treats absolute URLs in pathname params as literal paths', () => {
     const pattern = new URLPattern({ pathname: ':path' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { path: 'https://evil.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { path: 'https://evil.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/https%3A%2F%2Fevil.com');
   });
 
   it('keeps required pathname segments when param is empty string', () => {
     const pattern = new URLPattern({ pathname: '/foo/:bar' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { bar: '' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { bar: '' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/');
   });
 
@@ -252,77 +252,78 @@ describe('generate manual cases', () => {
       pathname: '/foo/:bar?',
     });
     const params = emptyParams();
-    params.pathname = { bar: 5 };
+    params.pathname.groups = { bar: 5 };
+    params.pathname.stringify = () => '';
 
-    const result = generate(pattern, params, { stringifier: () => '' });
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/');
   });
 
   it('preserves special characters from stringifier in pathname, search, and hash', () => {
     const pattern = new URLPattern({ pathname: ':path' });
-    const baseParams = emptyParams();
-    baseParams.protocol = { 0: 'https' };
-    baseParams.hostname = { 0: 'example.com' };
     const stringifier = () => 'a/b?c#d';
 
-    const pathnameParams = { ...baseParams };
-    pathnameParams.pathname = { path: 1 };
-    const pathnameResult = generate(pattern, pathnameParams as Params, {
-      stringifier,
-    });
+    const pathnameParams = emptyParams();
+    pathnameParams.protocol.groups = { 0: 'https' };
+    pathnameParams.hostname.groups = { 0: 'example.com' };
+    pathnameParams.pathname.groups = { path: 1 };
+    pathnameParams.pathname.stringify = stringifier;
+    const pathnameResult = generate(pattern, pathnameParams as Params);
     expect(pathnameResult.href).toBe('https://example.com/a%2Fb%3Fc%23d');
 
     const searchPattern = new URLPattern({ pathname: '/foo' });
-    const searchParams = { ...baseParams };
-    searchParams.search = { 0: 2 };
-    const searchResult = generate(searchPattern, searchParams as Params, {
-      stringifier,
-    });
+    const searchParams = emptyParams();
+    searchParams.protocol.groups = { 0: 'https' };
+    searchParams.hostname.groups = { 0: 'example.com' };
+    searchParams.search.groups = { 0: 2 };
+    searchParams.search.stringify = stringifier;
+    const searchResult = generate(searchPattern, searchParams as Params);
     expect(searchResult.href).toBe('https://example.com/foo?a/b?c%23d');
 
     const hashPattern = new URLPattern({ pathname: '/foo' });
-    const hashParams = { ...baseParams };
-    hashParams.hash = { 0: 3 };
-    const hashResult = generate(hashPattern, hashParams as Params, {
-      stringifier,
-    });
+    const hashParams = emptyParams();
+    hashParams.protocol.groups = { 0: 'https' };
+    hashParams.hostname.groups = { 0: 'example.com' };
+    hashParams.hash.groups = { 0: 3 };
+    hashParams.hash.stringify = stringifier;
+    const hashResult = generate(hashPattern, hashParams as Params);
     expect(hashResult.href).toBe('https://example.com/foo#a%2Fb%3Fc%23d');
   });
 
   it('handles wildcard params with multiple segments and empty strings', () => {
     const pattern = new URLPattern({ pathname: '/foo/*' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    params.pathname = { 0: 'a/b' };
-    const result = generate(pattern, params, {});
+    params.pathname.groups = { 0: 'a/b' };
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/a/b');
 
-    params.pathname = { 0: '' };
-    const emptyResult = generate(pattern, params, {});
+    params.pathname.groups = { 0: '' };
+    const emptyResult = generate(pattern, params);
     expect(emptyResult.href).toBe('https://example.com/foo/');
   });
 
   it('uses positional params for regex groups in order', () => {
     const pattern = new URLPattern({ pathname: '/(foo)(bar)' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { 0: 'foo', 1: 'bar' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { 0: 'foo', 1: 'bar' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foobar');
   });
 
   it('supports mixed named and positional regex groups', () => {
     const pattern = new URLPattern({ pathname: '/:id(\\d+)(foo)' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { id: '123', 0: 'foo' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { id: '123', 0: 'foo' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/123foo');
   });
 
@@ -333,109 +334,115 @@ describe('generate manual cases', () => {
       pathname: '/foo',
     });
     const params = emptyParams();
-    params.hostname = { 0: 'sub.' };
+    params.hostname.groups = { 0: 'sub.' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://sub.example.com/foo');
   });
 
   it('omits optional params when value is null or undefined', () => {
     const pattern = new URLPattern({ pathname: '/foo/:bar?' });
     const baseParams = emptyParams();
-    baseParams.protocol = { 0: 'https' };
-    baseParams.hostname = { 0: 'example.com' };
+    baseParams.protocol.groups = { 0: 'https' };
+    baseParams.hostname.groups = { 0: 'example.com' };
 
-    const nullParams = { ...baseParams, pathname: { bar: null } } as Params;
-    const nullResult = generate(pattern, nullParams, {});
+    const nullParams = {
+      ...baseParams,
+      pathname: { groups: { bar: null } },
+    } as Params;
+    const nullResult = generate(pattern, nullParams);
     expect(nullResult.href).toBe('https://example.com/foo');
 
-    const undefinedParams = { ...baseParams, pathname: { bar: undefined } } as Params;
-    const undefinedResult = generate(pattern, undefinedParams, {});
+    const undefinedParams = {
+      ...baseParams,
+      pathname: { groups: { bar: undefined } },
+    } as Params;
+    const undefinedResult = generate(pattern, undefinedParams);
     expect(undefinedResult.href).toBe('https://example.com/foo');
   });
 
   it('preserves prefix for optional params when value is empty string', () => {
     const pattern = new URLPattern({ pathname: '/foo/:bar?' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { bar: '' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { bar: '' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/');
   });
 
   it('uses scalar values for repeated modifiers', () => {
     const pattern = new URLPattern({ pathname: '/foo/:bar+' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.pathname = { bar: 'a/b' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.pathname.groups = { bar: 'a/b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/a/b');
   });
 
   it('preserves adjacent literals when optional params are omitted', () => {
     const pattern = new URLPattern({ pathname: '/foo/:bar?-baz' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo-baz');
   });
 
   it('renders escaped special characters literally in the pathname', () => {
     const pattern = new URLPattern({ pathname: '/foo\\?bar\\#baz\\(' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo%3Fbar%23baz(');
   });
 
   it('preserves ? and & in search params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: 'q=1&x=2?y=3' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: 'q=1&x=2?y=3' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1&x=2?y=3');
   });
 
   it('preserves # and ? in hash params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.hash = { 0: 'frag?x=1#y=2' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.hash.groups = { 0: 'frag?x=1#y=2' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#frag%3Fx%3D1%23y%3D2');
   });
 
   it('preserves leading ? and # in search and hash params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.search = { 0: '?q=1' };
-    params.hash = { 0: '#frag' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.search.groups = { 0: '?q=1' };
+    params.hash.groups = { 0: '#frag' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1#%23frag');
   });
 
   it('fails with an invalid protocol and no host', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: '1http' };
+    params.protocol.groups = { 0: '1http' };
 
-    expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
+    expect(() => generate(pattern, params)).toThrow('Invalid URL');
   });
 
   it('handles partial params for non-path components', () => {
@@ -444,58 +451,71 @@ describe('generate manual cases', () => {
       hostname: 'example.com',
       pathname: '/foo',
     });
-    const params = { search: { 0: 'q=1' } };
+    const params = { search: { groups: { 0: 'q=1' } } };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=1');
   });
 
   it('normalizes hostname casing and preserves trailing dot', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'Example.COM.' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'Example.COM.' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com./foo');
   });
 
   it('normalizes numeric ports and rejects non-numeric ports', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
-    params.port = { 0: '080' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.port.groups = { 0: '080' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com:80/foo');
 
     const badParams = emptyParams();
-    badParams.protocol = { 0: 'https' };
-    badParams.hostname = { 0: 'example.com' };
-    badParams.port = { 0: 'abc' };
-    expect(() => generate(pattern, badParams, {})).toThrow('Invalid URL');
+    badParams.protocol.groups = { 0: 'https' };
+    badParams.hostname.groups = { 0: 'example.com' };
+    badParams.port.groups = { 0: 'abc' };
+    expect(() => generate(pattern, badParams)).toThrow('Invalid URL');
   });
 
   it('tolerates missing per-key params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = {
-      pathname: { 0: '/foo' },
-      protocol: { 0: 'https' },
-      hostname: { 0: 'example.com' },
+      pathname: { groups: { 0: '/foo' } },
+      protocol: { groups: { 0: 'https' } },
+      hostname: { groups: { 0: 'example.com' } },
     } as Params;
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo');
+  });
+
+  it('treats missing groups as empty for component configs', () => {
+    const pattern = new URLPattern({ pathname: '/foo', search: '*' });
+    const params = {
+      protocol: { groups: { 0: 'https' } },
+      hostname: { groups: { 0: 'example.com' } },
+      pathname: {} as Params['pathname'],
+      search: {} as Params['search'],
+    } as Params;
+
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');
   });
 
   it('omits optional groups when no params are provided', () => {
     const pattern = new URLPattern({ pathname: '/foo{/bar}?' });
     const params = emptyParams();
-    params.protocol = { 0: 'https' };
-    params.hostname = { 0: 'example.com' };
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');
   });
 
@@ -503,7 +523,7 @@ describe('generate manual cases', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
 
-    expect(() => generate(pattern, params, {})).toThrow('Invalid URL');
+    expect(() => generate(pattern, params)).toThrow('Invalid URL');
   });
 });
 
@@ -515,10 +535,24 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a b' };
+    params.pathname.groups = { bar: 'a b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a%20b');
+  });
+
+  it('should skip encoding for components when disableEncoding is true', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/:bar',
+    });
+    const params = emptyParams();
+    params.pathname.groups = { bar: 'a/b?c#d' };
+    params.pathname.disableEncoding = true;
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/a/b%3Fc%23d');
   });
 
   it('should preserve slashes for pathname params with + modifier', () => {
@@ -528,9 +562,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar+',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a/b' };
+    params.pathname.groups = { bar: 'a/b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a/b');
   });
 
@@ -541,9 +575,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar*',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a/b' };
+    params.pathname.groups = { bar: 'a/b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a/b');
   });
 
@@ -554,9 +588,9 @@ describe('generate encoding behavior', () => {
       pathname: '/foo/*',
     });
     const params = emptyParams();
-    params.pathname = { 0: 'a/b' };
+    params.pathname.groups = { 0: 'a/b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo/a/b');
   });
 
@@ -567,9 +601,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar(.*)',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a/b' };
+    params.pathname.groups = { bar: 'a/b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a/b');
   });
 
@@ -580,9 +614,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar+',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a/b?c#d' };
+    params.pathname.groups = { bar: 'a/b?c#d' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a/b%3Fc%23d');
   });
 
@@ -593,11 +627,12 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar',
     });
     const params = emptyParams();
-    params.pathname = { bar: 5 };
+    params.pathname.groups = { bar: 5 };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.pathname.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/num%205');
   });
 
@@ -608,9 +643,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar',
     });
     const params = emptyParams();
-    params.pathname = { bar: 'a%2Fb' };
+    params.pathname.groups = { bar: 'a%2Fb' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/a%2Fb');
   });
 
@@ -621,9 +656,9 @@ describe('generate encoding behavior', () => {
       pathname: '/:bar',
     });
     const params = emptyParams();
-    params.pathname = { bar: 5 };
+    params.pathname.groups = { bar: 5 };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/5');
   });
 
@@ -635,9 +670,9 @@ describe('generate encoding behavior', () => {
       search: 'q=:q',
     });
     const params = emptyParams();
-    params.search = { q: 'bar baz' };
+    params.search.groups = { q: 'bar baz' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz');
   });
 
@@ -649,9 +684,9 @@ describe('generate encoding behavior', () => {
       search: 'q=:q&literal=a=b',
     });
     const params = emptyParams();
-    params.search = { q: 'x&y' };
+    params.search.groups = { q: 'x&y' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=x%26y&literal=a=b');
   });
 
@@ -663,11 +698,12 @@ describe('generate encoding behavior', () => {
       search: 'q=:q&limit=:limit',
     });
     const params = emptyParams();
-    params.search = { q: 'bar baz', limit: 5 };
+    params.search.groups = { q: 'bar baz', limit: 5 };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+5');
   });
 
@@ -679,9 +715,9 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: 'q=bar+baz' };
+    params.search.groups = { 0: 'q=bar+baz' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz');
   });
 
@@ -693,9 +729,9 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: new URLSearchParams([['q', 'bar baz']]) };
+    params.search.groups = { 0: new URLSearchParams([['q', 'bar baz']]) };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz');
   });
 
@@ -707,11 +743,12 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: [['q', 'bar baz'], ['limit', 1]] };
+    params.search.groups = { 0: [['q', 'bar baz'], ['limit', 1]] };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+1');
   });
 
@@ -723,9 +760,9 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: [['q', 'bar baz'], 'skip'] };
+    params.search.groups = { 0: [['q', 'bar baz'], 'skip'] };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz');
   });
 
@@ -737,11 +774,12 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: { q: 'bar baz', limit: 10 } };
+    params.search.groups = { 0: { q: 'bar baz', limit: 10 } };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+10');
   });
 
@@ -753,11 +791,12 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: { q: 2 } };
+    params.search.groups = { 0: { q: 2 } };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=num+2');
   });
 
@@ -769,13 +808,14 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: { q: { a: 1 } } };
+    params.search.groups = { 0: { q: { a: 1 } } };
     const stringifier = (value: unknown) =>
       typeof value === 'string'
         ? value
         : new URLSearchParams(value as Record<string, string>).toString();
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=a%3D1');
   });
 
@@ -787,11 +827,12 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search = { 0: { filter: { a: 1 } } };
+    params.search.groups = { 0: { filter: { a: 1 } } };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : JSON.stringify(value);
 
-    const result = generate(pattern, params, { stringifier });
+    params.search.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe(
       'https://example.com/foo?filter=%7B%22a%22%3A1%7D',
     );
@@ -805,9 +846,9 @@ describe('generate encoding behavior', () => {
       hash: ':frag',
     });
     const params = emptyParams();
-    params.hash = { frag: 'a b' };
+    params.hash.groups = { frag: 'a b' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#a%20b');
   });
 
@@ -819,11 +860,12 @@ describe('generate encoding behavior', () => {
       hash: ':frag',
     });
     const params = emptyParams();
-    params.hash = { frag: 5 };
+    params.hash.groups = { frag: 5 };
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 
-    const result = generate(pattern, params, { stringifier });
+    params.hash.stringify = stringifier;
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#num%205');
   });
 
@@ -836,7 +878,7 @@ describe('generate encoding behavior', () => {
     });
     const params = emptyParams();
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#frag');
   });
 
@@ -847,10 +889,10 @@ describe('generate encoding behavior', () => {
       pathname: '/foo',
     });
     const params = emptyParams();
-    params.username = { 0: 'user%20name' };
-    params.password = { 0: 'p%40ss' };
+    params.username.groups = { 0: 'user%20name' };
+    params.password.groups = { 0: 'p%40ss' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://user%20name:p%40ss@example.com/foo');
   });
 
@@ -860,9 +902,9 @@ describe('generate encoding behavior', () => {
       pathname: '/foo',
     });
     const params = emptyParams();
-    params.hostname = { 0: 'Example.COM.' };
+    params.hostname.groups = { 0: 'Example.COM.' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com./foo');
   });
 
@@ -872,20 +914,20 @@ describe('generate encoding behavior', () => {
       pathname: '/foo',
     });
     const params = emptyParams();
-    params.hostname = { 0: 'm\u00fcnich.com' };
+    params.hostname.groups = { 0: 'm\u00fcnich.com' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('https://xn--mnich-kva.com/foo');
   });
 
   it('should not pre-encode protocol and port values (URL parsing validates)', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
-    params.protocol = { 0: 'git+ssh' };
-    params.hostname = { 0: 'example.com' };
-    params.port = { 0: '8080' };
+    params.protocol.groups = { 0: 'git+ssh' };
+    params.hostname.groups = { 0: 'example.com' };
+    params.port.groups = { 0: '8080' };
 
-    const result = generate(pattern, params, {});
+    const result = generate(pattern, params);
     expect(result.href).toBe('git+ssh://example.com:8080/foo');
   });
 });

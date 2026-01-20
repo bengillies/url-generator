@@ -184,6 +184,19 @@
           <option value="json">JSON.stringify for non-strings</option>
           <option value="urlsearch">URLSearchParams for objects</option>
         </select>
+        <div style="margin-top: 12px;">
+          <div class="small" style="margin-bottom: 6px;">disableEncoding</div>
+          <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+            <label><input type="checkbox" value="protocol" class="disable-encoding" /> protocol</label>
+            <label><input type="checkbox" value="hostname" class="disable-encoding" /> hostname</label>
+            <label><input type="checkbox" value="port" class="disable-encoding" /> port</label>
+            <label><input type="checkbox" value="username" class="disable-encoding" /> username</label>
+            <label><input type="checkbox" value="password" class="disable-encoding" /> password</label>
+            <label><input type="checkbox" value="pathname" class="disable-encoding" /> pathname</label>
+            <label><input type="checkbox" value="search" class="disable-encoding" /> search</label>
+            <label><input type="checkbox" value="hash" class="disable-encoding" /> hash</label>
+          </div>
+        </div>
         <p class="small" style="margin-top: 12px;">
           For <code>search='*'</code>, set params.search[0] to an object, tuple
           array, or URLSearchParams-like structure.
@@ -218,14 +231,14 @@
       ];
 
       const defaults = {
-        pathname: { id: 'a/b' },
-        search: { q: 'hello world' },
-        hash: { frag: 'section-1' },
-        username: {},
-        password: {},
-        protocol: {},
-        hostname: {},
-        port: {},
+        pathname: { groups: { id: 'a/b' } },
+        search: { groups: { q: 'hello world' } },
+        hash: { groups: { frag: 'section-1' } },
+        username: { groups: {} },
+        password: { groups: {} },
+        protocol: { groups: {} },
+        hostname: { groups: {} },
+        port: { groups: {} },
       };
 
       const paramsField = document.getElementById('params');
@@ -249,6 +262,11 @@
       }
 
       function readOptions() {
+        const disabled = new Set(
+          Array.from(document.querySelectorAll('.disable-encoding'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value),
+        );
         const stringifierSelect = document.getElementById('stringifier').value;
         const stringifier =
           stringifierSelect === 'json'
@@ -257,17 +275,23 @@
               ? (value) =>
                   new URLSearchParams(value).toString()
               : undefined;
-        return {
-          stringifier,
-        };
+        return { stringifier, disabled };
       }
 
       document.getElementById('generate').addEventListener('click', () => {
         try {
           const pattern = readPattern();
           const params = readParams();
-          const options = readOptions();
-          const url = generate(pattern, params, options);
+          const { stringifier, disabled } = readOptions();
+          Object.entries(params).forEach(([key, group]) => {
+            if (group && typeof group === 'object' && 'groups' in group) {
+              if (stringifier) {
+                group.stringify = stringifier;
+              }
+              group.disableEncoding = disabled.has(key);
+            }
+          });
+          const url = generate(pattern, params);
           output.textContent = url.href;
         } catch (error) {
           output.textContent = error instanceof Error ? error.message : String(error);

@@ -50,6 +50,10 @@
 - `stringifier` applies to non-strings only, for all components.
 - Nested objects/arrays passed via `params.search[0]` should be handled by `stringifier` (no automatic expansion).
 
+## API update (per-component options)
+- Params are now per-component objects: `{ stringify?, disableEncoding?, groups }`.
+- `stringify` applies per component; `disableEncoding` skips encoding for that component.
+
 
 ## Testing plan (test names)
 - [x] it('should encode pathname params with encodeURIComponent by default')
