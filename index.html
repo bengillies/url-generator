@@ -84,6 +84,20 @@
         align-items: center;
         margin-top: 12px;
       }
+      .checkbox-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+      }
+      .checkbox-list label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0;
+        color: var(--ink);
+        text-align: left;
+      }
       button {
         border: none;
         background: var(--accent);
@@ -186,7 +200,7 @@
         </select>
         <div style="margin-top: 12px;">
           <div class="small" style="margin-bottom: 6px;">disableEncoding</div>
-          <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+          <div class="checkbox-list">
             <label><input type="checkbox" value="protocol" class="disable-encoding" /> protocol</label>
             <label><input type="checkbox" value="hostname" class="disable-encoding" /> hostname</label>
             <label><input type="checkbox" value="port" class="disable-encoding" /> port</label>
@@ -248,7 +262,19 @@
 
       function readPattern() {
         const init = {};
+        const pathnameValue = document.getElementById('pathname').value.trim();
+        const hasQueryInPath =
+          pathnameValue.includes('?') || pathnameValue.includes('#');
+        if (pathnameValue) {
+          init.pathname = pathnameValue;
+        }
         ids.forEach((id) => {
+          if (id === 'pathname') {
+            return;
+          }
+          if (hasQueryInPath && (id === 'search' || id === 'hash')) {
+            return;
+          }
           const value = document.getElementById(id).value.trim();
           if (value) {
             init[id] = value;
