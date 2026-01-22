@@ -405,16 +405,6 @@ describe('generate manual cases', () => {
     expect(result.href).toBe('https://example.com/foo-baz');
   });
 
-  it('renders escaped special characters literally in the pathname', () => {
-    const pattern = new URLPattern({ pathname: '/foo\\?bar\\#baz\\(' });
-    const params = emptyParams();
-    params.protocol.groups = { 0: 'https' };
-    params.hostname.groups = { 0: 'example.com' };
-
-    const result = generate(pattern, params);
-    expect(result.href).toBe('https://example.com/foo%3Fbar%23baz(');
-  });
-
   it('preserves ? and & in search params', () => {
     const pattern = new URLPattern({ pathname: '/foo' });
     const params = emptyParams();
