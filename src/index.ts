@@ -494,10 +494,39 @@ function encodePathname(value: string, token?: ParamToken): string {
  * @returns Encoded search component value.
  */
 function encodeSearchComponent(value: string): string {
-  const params = new URLSearchParams();
-  params.set('value', value);
+  return encodeURIComponent(value).replace(/%20/g, '+');
+}
 
-  return params.toString().replace(/^value=/, '');
+/**
+ * Encodes a set of entries using URLSearchParams-style rules in a way that works across
+ * both browsers and node without having to import URLSearchParams directly just
+ * for node
+ * @param entries - Entries to encode.
+ * @returns Encoded search string.
+ */
+function encodeUsingURLSearchParamsStyle(entries: [string, string][]): string {
+  let encoded: string[] = [];
+
+  for (const [key, value] of entries) {
+    encoded.push(`${encodeSearchComponent(key)}=${encodeSearchComponent(value)}`);
+  }
+
+  return encoded.join('&');
+}
+
+/**
+ * Test whether a value is a URLSearchParams instance in a way that works across
+ * both browsers and node without having to import URLSearchParams directly just
+ * for node
+ * @param value - Value to test.
+ * @returns True when the value is a URLSearchParams instance.
+ */
+function isURLSearchParams(value: unknown): value is URLSearchParams {
+  return (
+    !!value &&
+    typeof value === 'object' &&
+    Object.getPrototypeOf(value).constructor.name === 'URLSearchParams'
+  );
 }
 
 /**
@@ -514,7 +543,7 @@ function serializeSearchInput(
     return input;
   }
 
-  if (input instanceof URLSearchParams) {
+  if (isURLSearchParams(input)) {
     return input.toString();
   }
 
@@ -529,7 +558,7 @@ function serializeSearchInput(
       }
     }
 
-    return new URLSearchParams(entries).toString();
+    return encodeUsingURLSearchParamsStyle(entries).toString();
   }
 
   if (input && typeof input === 'object') {
@@ -537,7 +566,7 @@ function serializeSearchInput(
       ([key, value]) => [key, coerceValue(value)] as [string, string],
     );
 
-    return new URLSearchParams(entries).toString();
+    return encodeUsingURLSearchParamsStyle(entries);
   }
 
   return coerceValue(input);
