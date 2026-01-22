@@ -89,7 +89,7 @@ describe('generate manual cases', () => {
     baseParams.protocol.groups = { 0: 'https' };
     baseParams.hostname.groups = { 0: 'example.com' };
 
-    const searchCases: Array<[string, unknown]> = [
+    const searchCases: [string, unknown][] = [
       ['empty string', ''],
       ['null', null],
       ['undefined', undefined],
@@ -99,11 +99,12 @@ describe('generate manual cases', () => {
       if (value !== undefined) {
         params.search.groups = { 0: value };
       }
+
       const result = generate(pattern, params);
       expect(result.href).toBe('https://example.com/foo');
     }
 
-    const hashCases: Array<[string, unknown]> = [
+    const hashCases: [string, unknown][] = [
       ['empty string', ''],
       ['null', null],
       ['undefined', undefined],
@@ -113,6 +114,7 @@ describe('generate manual cases', () => {
       if (value !== undefined) {
         params.hash.groups = { 0: value };
       }
+
       const result = generate(pattern, params);
       expect(result.href).toBe('https://example.com/foo');
     }
@@ -278,7 +280,7 @@ describe('generate manual cases', () => {
     pathnameParams.hostname.groups = { 0: 'example.com' };
     pathnameParams.pathname.groups = { path: 1 };
     pathnameParams.pathname.stringify = stringifier;
-    const pathnameResult = generate(pattern, pathnameParams as Params);
+    const pathnameResult = generate(pattern, pathnameParams);
     expect(pathnameResult.href).toBe('https://example.com/a%2Fb%3Fc%23d');
 
     const searchPattern = new URLPattern({ pathname: '/foo' });
@@ -287,7 +289,7 @@ describe('generate manual cases', () => {
     searchParams.hostname.groups = { 0: 'example.com' };
     searchParams.search.groups = { 0: 2 };
     searchParams.search.stringify = stringifier;
-    const searchResult = generate(searchPattern, searchParams as Params);
+    const searchResult = generate(searchPattern, searchParams);
     expect(searchResult.href).toBe('https://example.com/foo?a/b?c%23d');
 
     const hashPattern = new URLPattern({ pathname: '/foo' });
@@ -296,7 +298,7 @@ describe('generate manual cases', () => {
     hashParams.hostname.groups = { 0: 'example.com' };
     hashParams.hash.groups = { 0: 3 };
     hashParams.hash.stringify = stringifier;
-    const hashResult = generate(hashPattern, hashParams as Params);
+    const hashResult = generate(hashPattern, hashParams);
     expect(hashResult.href).toBe('https://example.com/foo#a%2Fb%3Fc%23d');
   });
 
@@ -753,7 +755,13 @@ describe('generate encoding behavior', () => {
       search: '*',
     });
     const params = emptyParams();
-    params.search.groups = { 0: [['q', 'bar baz'], ['limit', 1]] };
+    params.search.groups = {
+      0: [
+        ['q', 'bar baz'],
+        ['limit', 1],
+      ],
+    };
+
     const stringifier = (value: unknown) =>
       typeof value === 'string' ? value : `num ${String(value)}`;
 

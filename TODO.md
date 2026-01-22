@@ -8,7 +8,6 @@
 - [x] URLSearchParams - should this apply to has fragment by default as well?
 - [x] Compile a README with edge cases and instructions (e.g. escaping '?' for query string in URLPattern when immediately after param
 - [x] add missing tests
-- [ ] add a decodeGroups function to work with URLPattern.exec output, add tests for it, and update the readme and index.html
 - [ ] Clean up parsing code
 - [ ] Performance
 - [ ] Make it work in node (URLSearchParams)

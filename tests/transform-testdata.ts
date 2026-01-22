@@ -184,9 +184,7 @@ function buildUrlFromInput(input: unknown, baseURL?: string): URL | null {
 
 const DEFAULT_PATTERN_BASE_URL = 'http://example.com';
 
-function buildUrlPatternArgs(
-  entryPattern: unknown[],
-): UrlPatternArgs | null {
+function buildUrlPatternArgs(entryPattern: unknown[]): UrlPatternArgs | null {
   if (!entryPattern.length) {
     return null;
   }
@@ -296,9 +294,9 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
       return;
     }
 
-    let pattern: URLPattern;
+    // return early if urlPatternArgs is invalid
     try {
-      pattern = new URLPattern(...urlPatternArgs);
+      new URLPattern(...urlPatternArgs);
     } catch {
       return;
     }

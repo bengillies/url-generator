@@ -200,7 +200,7 @@ function tokenizePattern(
     const char = pattern[index];
 
     if (char === '\\') {
-      const next = pattern[index + 1] as string;
+      const next = pattern[index + 1]!;
       literal += next;
       index += 2;
       continue;
@@ -231,9 +231,7 @@ function tokenizePattern(
     }
 
     if (char === ':') {
-      const match = identifierRegExp.exec(
-        pattern.slice(index + 1),
-      ) as RegExpExecArray;
+      const match = identifierRegExp.exec(pattern.slice(index + 1))!;
       const name = match[0];
       index += name.length + 1;
       let allowSlash = false;
@@ -242,11 +240,13 @@ function tokenizePattern(
         allowSlash = true;
         index = end + 1;
       }
+
       let modifier: ParamModifier = '';
       if (isModifier(pattern[index])) {
         modifier = pattern[index] as ParamModifier;
         index += 1;
       }
+
       allowSlash = allowSlash || modifier === '*' || modifier === '+';
 
       let prefix = '';
@@ -292,6 +292,7 @@ function tokenizePattern(
         prefix,
         allowSlash: true,
       });
+
       continue;
     }
 
@@ -323,6 +324,7 @@ function tokenizePattern(
         prefix,
         allowSlash: true,
       });
+
       continue;
     }
 
@@ -465,10 +467,9 @@ function encodePreservingPercents(
   encoder: (segment: string) => string,
 ): string {
   const parts = value.split(/(%[0-9A-Fa-f]{2})/g);
+
   return parts
-    .map((part) =>
-      /%[0-9A-Fa-f]{2}/.test(part) ? part : encoder(part),
-    )
+    .map((part) => (/%[0-9A-Fa-f]{2}/.test(part) ? part : encoder(part)))
     .join('');
 }
 
@@ -483,6 +484,7 @@ function encodePathname(value: string, token?: ParamToken): string {
   if (token?.allowSlash) {
     return encoded.replace(/%2F/gi, '/');
   }
+
   return encoded;
 }
 
@@ -494,6 +496,7 @@ function encodePathname(value: string, token?: ParamToken): string {
 function encodeSearchComponent(value: string): string {
   const params = new URLSearchParams();
   params.set('value', value);
+
   return params.toString().replace(/^value=/, '');
 }
 
@@ -518,13 +521,14 @@ function serializeSearchInput(
   const coerceValue = (value: unknown) => stringifyValue(value, stringifier);
 
   if (Array.isArray(input)) {
-    const entries: Array<[string, string]> = [];
+    const entries: [string, string][] = [];
     for (const entry of input) {
       if (Array.isArray(entry)) {
         const [key, value] = entry as [unknown, unknown];
         entries.push([String(key), coerceValue(value)]);
       }
     }
+
     return new URLSearchParams(entries).toString();
   }
 
@@ -532,6 +536,7 @@ function serializeSearchInput(
     const entries = Object.entries(input as Record<string, unknown>).map(
       ([key, value]) => [key, coerceValue(value)] as [string, string],
     );
+
     return new URLSearchParams(entries).toString();
   }
 
@@ -560,6 +565,7 @@ function searchHandler(
     if (fallback === undefined || fallback === null || fallback === '') {
       return '';
     }
+
     return serializeSearchInput(fallback, stringifier);
   }
 
@@ -572,10 +578,7 @@ function searchHandler(
  * @param params - Param values for each URLPattern component.
  * @returns Generated URL instance.
  */
-export function generate(
-  pattern: URLPattern,
-  params: Params,
-): URL {
+export function generate(pattern: URLPattern, params: Params): URL {
   const defaultGroup: ParamValues = { groups: {} };
   const protocolValue = handlers.protocol(
     pattern.protocol,
@@ -599,18 +602,18 @@ export function generate(
     if (key === 'protocol') {
       continue;
     }
+
     const group = params[key] ?? defaultGroup;
     const encoder = group.disableEncoding
       ? (value: string) => value
-      : (encodeByKey[key] as EncodeFunction);
-    built[key] = handlers[key](
-      pattern[key],
-      group,
-      encoder,
-    );
+      : encodeByKey[key]!;
+    built[key] = handlers[key](pattern[key], group, encoder);
   }
 
-  const urlParts: Record<ParamKeys, string> = built as Record<ParamKeys, string>;
+  const urlParts: Record<ParamKeys, string> = built as Record<
+    ParamKeys,
+    string
+  >;
 
   const protocol = urlParts.protocol
     ? urlParts.protocol.endsWith(':')
