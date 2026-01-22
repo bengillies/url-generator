@@ -6,6 +6,7 @@ A minimal, URLPattern-first URL generator. It intentionally does the least possi
 
 - Runtime support for `URLPattern` and `URL`.
 - Node: `>= 22.2`.
+- Works in modern browsers and Node.
 
 ## Install
 
@@ -253,6 +254,7 @@ const url = generate(pattern, {
 
 ## Edge cases and gotchas
 
+- Node's `URLPattern` can interpret certain escaped literals in patterns differently than browsers. Avoid relying on escapes for special characters in patterns unless you've verified behavior in your target environment.
 - `URL` normalization still applies even with `disableEncoding`.
 - Existing percent-escapes are preserved in pathname params; they are not preserved in search or hash params unless you disable encoding and provide the exact string you want.
 - If you want a host/authority URL, provide a protocol. Without one, the `URL` constructor interprets `host:port` as a scheme.
