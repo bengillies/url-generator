@@ -505,10 +505,12 @@ function encodeSearchComponent(value: string): string {
  * @returns Encoded search string.
  */
 function encodeUsingURLSearchParamsStyle(entries: [string, string][]): string {
-  let encoded: string[] = [];
+  const encoded: string[] = [];
 
   for (const [key, value] of entries) {
-    encoded.push(`${encodeSearchComponent(key)}=${encodeSearchComponent(value)}`);
+    encoded.push(
+      `${encodeSearchComponent(key)}=${encodeSearchComponent(value)}`,
+    );
   }
 
   return encoded.join('&');
@@ -525,7 +527,8 @@ function isURLSearchParams(value: unknown): value is URLSearchParams {
   return (
     !!value &&
     typeof value === 'object' &&
-    Object.getPrototypeOf(value).constructor.name === 'URLSearchParams'
+    (Object.getPrototypeOf(value) as object).constructor.name ===
+      'URLSearchParams'
   );
 }
 
