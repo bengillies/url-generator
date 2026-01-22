@@ -10,5 +10,5 @@
 - [x] add missing tests
 - [ ] Clean up parsing code
 - [ ] Performance
-- [ ] Make it work in node (URLSearchParams)
+- [x] Make it work in node (URLSearchParams)
 - [ ] Review code

@@ -5,19 +5,6 @@ export default defineConfig({
   test: {
     include: ['tests/**/*.test.ts'],
     setupFiles: './tests/setup.ts',
-    browser: {
-      enabled: true,
-      provider: playwright({
-        launchOptions: {
-          headless: true,
-        },
-      }),
-      instances: [
-        {
-          browser: 'chromium',
-        },
-      ],
-    },
     coverage: {
       enabled: true,
       provider: 'v8',
@@ -30,5 +17,36 @@ export default defineConfig({
         lines: 100,
       },
     },
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'browser',
+          browser: {
+            enabled: true,
+            provider: playwright({
+              launchOptions: {
+                headless: true,
+              },
+            }),
+            instances: [
+              {
+                browser: 'chromium',
+              },
+            ],
+          },
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          environment: 'node',
+          browser: {
+            enabled: false,
+          },
+        },
+      },
+    ],
   },
 });
