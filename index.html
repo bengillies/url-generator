@@ -3,20 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>url-builder manual test</title>
+    <title>URL-Builder Explorer Tool</title>
     <style>
       :root {
-        --bg: #f6f0e8;
-        --panel: #fff8f0;
+        --bg: #faf9f5;
+        --panel: #fffffd;
         --ink: #1f1b16;
-        --muted: #6c5f53;
+        --muted: #6d6d6d;
         --accent: #d26a2a;
-        --accent-soft: #f2c6a8;
-        --border: #e7d6c6;
-        --mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono",
-          "Courier New", monospace;
-        --sans: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
-          serif;
+        --accent-soft: #f9f9f9;
+        --border: #e4e4e4;
+        --mono: Monaco, Courier, monospace;
+        --sans: Georgia, serif;
       }
       * {
         box-sizing: border-box;
@@ -24,216 +22,379 @@
       body {
         margin: 0;
         padding: 24px;
-        background: radial-gradient(circle at top, #fff8ef 0%, #f3e6d7 45%, #efe0cf 100%);
+        background: var(--bg);
         color: var(--ink);
         font-family: var(--sans);
       }
       h1 {
         margin: 0 0 8px;
-        font-size: 28px;
+        font-size: 32px;
         letter-spacing: 0.3px;
+        padding: 16px 0 0;
       }
       p {
-        margin: 0 0 16px;
+        margin: 0 0 24px;
         color: var(--muted);
       }
       .layout {
         display: grid;
-        grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.8fr);
+        grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
         gap: 20px;
       }
       .panel {
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 16px;
+        border-radius: 10px;
+        padding: 24px;
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       }
       .panel h2 {
         margin: 0 0 12px;
-        font-size: 18px;
+      }
+      label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-family: var(--sans);
+      }
+      input,
+      textarea {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        padding: 8px;
+        font-family: var(--mono);
+        background: white;
+      }
+      select {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        padding: 8px;
+        font-family: var(--sans);
+        background: white;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      button {
+        border: none;
+        background: transparent;
+        color: var(--accent);
+        padding: 0;
+        border-radius: 0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.secondary {
+        color: var(--ink);
+      }
+      button.copy {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+      }
+      .small {
+        color: var(--muted);
+      }
+      .tab-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        align-items: flex-end;
+      }
+      .tab-row button {
+        color: var(--ink);
+        font-family: var(--sans);
+      }
+      .tab-row .tab-label {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid var(--border);
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+        background: #f2f1ec;
+        margin-bottom: -1px;
+      }
+      .tab-row button.active {
+        color: var(--accent);
+      }
+      .tab-row button.active .tab-label {
+        background: var(--panel);
+        color: var(--ink);
       }
       .grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
-      label {
-        display: block;
-        font-size: 13px;
-        margin-bottom: 6px;
-        color: var(--muted);
+      .pattern-output {
+        position: relative;
+        margin-top: 16px;
       }
-      input,
-      textarea {
-        width: 100%;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        padding: 10px;
-        font-size: 14px;
+      .pattern-output pre {
+        margin: 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #2f2a25;
+        color: #f8efe6;
         font-family: var(--mono);
-        background: white;
+        overflow: auto;
       }
-      textarea {
-        min-height: 160px;
-        resize: vertical;
-      }
-      .row {
-        display: flex;
-        gap: 12px;
+      .exec-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
         align-items: center;
         margin-top: 12px;
       }
-      .checkbox-list {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        align-items: flex-start;
+      .exec-output {
+        margin-top: 10px;
       }
-      .checkbox-list label {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin: 0;
-        color: var(--ink);
-        text-align: left;
-      }
-      button {
+      details {
         border: none;
-        background: var(--accent);
-        color: white;
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-weight: 600;
+        padding: 0;
+        background: transparent;
+      }
+      summary {
         cursor: pointer;
+        font-weight: 600;
+        font-family: var(--sans);
       }
-      button:hover {
-        background: #b55820;
+      .exec-output details {
+        margin-bottom: 10px;
       }
-      .small {
-        font-size: 12px;
-        color: var(--muted);
+      .exec-output details details {
+        margin-left: 14px;
       }
-      .output {
-        font-family: var(--mono);
-        background: #141210;
-        color: #f8f2ea;
+      .code-block {
+        margin: 8px 0 0;
         padding: 12px;
-        border-radius: 12px;
-        white-space: pre-wrap;
-        min-height: 120px;
+        border-radius: 6px;
+        background: #2f2a25;
+        color: #f8efe6;
+        font-family: var(--mono);
+        overflow: auto;
       }
-      .badge {
-        display: inline-block;
+      .options-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .options-table th,
+      .options-table td {
+        text-align: left;
+        padding: 8px 6px;
+        border-bottom: 1px solid var(--border);
+      }
+      .options-table th {
+        color: var(--muted);
+        font-weight: 600;
+        font-family: var(--sans);
+      }
+      .options-table th:nth-child(4),
+      .options-table td:nth-child(4) {
+        min-width: 90px;
+      }
+      .options-table select {
+        padding: 6px 8px;
+        border-radius: 8px;
+      }
+      .inline {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .groups-panel {
+        grid-column: 1 / 2;
+      }
+      .output-panel {
+        grid-column: 2 / 3;
+      }
+      .groups-grid {
+        display: grid;
+        gap: 12px;
+      }
+      .groups-row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .groups-row textarea {
+        min-height: 90px;
+      }
+      .output-code {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      .output-code pre {
+        margin: 0;
+        padding: 14px;
+        border-radius: 8px;
+        background: #2f2a25;
+        color: #f8efe6;
+        font-family: var(--mono);
+        overflow: auto;
+      }
+      .result-url {
+        font-weight: 700;
+        padding: 12px;
         background: var(--accent-soft);
-        color: #6e2f05;
-        padding: 2px 8px;
-        border-radius: 999px;
-        font-size: 11px;
-        margin-left: 6px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        word-break: break-all;
+        font-family: var(--sans);
       }
-      @media (max-width: 860px) {
+      .prominent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .popover {
+        position: relative;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: white;
+        width: 360px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+      }
+      .popover-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-family: var(--sans);
+        transform: scale(1.6);
+      }
+      .popover textarea {
+        min-height: 180px;
+      }
+      @media (max-width: 980px) {
         .layout {
           grid-template-columns: 1fr;
+        }
+        .groups-panel,
+        .output-panel {
+          grid-column: 1 / -1;
         }
       }
     </style>
   </head>
   <body>
-    <h1>url-builder manual test</h1>
-    <p>
-      Build a URLPattern + params and see the output. Run <code>npm run dist</code>
-      before opening this file so <code>dist/url-builder.js</code> exists.
-      <span class="badge">local-only</span>
-    </p>
+    <h1>URL-Builder Explorer Tool</h1>
+    <p>Generate URLs from URLPattern with per-component controls.</p>
 
     <div class="layout">
-      <section class="panel">
+      <section class="panel" id="pattern-panel">
         <h2>Pattern</h2>
-        <div class="grid">
-          <div>
-            <label for="protocol">protocol</label>
-            <input id="protocol" value="https" />
-          </div>
-          <div>
-            <label for="hostname">hostname</label>
-            <input id="hostname" value="example.com" />
-          </div>
-          <div>
-            <label for="port">port</label>
-            <input id="port" placeholder="" />
-          </div>
-          <div>
-            <label for="username">username</label>
-            <input id="username" placeholder="" />
-          </div>
-          <div>
-            <label for="password">password</label>
-            <input id="password" placeholder="" />
-          </div>
-          <div>
-            <label for="pathname">pathname</label>
-            <input id="pathname" value="/users/:id" />
-          </div>
-          <div>
-            <label for="search">search</label>
-            <input id="search" value="q=:q" />
-          </div>
-          <div>
-            <label for="hash">hash</label>
-            <input id="hash" placeholder=":frag" />
+        <div class="tab-row">
+          <button type="button" class="tab-button active" data-tab="object">
+            <span class="tab-label">Structured</span>
+          </button>
+          <button type="button" class="tab-button" data-tab="string">
+            <span class="tab-label">Plain string</span>
+          </button>
+        </div>
+
+        <div class="tab-content" data-tab="object">
+          <div class="grid">
+            <div>
+              <label for="protocol">protocol</label>
+              <input id="protocol" value="https" />
+            </div>
+            <div>
+              <label for="hostname">hostname</label>
+              <input id="hostname" value="example.com" />
+            </div>
+            <div>
+              <label for="port">port</label>
+              <input id="port" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="username">username</label>
+              <input id="username" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="password">password</label>
+              <input id="password" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="pathname">pathname</label>
+              <input id="pathname" value="/users/:id" />
+            </div>
+            <div>
+              <label for="search">search</label>
+              <input id="search" value="q=:q" />
+            </div>
+            <div>
+              <label for="hash">hash</label>
+              <input id="hash" placeholder=":section" />
+            </div>
           </div>
         </div>
-        <div class="row">
-          <button id="generate">Generate URL</button>
-          <span class="small">Edit params JSON below.</span>
+
+        <div class="tab-content" data-tab="string" hidden>
+          <label for="pattern-string">URLPattern string</label>
+          <input id="pattern-string" value="https://example.com/users/:id?q=:q#section-:section" />
         </div>
+
+        <div class="pattern-output">
+          <button class="copy secondary copy" data-copy="pattern">Copy</button>
+          <pre id="pattern-code"></pre>
+        </div>
+
+        <div class="exec-row">
+          <input id="exec-input" placeholder="Paste a URL to exec" />
+          <button type="button" id="exec-button">Exec</button>
+        </div>
+        <div class="exec-output" id="exec-output"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="options-panel">
         <h2>Options</h2>
-        <label for="stringifier">stringifier</label>
-        <select id="stringifier">
-          <option value="default">default (String)</option>
-          <option value="json">JSON.stringify for non-strings</option>
-          <option value="urlsearch">URLSearchParams for objects</option>
-        </select>
-        <div style="margin-top: 12px;">
-          <div class="small" style="margin-bottom: 6px;">disableEncoding</div>
-          <div class="checkbox-list">
-            <label><input type="checkbox" value="protocol" class="disable-encoding" /> protocol</label>
-            <label><input type="checkbox" value="hostname" class="disable-encoding" /> hostname</label>
-            <label><input type="checkbox" value="port" class="disable-encoding" /> port</label>
-            <label><input type="checkbox" value="username" class="disable-encoding" /> username</label>
-            <label><input type="checkbox" value="password" class="disable-encoding" /> password</label>
-            <label><input type="checkbox" value="pathname" class="disable-encoding" /> pathname</label>
-            <label><input type="checkbox" value="search" class="disable-encoding" /> search</label>
-            <label><input type="checkbox" value="hash" class="disable-encoding" /> hash</label>
-          </div>
-        </div>
-        <p class="small" style="margin-top: 12px;">
-          For <code>search='*'</code>, set params.search[0] to an object, tuple
-          array, or URLSearchParams-like structure.
-        </p>
+        <table class="options-table">
+          <thead>
+            <tr>
+              <th>param</th>
+              <th>disableEncoding</th>
+              <th>stringifier</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="options-body"></tbody>
+        </table>
       </section>
 
-      <section class="panel" style="grid-column: 1 / -1;">
+      <section class="panel groups-panel">
         <h2>Params</h2>
-        <label for="params">params (JSON)</label>
-        <textarea id="params"></textarea>
+        <p class="small">Each textarea is JSON5 for the <code>groups</code> object.</p>
+        <div class="groups-grid" id="groups-grid"></div>
       </section>
 
-      <section class="panel" style="grid-column: 1 / -1;">
-        <h2>Output</h2>
-        <div id="output" class="output">Ready.</div>
+      <section class="panel output-panel">
+        <div class="prominent">
+          <h2>Output</h2>
+          <button type="button" id="generate">Generate URL</button>
+        </div>
+        <div class="output-code">
+          <button class="copy secondary copy" data-copy="output">Copy</button>
+          <pre id="output-code"></pre>
+        </div>
+        <div id="output" class="result-url">Ready.</div>
+        <p id="status" class="small"></p>
       </section>
     </div>
 
+    <script src="https://unpkg.com/json5@2/dist/index.min.js"></script>
     <script type="module">
       import { generate } from './dist/url-builder.js';
       window.generate = generate;
 
-      const ids = [
+      const PARAM_KEYS = [
         'protocol',
         'hostname',
         'port',
@@ -244,85 +405,389 @@
         'hash',
       ];
 
-      const defaults = {
-        pathname: { groups: { id: 'a/b' } },
-        search: { groups: { q: 'hello world' } },
-        hash: { groups: { frag: 'section-1' } },
-        username: { groups: {} },
-        password: { groups: {} },
-        protocol: { groups: {} },
-        hostname: { groups: {} },
-        port: { groups: {} },
-      };
+      const patternCodeEl = document.getElementById('pattern-code');
+      const outputCodeEl = document.getElementById('output-code');
+      const outputEl = document.getElementById('output');
+      const statusEl = document.getElementById('status');
+      const execInput = document.getElementById('exec-input');
+      const execButton = document.getElementById('exec-button');
+      const execOutput = document.getElementById('exec-output');
+      const generateButton = document.getElementById('generate');
 
-      const paramsField = document.getElementById('params');
-      const output = document.getElementById('output');
+      const tabButtons = Array.from(document.querySelectorAll('.tab-button'));
+      const tabContents = Array.from(document.querySelectorAll('.tab-content'));
 
-      paramsField.value = JSON.stringify(defaults, null, 2);
+      const optionsBody = document.getElementById('options-body');
+      const groupsGrid = document.getElementById('groups-grid');
 
-      function readPattern() {
-        const init = {};
-        const pathnameValue = document.getElementById('pathname').value.trim();
-        const hasQueryInPath =
-          pathnameValue.includes('?') || pathnameValue.includes('#');
-        if (pathnameValue) {
-          init.pathname = pathnameValue;
+      const customStringifiers = new Map();
+
+      const stringifierOptions = [
+        { value: 'default', label: 'default (String)' },
+        { value: 'json', label: 'JSON.stringify' },
+        { value: 'urlsearch', label: 'URLSearchParams for objects' },
+        { value: 'custom', label: 'custom' },
+      ];
+
+      function setStatus(message) {
+        statusEl.textContent = message || '';
+      }
+
+      function buildPatternFromUI() {
+        const activeTab = document.querySelector('.tab-button.active')?.dataset.tab;
+        if (activeTab === 'string') {
+          const patternString = document.getElementById('pattern-string').value;
+          return {
+            pattern: new URLPattern(patternString),
+            code: `const pattern = new URLPattern(${JSON.stringify(patternString)});`,
+          };
         }
-        ids.forEach((id) => {
-          if (id === 'pathname') {
-            return;
-          }
-          if (hasQueryInPath && (id === 'search' || id === 'hash')) {
-            return;
-          }
-          const value = document.getElementById(id).value.trim();
+
+        const fields = ['protocol', 'hostname', 'port', 'username', 'password', 'pathname', 'search', 'hash'];
+        const patternObject = {};
+        for (const field of fields) {
+          const value = document.getElementById(field).value;
           if (value) {
-            init[id] = value;
+            patternObject[field] = value;
           }
-        });
-        return new URLPattern(init);
+        }
+        return {
+          pattern: new URLPattern(patternObject),
+          code: `const pattern = new URLPattern(${JSON.stringify(patternObject, null, 2)});`,
+        };
       }
 
-      function readParams() {
-        return JSON.parse(paramsField.value);
+      function parseGroups(key) {
+        const textarea = document.querySelector(`[data-groups="${key}"]`);
+        if (!textarea) {
+          return {};
+        }
+        const raw = textarea.value.trim();
+        if (!raw) {
+          return {};
+        }
+        return window.JSON5.parse(raw);
       }
 
-      function readOptions() {
-        const disabled = new Set(
-          Array.from(document.querySelectorAll('.disable-encoding'))
-            .filter((checkbox) => checkbox.checked)
-            .map((checkbox) => checkbox.value),
-        );
-        const stringifierSelect = document.getElementById('stringifier').value;
-        const stringifier =
-          stringifierSelect === 'json'
-            ? (value) => JSON.stringify(value)
-            : stringifierSelect === 'urlsearch'
-              ? (value) =>
-                  new URLSearchParams(value).toString()
-              : undefined;
-        return { stringifier, disabled };
-      }
-
-      document.getElementById('generate').addEventListener('click', () => {
+      function buildCustomStringifier(text) {
+        const trimmed = text.trim();
+        if (!trimmed) {
+          return undefined;
+        }
         try {
-          const pattern = readPattern();
-          const params = readParams();
-          const { stringifier, disabled } = readOptions();
-          Object.entries(params).forEach(([key, group]) => {
-            if (group && typeof group === 'object' && 'groups' in group) {
-              if (stringifier) {
-                group.stringify = stringifier;
-              }
-              group.disableEncoding = disabled.has(key);
+          const candidate = new Function(`return (${trimmed})`)();
+          if (typeof candidate === 'function') {
+            return candidate;
+          }
+        } catch {
+          // fall through
+        }
+        try {
+          return new Function('value', trimmed);
+        } catch {
+          return undefined;
+        }
+      }
+
+      function resolveStringifier(key) {
+        const select = document.querySelector(`[data-stringifier="${key}"]`);
+        if (!select) {
+          return undefined;
+        }
+        const value = select.value;
+        if (value === 'default') {
+          return undefined;
+        }
+        if (value === 'json') {
+          return (val) => JSON.stringify(val);
+        }
+        if (value === 'urlsearch') {
+          return (val) => {
+            if (val instanceof URLSearchParams) {
+              return val.toString();
+            }
+            if (val && typeof val === 'object') {
+              return new URLSearchParams(val).toString();
+            }
+            return String(val);
+          };
+        }
+        if (value === 'custom') {
+          return buildCustomStringifier(customStringifiers.get(key) || '');
+        }
+        return undefined;
+      }
+
+      function buildParams() {
+        const params = {};
+        for (const key of PARAM_KEYS) {
+          let groups = {};
+          try {
+            groups = parseGroups(key);
+          } catch (error) {
+            throw new Error(`Invalid JSON5 for ${key} groups.`);
+          }
+          const disableEncoding = document.querySelector(
+            `[data-disable="${key}"]`,
+          )?.checked;
+          const stringify = resolveStringifier(key);
+          const value = { groups };
+          if (disableEncoding) {
+            value.disableEncoding = true;
+          }
+          if (stringify) {
+            value.stringify = stringify;
+          }
+          if (Object.keys(groups).length || disableEncoding || stringify) {
+            params[key] = value;
+          }
+        }
+        return params;
+      }
+
+      function buildParamsCode(params) {
+        const entries = Object.entries(params);
+        if (!entries.length) {
+          return 'const params = {};';
+        }
+        const serialized = entries.map(([key, value]) => {
+          const lines = [];
+          const groups = JSON.stringify(value.groups ?? {}, null, 2);
+          lines.push(`groups: ${groups}`);
+          if (value.disableEncoding) {
+            lines.push('disableEncoding: true');
+          }
+          if (value.stringify) {
+            const custom = customStringifiers.get(key);
+            if (custom && document.querySelector(`[data-stringifier="${key}"]`).value === 'custom') {
+              lines.push(`stringify: ${custom.trim() || '() => ""'}`);
+            } else if (document.querySelector(`[data-stringifier="${key}"]`).value === 'json') {
+              lines.push('stringify: JSON.stringify');
+            } else if (document.querySelector(`[data-stringifier="${key}"]`).value === 'urlsearch') {
+              lines.push('stringify: (value) => new URLSearchParams(value).toString()');
+            }
+          }
+          return `  ${key}: {\n    ${lines.join(',\n    ')}\n  }`;
+        });
+        return `const params = {\n${entries.length ? `${serialized.join(',\n')}` : ''}\n};`;
+      }
+
+      function updatePatternCode() {
+        try {
+          const { code } = buildPatternFromUI();
+          patternCodeEl.textContent = code;
+        } catch (error) {
+          patternCodeEl.textContent = `// ${error.message}`;
+        }
+      }
+
+      function execPattern() {
+        setStatus('');
+        try {
+          const { pattern } = buildPatternFromUI();
+          const value = execInput.value.trim();
+          const result = value ? pattern.exec(value) : null;
+          if (!result) {
+            execOutput.innerHTML = '';
+            return;
+          }
+          execOutput.innerHTML = '';
+          const rootDetails = document.createElement('details');
+          rootDetails.open = true;
+          const rootSummary = document.createElement('summary');
+          rootSummary.textContent = 'match';
+          rootDetails.appendChild(rootSummary);
+          for (const key of PARAM_KEYS) {
+            const component = result[key];
+            if (!component) {
+              continue;
+            }
+            const details = document.createElement('details');
+            const summary = document.createElement('summary');
+            summary.textContent = key;
+            const pre = document.createElement('pre');
+            pre.className = 'code-block';
+            pre.textContent = JSON.stringify(component, null, 2);
+            details.appendChild(summary);
+            details.appendChild(pre);
+            rootDetails.appendChild(details);
+          }
+          execOutput.appendChild(rootDetails);
+        } catch (error) {
+          execOutput.innerHTML = '';
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = 'Error';
+          const pre = document.createElement('pre');
+          pre.className = 'code-block';
+          pre.textContent = error.message;
+          details.appendChild(summary);
+          details.appendChild(pre);
+          execOutput.appendChild(details);
+        }
+      }
+
+      function generateUrl() {
+        setStatus('');
+        try {
+          const { pattern, code } = buildPatternFromUI();
+          const params = buildParams();
+          const url = generate(pattern, params);
+          const paramsCode = buildParamsCode(params);
+          const outputCode = `${code}\n\n${paramsCode}\n\nconst url = generate(pattern, params);`;
+          patternCodeEl.textContent = code;
+          outputCodeEl.textContent = outputCode;
+          outputEl.textContent = url.href;
+        } catch (error) {
+          outputEl.textContent = 'Error.';
+          outputCodeEl.textContent = '';
+          setStatus(error.message);
+        }
+      }
+
+      function handleCopy(event) {
+        const target = event.target.closest('[data-copy]');
+        if (!target) {
+          return;
+        }
+        const type = target.dataset.copy;
+        const source = type === 'pattern' ? patternCodeEl : outputCodeEl;
+        navigator.clipboard.writeText(source.textContent || '');
+      }
+
+      function setupTabs() {
+        for (const button of tabButtons) {
+          button.addEventListener('click', () => {
+            const tab = button.dataset.tab;
+            for (const btn of tabButtons) {
+              btn.classList.toggle('active', btn.dataset.tab === tab);
+            }
+            for (const content of tabContents) {
+              content.hidden = content.dataset.tab !== tab;
+            }
+            updatePatternCode();
+          });
+        }
+      }
+
+      function renderOptions() {
+        optionsBody.innerHTML = '';
+        for (const key of PARAM_KEYS) {
+          const row = document.createElement('tr');
+          const paramCell = document.createElement('td');
+          paramCell.textContent = key;
+
+          const disableCell = document.createElement('td');
+          const disableInput = document.createElement('input');
+          disableInput.type = 'checkbox';
+          disableInput.dataset.disable = key;
+          disableCell.appendChild(disableInput);
+
+          const stringifierCell = document.createElement('td');
+          const select = document.createElement('select');
+          select.dataset.stringifier = key;
+          for (const option of stringifierOptions) {
+            const opt = document.createElement('option');
+            opt.value = option.value;
+            opt.textContent = option.label;
+            select.appendChild(opt);
+          }
+
+          const actionCell = document.createElement('td');
+          const editButton = document.createElement('button');
+          editButton.type = 'button';
+          editButton.textContent = 'Edit';
+          editButton.className = 'secondary';
+          editButton.style.display = 'none';
+
+          const popover = document.createElement('div');
+          popover.className = 'popover';
+          popover.popover = 'auto';
+          popover.id = `popover-${key}`;
+
+          const closeButton = document.createElement('button');
+          closeButton.type = 'button';
+          closeButton.className = 'secondary popover-close';
+          closeButton.textContent = '×';
+          closeButton.addEventListener('click', () => popover.hidePopover());
+
+          const popoverLabel = document.createElement('label');
+          popoverLabel.textContent = `Custom stringifier for ${key}`;
+          const textarea = document.createElement('textarea');
+          textarea.placeholder = 'e.g. (value) => JSON.stringify(value)';
+          textarea.value = customStringifiers.get(key) || '(value) => String(value)';
+          customStringifiers.set(key, textarea.value);
+          textarea.addEventListener('keydown', (event) => {
+            if (event.key === 'Tab') {
+              event.preventDefault();
+              const start = textarea.selectionStart;
+              const end = textarea.selectionEnd;
+              const value = textarea.value;
+              textarea.value = `${value.slice(0, start)}\t${value.slice(end)}`;
+              textarea.selectionStart = textarea.selectionEnd = start + 1;
             }
           });
-          const url = generate(pattern, params);
-          output.textContent = url.href;
-        } catch (error) {
-          output.textContent = error instanceof Error ? error.message : String(error);
+          textarea.addEventListener('input', () => {
+            customStringifiers.set(key, textarea.value);
+          });
+          popover.appendChild(closeButton);
+          popover.appendChild(popoverLabel);
+          popover.appendChild(textarea);
+
+          editButton.setAttribute('popovertarget', popover.id);
+
+          select.addEventListener('change', () => {
+            editButton.style.display = select.value === 'custom' ? 'inline-flex' : 'none';
+          });
+          popover.addEventListener('toggle', () => {
+            if (popover.matches(':popover-open')) {
+              setTimeout(() => textarea.focus(), 0);
+            }
+          });
+
+          stringifierCell.appendChild(select);
+          actionCell.appendChild(editButton);
+
+          row.appendChild(paramCell);
+          row.appendChild(disableCell);
+          row.appendChild(stringifierCell);
+          row.appendChild(actionCell);
+          optionsBody.appendChild(row);
+          actionCell.appendChild(popover);
         }
-      });
+      }
+
+      function renderGroups() {
+        groupsGrid.innerHTML = '';
+        for (const key of PARAM_KEYS) {
+          const row = document.createElement('div');
+          row.className = 'groups-row';
+          const label = document.createElement('label');
+          label.textContent = key;
+          const textarea = document.createElement('textarea');
+          textarea.dataset.groups = key;
+          textarea.value = key === 'pathname'
+            ? "{ id: 123 }"
+            : key === 'search'
+              ? "{ q: 'red shoes' }"
+              : key === 'hash'
+                ? "{ '0': 1 }"
+                : '{}';
+          row.appendChild(label);
+          row.appendChild(textarea);
+          groupsGrid.appendChild(row);
+        }
+      }
+
+      setupTabs();
+      renderOptions();
+      renderGroups();
+      updatePatternCode();
+      generateUrl();
+
+      document.body.addEventListener('click', handleCopy);
+      execButton.addEventListener('click', execPattern);
+      generateButton.addEventListener('click', generateUrl);
     </script>
   </body>
 </html>

@@ -9,6 +9,7 @@
 - [x] Compile a README with edge cases and instructions (e.g. escaping '?' for query string in URLPattern when immediately after param
 - [x] add missing tests
 - [x] Make it work in node (URLSearchParams)
+- [ ] improve manual testing tool
+- [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance
-- [ ] Review code
