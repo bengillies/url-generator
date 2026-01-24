@@ -10,6 +10,7 @@
 
 ## Build, Test, and Development Commands
 - `npm run dist` builds the library with Vite (outputs to `dist/`).
+- `npm start` serves the workspace on `http://localhost:8000` (useful for `index.html`).
 - `npm test` runs Vitest in both Node and browser projects.
 - `npm run test:node` runs Node-only tests.
 - `npm run test:browser` runs Chromium browser tests.
