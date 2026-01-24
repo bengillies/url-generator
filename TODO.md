@@ -10,6 +10,7 @@
 - [x] add missing tests
 - [x] Make it work in node (URLSearchParams)
 - [x] improve manual testing tool
+- [x] tests cleanup
 - [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { generate, type Params } from '../src/index';
-import { fixtureData } from './fixture-data';
+import { fixtureData } from './fixtures/fixture-data';
 
 describe('generate matches urlpattern test data', () => {
   fixtureData.forEach((fixture) => {

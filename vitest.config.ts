@@ -4,7 +4,7 @@ import { playwright } from '@vitest/browser-playwright';
 export default defineConfig({
   test: {
     include: ['tests/**/*.test.ts'],
-    setupFiles: './tests/setup.ts',
+    setupFiles: './tests/fixtures/setup.ts',
     coverage: {
       enabled: true,
       provider: 'v8',

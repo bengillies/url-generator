@@ -30,7 +30,7 @@
     "test:node": "vitest run --project node",
     "test:watch": "vitest",
     "test:types": "tsc --noEmit -p tsconfig.vitest.json",
-    "transform:testdata": "node tests/transform-testdata.ts"
+    "transform:testdata": "node tests/fixtures/transform-testdata.ts"
   },
   "keywords": [
     "routes",
