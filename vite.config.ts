@@ -7,8 +7,8 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'URLBuilder',
-      fileName: () => 'url-builder.js',
-      formats: ['es'],
+      fileName: (format) => (format === 'es' ? 'url-builder.js' : 'url-builder.cjs'),
+      formats: ['es', 'cjs'],
     },
     sourcemap: true,
     rollupOptions: {

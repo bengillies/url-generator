@@ -4,15 +4,14 @@
   "description": "Lightweight URL/path building library based on URLPattern",
   "type": "module",
   "license": "BSD-3-Clause",
-  "main": "./dist/url-builder.js",
+  "main": "./dist/url-builder.cjs",
   "module": "./dist/url-builder.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/url-builder.js"
-      }
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/url-builder.js",
+      "require": "./dist/url-builder.cjs"
     }
   },
   "files": [
@@ -22,7 +21,7 @@
     "node": ">=22.2"
   },
   "scripts": {
-    "start": "npx serve -p 8000",
+    "start": "vite",
     "dist": "vite build",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",

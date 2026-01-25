@@ -14,3 +14,4 @@
 - [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance
+- [ ] GitHub Actions - dep updates, tests, linting
