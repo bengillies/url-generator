@@ -1,17 +1,17 @@
 {
-  "name": "url-builder",
+  "name": "url-generator",
   "version": "0.1.0",
   "description": "Lightweight URL/path building library based on URLPattern",
   "type": "module",
   "license": "BSD-3-Clause",
-  "main": "./dist/url-builder.cjs",
-  "module": "./dist/url-builder.js",
+  "main": "./dist/url-generator.cjs",
+  "module": "./dist/url-generator.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/url-builder.js",
-      "require": "./dist/url-builder.cjs"
+      "import": "./dist/url-generator.js",
+      "require": "./dist/url-generator.cjs"
     }
   },
   "files": [

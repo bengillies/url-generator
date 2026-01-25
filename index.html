@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL-Builder Explorer Tool</title>
+    <title>URL-Generator Explorer Tool</title>
     <style>
       :root {
         --bg: #faf9f5;
@@ -285,7 +285,7 @@
     </style>
   </head>
   <body>
-    <h1>URL-Builder Explorer Tool</h1>
+    <h1>URL-Generator Explorer Tool</h1>
     <p>Generate URLs from URLPattern with per-component controls.</p>
 
     <div class="layout">
@@ -391,7 +391,7 @@
 
     <script src="./node_modules/json5/dist/index.min.js"></script>
     <script type="module">
-      import { generate } from '.';
+      import { generate } from './src/index.ts';
       window.generate = generate;
 
       const PARAM_KEYS = [

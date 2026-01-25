@@ -1,4 +1,4 @@
-# url-builder
+# url-generator
 
 A minimal, URLPattern-first URL generator. It intentionally does the least possible beyond URLPattern itself so patterns can work in both directions: matching and generation. In other words, this is a small “reverse URLPattern” helper.
 
@@ -11,13 +11,13 @@ A minimal, URLPattern-first URL generator. It intentionally does the least possi
 ## Install
 
 ```sh
-npm install url-builder
+npm install url-generator
 ```
 
 ## Quick start
 
 ```ts
-import { generate } from 'url-builder';
+import { generate } from 'url-generator';
 
 const decode = (match) => {
   if (!match) throw new Error('No match');
@@ -53,7 +53,7 @@ console.log(url.href);
 Builds a URL from a `URLPattern` and a parameter map. Returns a `URL` instance.
 
 ```ts
-import { generate, type Params } from 'url-builder';
+import { generate, type Params } from 'url-generator';
 
 const pattern = new URLPattern({ pathname: '/posts/:slug' });
 const params: Params = {

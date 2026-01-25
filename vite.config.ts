@@ -6,8 +6,8 @@ export default defineConfig({
     target: 'esnext',
     lib: {
       entry: 'src/index.ts',
-      name: 'URLBuilder',
-      fileName: (format) => (format === 'es' ? 'url-builder.js' : 'url-builder.cjs'),
+      name: 'URLGenerator',
+      fileName: (format) => (format === 'es' ? 'url-generator.js' : 'url-generator.cjs'),
       formats: ['es', 'cjs'],
     },
     sourcemap: true,
