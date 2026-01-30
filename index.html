@@ -239,6 +239,10 @@
         font-family: var(--mono);
         overflow: auto;
       }
+      .code-error {
+        background: #3a1f1a;
+        color: #ffd9d1;
+      }
       .result-url {
         font-weight: 700;
         padding: 12px;
@@ -247,6 +251,11 @@
         border: 1px solid var(--border);
         word-break: break-all;
         font-family: var(--sans);
+      }
+      .result-url.error {
+        background: #ffe9e6;
+        border-color: #e5b0a7;
+        color: #7a1f12;
       }
       .prominent {
         display: flex;
@@ -433,6 +442,16 @@
         statusEl.textContent = message || '';
       }
 
+      function setCode(target, text, isError = false) {
+        target.textContent = text || '';
+        target.classList.toggle('code-error', isError);
+      }
+
+      function setOutput(message, isError = false) {
+        outputEl.textContent = message || '';
+        outputEl.classList.toggle('error', isError);
+      }
+
       function buildPatternFromUI() {
         const activeTab = document.querySelector('.tab-button.active')?.dataset.tab;
         if (activeTab === 'string') {
@@ -574,16 +593,19 @@
 
       function updatePatternCode() {
         try {
+          console.log('Updating pattern code...');
           const { code } = buildPatternFromUI();
-          patternCodeEl.textContent = code;
+          setCode(patternCodeEl, code);
         } catch (error) {
-          patternCodeEl.textContent = `// ${error.message}`;
+          console.log('error');
+          setCode(patternCodeEl, `// Error: ${error.message}`, true);
         }
       }
 
       function execPattern() {
         setStatus('');
         try {
+          console.log('Executing pattern...');
           const { pattern } = buildPatternFromUI();
           const value = execInput.value.trim();
           const result = value ? pattern.exec(value) : null;
@@ -614,6 +636,7 @@
           }
           execOutput.appendChild(rootDetails);
         } catch (error) {
+          console.log('error');
           execOutput.innerHTML = '';
           const details = document.createElement('details');
           const summary = document.createElement('summary');
@@ -629,18 +652,41 @@
 
       function generateUrl() {
         setStatus('');
+        let patternInfo;
+        let params;
+        let paramsCode = '';
         try {
-          const { pattern, code } = buildPatternFromUI();
-          const params = buildParams();
-          const url = generate(pattern, params);
-          const paramsCode = buildParamsCode(params);
-          const outputCode = `${code}\n\n${paramsCode}\n\nconst url = generate(pattern, params);`;
-          patternCodeEl.textContent = code;
-          outputCodeEl.textContent = outputCode;
-          outputEl.textContent = url.href;
+          patternInfo = buildPatternFromUI();
+          params = buildParams();
+          paramsCode = buildParamsCode(params);
+          const outputCode = `${patternInfo.code}\n\n${paramsCode}\n\nconst url = generate(pattern, params);`;
+          const url = generate(patternInfo.pattern, params);
+          setCode(patternCodeEl, patternInfo.code);
+          setCode(outputCodeEl, outputCode);
+          setOutput(url.href);
         } catch (error) {
-          outputEl.textContent = 'Error.';
-          outputCodeEl.textContent = '';
+          if (patternInfo?.code) {
+            setCode(patternCodeEl, patternInfo.code);
+          } else {
+            updatePatternCode();
+          }
+          if (!paramsCode && params) {
+            paramsCode = buildParamsCode(params);
+          }
+          const parts = [];
+          if (patternInfo?.code) {
+            parts.push(patternInfo.code);
+          }
+          if (paramsCode) {
+            parts.push(paramsCode);
+          }
+          if (patternInfo?.code || paramsCode) {
+            parts.push('const url = generate(pattern, params);');
+          }
+          const errorLine = `// Error: ${error.message}`;
+          const outputCode = parts.length ? `${parts.join('\n\n')}\n\n${errorLine}` : errorLine;
+          setCode(outputCodeEl, outputCode, true);
+          setOutput(`Error: ${error.message}`, true);
           setStatus(error.message);
         }
       }

@@ -26,6 +26,14 @@ export interface ParamValues {
 /** Parameter map keyed by URLPattern component, with optional component entries. */
 export type Params = Partial<Record<ParamKeys, ParamValues>>;
 
+/** Error thrown when a required parameter is missing during generation. */
+export class MissingParamError extends Error {
+  constructor(paramName: string | number) {
+    super(`Missing required param "${String(paramName)}"`);
+    this.name = 'MissingParamError';
+  }
+}
+
 /** Converts a value to a string when building components. */
 export type StringifyFunction = (value: unknown) => string;
 /** Component handler signature for building a component from a pattern. */
@@ -352,6 +360,7 @@ function buildFromTokens(
   params: ParamGroups,
   stringifier: StringifyFunction = defaultStringify,
   encoder: EncodeFunction = encodeURIComponent,
+  optionalContext = false,
 ): { value: string; usedParam: boolean } {
   let output = '';
   let usedParam = false;
@@ -363,11 +372,14 @@ function buildFromTokens(
     }
 
     if (token.type === 'group') {
+      const groupOptional =
+        optionalContext || token.modifier === '?' || token.modifier === '*';
       const groupResult = buildFromTokens(
         token.tokens,
         params,
         stringifier,
         encoder,
+        groupOptional,
       );
       const shouldInclude =
         token.modifier === '' || token.modifier === '+'
@@ -383,6 +395,9 @@ function buildFromTokens(
 
     const rawValue = params[token.name];
     if (rawValue === undefined || rawValue === null) {
+      if (!optionalContext && (token.modifier === '' || token.modifier === '+')) {
+        throw new MissingParamError(token.name);
+      }
       continue;
     }
 
@@ -431,9 +446,25 @@ function defaultHandler(
   group: ParamValues,
   encoder: EncodeFunction,
 ): string {
-  const tokens = tokenizePattern(pattern);
   const stringifier = group.stringify ?? defaultStringify;
   const groups = group.groups ?? {};
+  if (pattern === '*') {
+    const fallback = groups[0];
+    if (fallback === undefined || fallback === null || fallback === '') {
+      return '';
+    }
+
+    const token: ParamToken = {
+      type: 'param',
+      name: 0,
+      modifier: '',
+      prefix: '',
+      allowSlash: true,
+    };
+    return encoder(stringifyValue(fallback, stringifier), token);
+  }
+
+  const tokens = tokenizePattern(pattern);
   if (!tokensHaveParams(tokens)) {
     const fallback = groups[0];
     if (fallback !== undefined && fallback !== null && fallback !== '') {

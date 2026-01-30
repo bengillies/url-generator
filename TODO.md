@@ -11,6 +11,7 @@
 - [x] Make it work in node (URLSearchParams)
 - [x] improve manual testing tool
 - [x] tests cleanup
+- [x] error handling
 - [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance

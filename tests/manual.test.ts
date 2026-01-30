@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { generate, type Params } from '../src/index';
+import { generate, MissingParamError, type Params } from '../src/index';
 
 function emptyParams(): Params {
   return {
@@ -403,6 +403,80 @@ describe('generate manual cases', () => {
 
     const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo-baz');
+  });
+
+  it('allows optional params to be omitted across components', () => {
+    const pattern = new URLPattern({
+      protocol: 'http{:proto}?',
+      username: 'user{:user}?',
+      password: 'pass{:pass}?',
+      hostname: 'example.com{:host}?',
+      port: '{:port}?',
+      pathname: '/base{:path}?',
+      search: '{q=:q}?',
+      hash: '{section-:section}?',
+    });
+
+    const params = emptyParams();
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('http://user:pass@example.com/base');
+  });
+
+  it('throws when required params are missing across components', () => {
+    const pattern = new URLPattern({
+      protocol: ':proto',
+      username: ':user',
+      password: ':pass',
+      hostname: ':host',
+      port: ':port',
+      pathname: '/:path',
+      search: 'q=:q',
+      hash: 'section-:section',
+    });
+    const baseParams = emptyParams();
+    baseParams.protocol.groups = { proto: 'https' };
+    baseParams.username.groups = { user: 'alice' };
+    baseParams.password.groups = { pass: 'secret' };
+    baseParams.hostname.groups = { host: 'example.com' };
+    baseParams.port.groups = { port: '443' };
+    baseParams.pathname.groups = { path: 'docs' };
+    baseParams.search.groups = { q: '1' };
+    baseParams.hash.groups = { section: 'intro' };
+
+    const cases: [string, Params][] = [
+      ['protocol', { ...baseParams, protocol: { groups: {} } }],
+      ['username', { ...baseParams, username: { groups: {} } }],
+      ['password', { ...baseParams, password: { groups: {} } }],
+      ['hostname', { ...baseParams, hostname: { groups: {} } }],
+      ['port', { ...baseParams, port: { groups: {} } }],
+      ['pathname', { ...baseParams, pathname: { groups: {} } }],
+      ['search', { ...baseParams, search: { groups: {} } }],
+      ['hash', { ...baseParams, hash: { groups: {} } }],
+    ];
+
+    for (const [, params] of cases) {
+      expect(() => generate(pattern, params)).toThrow('Missing required param');
+    }
+  });
+
+  it('allows missing params for * wildcard modifiers', () => {
+    const pattern = new URLPattern({ pathname: '/foo/:bar*' });
+    const params = emptyParams();
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo');
+  });
+
+  it('throws on missing params for + wildcard modifiers', () => {
+    const pattern = new URLPattern({ pathname: '/foo/:bar+' });
+    const params = emptyParams();
+    params.protocol.groups = { 0: 'https' };
+    params.hostname.groups = { 0: 'example.com' };
+
+    expect(() => generate(pattern, params)).toThrow(MissingParamError);
   });
 
   it('preserves ? and & in search params', () => {
