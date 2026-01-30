@@ -1,5 +1,5 @@
 import type { URLPatternInit, URLPatternOptions } from 'node:url';
-import type { ParamKeys } from '../src/index';
+import type { ParamKeys } from '../../src/index';
 
 export type UrlPatternArgs =
   | [string | URLPatternInit, string, URLPatternOptions?]

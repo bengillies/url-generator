@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { generate, MissingParamError, type Params } from '../src/index';
 
-function emptyParams(): Params {
+function emptyParams(): Required<Params> {
   return {
     pathname: { groups: {} },
     search: { groups: {} },
@@ -95,7 +95,7 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of searchCases) {
-      const params = { ...baseParams, search: { groups: {} } } as Params;
+      const params: Required<Params> = { ...baseParams, search: { groups: {} } };
       if (value !== undefined) {
         params.search.groups = { 0: value };
       }
@@ -110,7 +110,7 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of hashCases) {
-      const params = { ...baseParams, hash: { groups: {} } } as Params;
+      const params: Required<Params> = { ...baseParams, hash: { groups: {} } };
       if (value !== undefined) {
         params.hash.groups = { 0: value };
       }
