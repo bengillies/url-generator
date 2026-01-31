@@ -12,7 +12,7 @@
 - [x] improve manual testing tool
 - [x] tests cleanup
 - [x] error handling
+- [x] GitHub Actions - dep updates, tests, linting
 - [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance
-- [ ] GitHub Actions - dep updates, tests, linting
