@@ -95,7 +95,10 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of searchCases) {
-      const params: Required<Params> = { ...baseParams, search: { groups: {} } };
+      const params: Required<Params> = {
+        ...baseParams,
+        search: { groups: {} },
+      };
       if (value !== undefined) {
         params.search.groups = { 0: value };
       }

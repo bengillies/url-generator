@@ -2,5295 +2,5219 @@
 import type { FixtureEntry } from './fixture-types';
 export const fixtureData: FixtureEntry[] = [
   {
-    "caseIndex": 0,
-    "urlPatternArgs": [
+    caseIndex: 0,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 4,
-    "urlPatternArgs": [
+    caseIndex: 4,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 6,
-    "urlPatternArgs": [
+    caseIndex: 6,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 8,
-    "urlPatternArgs": [
+    caseIndex: 8,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 12,
-    "urlPatternArgs": [
+    caseIndex: 12,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 13,
-    "urlPatternArgs": [
+    caseIndex: 13,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 15,
-    "urlPatternArgs": [
+    caseIndex: 15,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "otherquery"
+      search: {
+        '0': 'otherquery',
       },
-      "hash": {
-        "0": "otherhash"
+      hash: {
+        '0': 'otherhash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
+    expectedUrl: 'https://example.com/foo/bar?otherquery#otherhash',
   },
   {
-    "caseIndex": 16,
-    "urlPatternArgs": [
+    caseIndex: 16,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "otherquery"
+      search: {
+        '0': 'otherquery',
       },
-      "hash": {
-        "0": "otherhash"
+      hash: {
+        '0': 'otherhash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
+    expectedUrl: 'https://example.com/foo/bar?otherquery#otherhash',
   },
   {
-    "caseIndex": 17,
-    "urlPatternArgs": [
+    caseIndex: 17,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?otherquery#otherhash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?otherquery#otherhash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "otherquery"
+      search: {
+        '0': 'otherquery',
       },
-      "hash": {
-        "0": "otherhash"
+      hash: {
+        '0': 'otherhash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
+    expectedUrl: 'https://example.com/foo/bar?otherquery#otherhash',
   },
   {
-    "caseIndex": 18,
-    "urlPatternArgs": [
+    caseIndex: 18,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 19,
-    "urlPatternArgs": [
+    caseIndex: 19,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "otherquery"
+      search: {
+        '0': 'otherquery',
       },
-      "hash": {
-        "0": "otherhash"
+      hash: {
+        '0': 'otherhash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?otherquery#otherhash"
+    expectedUrl: 'https://example.com/foo/bar?otherquery#otherhash',
   },
   {
-    "caseIndex": 20,
-    "urlPatternArgs": [
+    caseIndex: 20,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "query"
+      search: {
+        '0': 'query',
       },
-      "hash": {
-        "0": "hash"
+      hash: {
+        '0': 'hash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?query#hash"
+    expectedUrl: 'https://example.com/foo/bar?query#hash',
   },
   {
-    "caseIndex": 24,
-    "urlPatternArgs": [
+    caseIndex: 24,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 25,
-    "urlPatternArgs": [
+    caseIndex: 25,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar",
-        "baseURL": "https://example.com?query#hash"
-      }
+        pathname: '/foo/bar',
+        baseURL: 'https://example.com?query#hash',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {
-        "0": "query"
+      search: {
+        '0': 'query',
       },
-      "hash": {
-        "0": "hash"
+      hash: {
+        '0': 'hash',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar?query#hash"
+    expectedUrl: 'https://example.com/foo/bar?query#hash',
   },
   {
-    "caseIndex": 29,
-    "urlPatternArgs": [
+    caseIndex: 29,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar"
-      }
+        pathname: '/foo/:bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar"
+    params: {
+      pathname: {
+        bar: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 30,
-    "urlPatternArgs": [
+    caseIndex: 30,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/([^\\/]+?)"
-      }
+        pathname: '/foo/([^\\/]+?)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 31,
-    "urlPatternArgs": [
+    caseIndex: 31,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar"
-      }
+        pathname: '/foo/:bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "index.html"
+    params: {
+      pathname: {
+        bar: 'index.html',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/index.html"
+    expectedUrl: 'http://example.com/foo/index.html',
   },
   {
-    "caseIndex": 34,
-    "urlPatternArgs": [
+    caseIndex: 34,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)"
-      }
+        pathname: '/foo/(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 35,
-    "urlPatternArgs": [
+    caseIndex: 35,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*"
-      }
+        pathname: '/foo/*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 36,
-    "urlPatternArgs": [
+    caseIndex: 36,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)"
-      }
+        pathname: '/foo/(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 37,
-    "urlPatternArgs": [
+    caseIndex: 37,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*"
-      }
+        pathname: '/foo/*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 38,
-    "urlPatternArgs": [
+    caseIndex: 38,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)"
-      }
+        pathname: '/foo/(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 39,
-    "urlPatternArgs": [
+    caseIndex: 39,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*"
-      }
+        pathname: '/foo/*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 42,
-    "urlPatternArgs": [
+    caseIndex: 42,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar(.*)"
-      }
+        pathname: '/foo/:bar(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar"
+    params: {
+      pathname: {
+        bar: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 43,
-    "urlPatternArgs": [
+    caseIndex: 43,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar(.*)"
-      }
+        pathname: '/foo/:bar(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar/baz"
+    params: {
+      pathname: {
+        bar: 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 44,
-    "urlPatternArgs": [
+    caseIndex: 44,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar(.*)"
-      }
+        pathname: '/foo/:bar(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": ""
+    params: {
+      pathname: {
+        bar: '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 46,
-    "urlPatternArgs": [
+    caseIndex: 46,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar?"
-      }
+        pathname: '/foo/:bar?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar"
+    params: {
+      pathname: {
+        bar: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 47,
-    "urlPatternArgs": [
+    caseIndex: 47,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar?"
-      }
+        pathname: '/foo/:bar?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": null
+    params: {
+      pathname: {
+        bar: null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 51,
-    "urlPatternArgs": [
+    caseIndex: 51,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar+"
-      }
+        pathname: '/foo/:bar+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar"
+    params: {
+      pathname: {
+        bar: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 52,
-    "urlPatternArgs": [
+    caseIndex: 52,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar+"
-      }
+        pathname: '/foo/:bar+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar/baz"
+    params: {
+      pathname: {
+        bar: 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 56,
-    "urlPatternArgs": [
+    caseIndex: 56,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar*"
-      }
+        pathname: '/foo/:bar*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar"
+    params: {
+      pathname: {
+        bar: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 57,
-    "urlPatternArgs": [
+    caseIndex: 57,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar*"
-      }
+        pathname: '/foo/:bar*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": "bar/baz"
+    params: {
+      pathname: {
+        bar: 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 58,
-    "urlPatternArgs": [
+    caseIndex: 58,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/:bar*"
-      }
+        pathname: '/foo/:bar*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "bar": null
+    params: {
+      pathname: {
+        bar: null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 61,
-    "urlPatternArgs": [
+    caseIndex: 61,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)?"
-      }
+        pathname: '/foo/(.*)?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 62,
-    "urlPatternArgs": [
+    caseIndex: 62,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*?"
-      }
+        pathname: '/foo/*?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 63,
-    "urlPatternArgs": [
+    caseIndex: 63,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)?"
-      }
+        pathname: '/foo/(.*)?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 64,
-    "urlPatternArgs": [
+    caseIndex: 64,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*?"
-      }
+        pathname: '/foo/*?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 65,
-    "urlPatternArgs": [
+    caseIndex: 65,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)?"
-      }
+        pathname: '/foo/(.*)?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": null
+    params: {
+      pathname: {
+        '0': null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 66,
-    "urlPatternArgs": [
+    caseIndex: 66,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*?"
-      }
+        pathname: '/foo/*?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": null
+    params: {
+      pathname: {
+        '0': null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 67,
-    "urlPatternArgs": [
+    caseIndex: 67,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)?"
-      }
+        pathname: '/foo/(.*)?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 68,
-    "urlPatternArgs": [
+    caseIndex: 68,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*?"
-      }
+        pathname: '/foo/*?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 73,
-    "urlPatternArgs": [
+    caseIndex: 73,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)+"
-      }
+        pathname: '/foo/(.*)+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 74,
-    "urlPatternArgs": [
+    caseIndex: 74,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*+"
-      }
+        pathname: '/foo/*+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 75,
-    "urlPatternArgs": [
+    caseIndex: 75,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)+"
-      }
+        pathname: '/foo/(.*)+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 76,
-    "urlPatternArgs": [
+    caseIndex: 76,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*+"
-      }
+        pathname: '/foo/*+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 79,
-    "urlPatternArgs": [
+    caseIndex: 79,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)+"
-      }
+        pathname: '/foo/(.*)+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 80,
-    "urlPatternArgs": [
+    caseIndex: 80,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/*+"
-      }
+        pathname: '/foo/*+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 85,
-    "urlPatternArgs": [
+    caseIndex: 85,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)*"
-      }
+        pathname: '/foo/(.*)*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 86,
-    "urlPatternArgs": [
+    caseIndex: 86,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/**"
-      }
+        pathname: '/foo/**',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 87,
-    "urlPatternArgs": [
+    caseIndex: 87,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)*"
-      }
+        pathname: '/foo/(.*)*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 88,
-    "urlPatternArgs": [
+    caseIndex: 88,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/**"
-      }
+        pathname: '/foo/**',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar/baz"
+    params: {
+      pathname: {
+        '0': 'bar/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/baz"
+    expectedUrl: 'http://example.com/foo/bar/baz',
   },
   {
-    "caseIndex": 89,
-    "urlPatternArgs": [
+    caseIndex: 89,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)*"
-      }
+        pathname: '/foo/(.*)*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": null
+    params: {
+      pathname: {
+        '0': null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 90,
-    "urlPatternArgs": [
+    caseIndex: 90,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/**"
-      }
+        pathname: '/foo/**',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": null
+    params: {
+      pathname: {
+        '0': null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 91,
-    "urlPatternArgs": [
+    caseIndex: 91,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/(.*)*"
-      }
+        pathname: '/foo/(.*)*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 92,
-    "urlPatternArgs": [
+    caseIndex: 92,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/**"
-      }
+        pathname: '/foo/**',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": ""
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/"
+    expectedUrl: 'http://example.com/foo/',
   },
   {
-    "caseIndex": 97,
-    "urlPatternArgs": [
+    caseIndex: 97,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}"
-      }
+        pathname: '/foo{/bar}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 101,
-    "urlPatternArgs": [
+    caseIndex: 101,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}?"
-      }
+        pathname: '/foo{/bar}?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 103,
-    "urlPatternArgs": [
+    caseIndex: 103,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}?"
-      }
+        pathname: '/foo{/bar}?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 105,
-    "urlPatternArgs": [
+    caseIndex: 105,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}+"
-      }
+        pathname: '/foo{/bar}+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 106,
-    "urlPatternArgs": [
+    caseIndex: 106,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}+"
-      }
+        pathname: '/foo{/bar}+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/bar"
+    expectedUrl: 'http://example.com/foo/bar/bar',
   },
   {
-    "caseIndex": 110,
-    "urlPatternArgs": [
+    caseIndex: 110,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}*"
-      }
+        pathname: '/foo{/bar}*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 111,
-    "urlPatternArgs": [
+    caseIndex: 111,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}*"
-      }
+        pathname: '/foo{/bar}*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar/bar"
+    expectedUrl: 'http://example.com/foo/bar/bar',
   },
   {
-    "caseIndex": 113,
-    "urlPatternArgs": [
+    caseIndex: 113,
+    urlPatternArgs: [
       {
-        "pathname": "/foo{/bar}*"
-      }
+        pathname: '/foo{/bar}*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 123,
-    "urlPatternArgs": [
+    caseIndex: 123,
+    urlPatternArgs: [
       {
-        "username": ":café"
-      }
+        username: ':café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "café": "foo"
+      search: {},
+      hash: {},
+      username: {
+        café: 'foo',
       },
-      "password": {},
-      "protocol": {
-        "0": "http"
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo@example.com/"
+    expectedUrl: 'http://foo@example.com/',
   },
   {
-    "caseIndex": 124,
-    "urlPatternArgs": [
+    caseIndex: 124,
+    urlPatternArgs: [
       {
-        "password": ":café"
-      }
+        password: ':café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "café": "foo"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        café: 'foo',
       },
-      "protocol": {
-        "0": "http"
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://:foo@example.com/"
+    expectedUrl: 'http://:foo@example.com/',
   },
   {
-    "caseIndex": 125,
-    "urlPatternArgs": [
+    caseIndex: 125,
+    urlPatternArgs: [
       {
-        "hostname": ":café"
-      }
+        hostname: ':café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "café": "foo"
+      hostname: {
+        café: 'foo',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo/"
+    expectedUrl: 'http://foo/',
   },
   {
-    "caseIndex": 126,
-    "urlPatternArgs": [
+    caseIndex: 126,
+    urlPatternArgs: [
       {
-        "pathname": "/:café"
-      }
+        pathname: '/:café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "café": "foo"
+    params: {
+      pathname: {
+        café: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 127,
-    "urlPatternArgs": [
+    caseIndex: 127,
+    urlPatternArgs: [
       {
-        "search": ":café"
-      }
+        search: ':café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "café": "foo"
+      search: {
+        café: 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/?foo"
+    expectedUrl: 'http://example.com/?foo',
   },
   {
-    "caseIndex": 128,
-    "urlPatternArgs": [
+    caseIndex: 128,
+    urlPatternArgs: [
       {
-        "hash": ":café"
-      }
+        hash: ':café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "café": "foo"
+      search: {},
+      hash: {
+        café: 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/#foo"
+    expectedUrl: 'http://example.com/#foo',
   },
   {
-    "caseIndex": 130,
-    "urlPatternArgs": [
+    caseIndex: 130,
+    urlPatternArgs: [
       {
-        "username": ":℘"
-      }
+        username: ':℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "℘": "foo"
+      search: {},
+      hash: {},
+      username: {
+        '℘': 'foo',
       },
-      "password": {},
-      "protocol": {
-        "0": "http"
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo@example.com/"
+    expectedUrl: 'http://foo@example.com/',
   },
   {
-    "caseIndex": 131,
-    "urlPatternArgs": [
+    caseIndex: 131,
+    urlPatternArgs: [
       {
-        "password": ":℘"
-      }
+        password: ':℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "℘": "foo"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        '℘': 'foo',
       },
-      "protocol": {
-        "0": "http"
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://:foo@example.com/"
+    expectedUrl: 'http://:foo@example.com/',
   },
   {
-    "caseIndex": 132,
-    "urlPatternArgs": [
+    caseIndex: 132,
+    urlPatternArgs: [
       {
-        "hostname": ":℘"
-      }
+        hostname: ':℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "℘": "foo"
+      hostname: {
+        '℘': 'foo',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo/"
+    expectedUrl: 'http://foo/',
   },
   {
-    "caseIndex": 133,
-    "urlPatternArgs": [
+    caseIndex: 133,
+    urlPatternArgs: [
       {
-        "pathname": "/:℘"
-      }
+        pathname: '/:℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "℘": "foo"
+    params: {
+      pathname: {
+        '℘': 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 134,
-    "urlPatternArgs": [
+    caseIndex: 134,
+    urlPatternArgs: [
       {
-        "search": ":℘"
-      }
+        search: ':℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "℘": "foo"
+      search: {
+        '℘': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/?foo"
+    expectedUrl: 'http://example.com/?foo',
   },
   {
-    "caseIndex": 135,
-    "urlPatternArgs": [
+    caseIndex: 135,
+    urlPatternArgs: [
       {
-        "hash": ":℘"
-      }
+        hash: ':℘',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "℘": "foo"
+      search: {},
+      hash: {
+        '℘': 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/#foo"
+    expectedUrl: 'http://example.com/#foo',
   },
   {
-    "caseIndex": 137,
-    "urlPatternArgs": [
+    caseIndex: 137,
+    urlPatternArgs: [
       {
-        "username": ":㐀"
-      }
+        username: ':㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "㐀": "foo"
+      search: {},
+      hash: {},
+      username: {
+        㐀: 'foo',
       },
-      "password": {},
-      "protocol": {
-        "0": "http"
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo@example.com/"
+    expectedUrl: 'http://foo@example.com/',
   },
   {
-    "caseIndex": 138,
-    "urlPatternArgs": [
+    caseIndex: 138,
+    urlPatternArgs: [
       {
-        "password": ":㐀"
-      }
+        password: ':㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "㐀": "foo"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        㐀: 'foo',
       },
-      "protocol": {
-        "0": "http"
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://:foo@example.com/"
+    expectedUrl: 'http://:foo@example.com/',
   },
   {
-    "caseIndex": 139,
-    "urlPatternArgs": [
+    caseIndex: 139,
+    urlPatternArgs: [
       {
-        "hostname": ":㐀"
-      }
+        hostname: ':㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "㐀": "foo"
+      hostname: {
+        㐀: 'foo',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://foo/"
+    expectedUrl: 'http://foo/',
   },
   {
-    "caseIndex": 140,
-    "urlPatternArgs": [
+    caseIndex: 140,
+    urlPatternArgs: [
       {
-        "pathname": "/:㐀"
-      }
+        pathname: '/:㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "㐀": "foo"
+    params: {
+      pathname: {
+        㐀: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 141,
-    "urlPatternArgs": [
+    caseIndex: 141,
+    urlPatternArgs: [
       {
-        "search": ":㐀"
-      }
+        search: ':㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "㐀": "foo"
+      search: {
+        㐀: 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/?foo"
+    expectedUrl: 'http://example.com/?foo',
   },
   {
-    "caseIndex": 142,
-    "urlPatternArgs": [
+    caseIndex: 142,
+    urlPatternArgs: [
       {
-        "hash": ":㐀"
-      }
+        hash: ':㐀',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "㐀": "foo"
+      search: {},
+      hash: {
+        㐀: 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/#foo"
+    expectedUrl: 'http://example.com/#foo',
   },
   {
-    "caseIndex": 146,
-    "urlPatternArgs": [
+    caseIndex: 146,
+    urlPatternArgs: [
       {
-        "username": "caf%C3%A9"
-      }
+        username: 'caf%C3%A9',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "0": "café"
+      search: {},
+      hash: {},
+      username: {
+        '0': 'café',
       },
-      "password": {},
-      "protocol": {
-        "0": "http"
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://caf%C3%A9@example.com/"
+    expectedUrl: 'http://caf%C3%A9@example.com/',
   },
   {
-    "caseIndex": 147,
-    "urlPatternArgs": [
+    caseIndex: 147,
+    urlPatternArgs: [
       {
-        "username": "café"
-      }
+        username: 'café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "0": "café"
+      search: {},
+      hash: {},
+      username: {
+        '0': 'café',
       },
-      "password": {},
-      "protocol": {
-        "0": "http"
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://caf%C3%A9@example.com/"
+    expectedUrl: 'http://caf%C3%A9@example.com/',
   },
   {
-    "caseIndex": 149,
-    "urlPatternArgs": [
+    caseIndex: 149,
+    urlPatternArgs: [
       {
-        "password": "caf%C3%A9"
-      }
+        password: 'caf%C3%A9',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "0": "café"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        '0': 'café',
       },
-      "protocol": {
-        "0": "http"
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://:caf%C3%A9@example.com/"
+    expectedUrl: 'http://:caf%C3%A9@example.com/',
   },
   {
-    "caseIndex": 150,
-    "urlPatternArgs": [
+    caseIndex: 150,
+    urlPatternArgs: [
       {
-        "password": "café"
-      }
+        password: 'café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "0": "café"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        '0': 'café',
       },
-      "protocol": {
-        "0": "http"
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://:caf%C3%A9@example.com/"
+    expectedUrl: 'http://:caf%C3%A9@example.com/',
   },
   {
-    "caseIndex": 152,
-    "urlPatternArgs": [
+    caseIndex: 152,
+    urlPatternArgs: [
       {
-        "hostname": "xn--caf-dma.com"
-      }
+        hostname: 'xn--caf-dma.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "xn--caf-dma.com"
+      hostname: {
+        '0': 'xn--caf-dma.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://xn--caf-dma.com/"
+    expectedUrl: 'http://xn--caf-dma.com/',
   },
   {
-    "caseIndex": 153,
-    "urlPatternArgs": [
+    caseIndex: 153,
+    urlPatternArgs: [
       {
-        "hostname": "café.com"
-      }
+        hostname: 'café.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "xn--caf-dma.com"
+      hostname: {
+        '0': 'xn--caf-dma.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://xn--caf-dma.com/"
+    expectedUrl: 'http://xn--caf-dma.com/',
   },
   {
-    "caseIndex": 154,
-    "urlPatternArgs": [
-      "http://🚲.com/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 154,
+    urlPatternArgs: ['http://🚲.com/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "xn--h78h.com"
+      hostname: {
+        '0': 'xn--h78h.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://xn--h78h.com/"
+    expectedUrl: 'http://xn--h78h.com/',
   },
   {
-    "caseIndex": 160,
-    "urlPatternArgs": [
+    caseIndex: 160,
+    urlPatternArgs: [
       {
-        "pathname": "test/:a𐑐b"
-      }
+        pathname: 'test/:a𐑐b',
+      },
     ],
-    "params": {
-      "pathname": {
-        "a𐑐b": "foo"
+    params: {
+      pathname: {
+        'a𐑐b': 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/test/foo"
+    expectedUrl: 'http://example.com/test/foo',
   },
   {
-    "caseIndex": 162,
-    "urlPatternArgs": [
+    caseIndex: 162,
+    urlPatternArgs: [
       {
-        "port": ""
-      }
+        port: '',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 163,
-    "urlPatternArgs": [
+    caseIndex: 163,
+    urlPatternArgs: [
       {
-        "protocol": "http",
-        "port": "80"
-      }
+        protocol: 'http',
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 169,
-    "urlPatternArgs": [
+    caseIndex: 169,
+    urlPatternArgs: [
       {
-        "port": "80"
-      }
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
+      },
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hostname: {
+        '0': 'example.com',
       },
-      "hostname": {
-        "0": "example.com"
+      port: {
+        '0': '80',
       },
-      "port": {
-        "0": "80"
-      }
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 170,
-    "urlPatternArgs": [
+    caseIndex: 170,
+    urlPatternArgs: [
       {
-        "port": "80"
-      }
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
+      },
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hostname: {
+        '0': 'example.com',
       },
-      "hostname": {
-        "0": "example.com"
+      port: {
+        '0': '80',
       },
-      "port": {
-        "0": "80"
-      }
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 171,
-    "urlPatternArgs": [
+    caseIndex: 171,
+    urlPatternArgs: [
       {
-        "port": "80"
-      }
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "80"
-      }
+      port: {
+        '0': '80',
+      },
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 172,
-    "urlPatternArgs": [
+    caseIndex: 172,
+    urlPatternArgs: [
       {
-        "port": "80"
-      }
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "80"
-      }
+      port: {
+        '0': '80',
+      },
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 173,
-    "urlPatternArgs": [
+    caseIndex: 173,
+    urlPatternArgs: [
       {
-        "port": "80"
-      }
+        port: '80',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "80"
-      }
+      port: {
+        '0': '80',
+      },
     },
-    "expectedUrl": "http://example.com/"
+    expectedUrl: 'http://example.com/',
   },
   {
-    "caseIndex": 175,
-    "urlPatternArgs": [
+    caseIndex: 175,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 176,
-    "urlPatternArgs": [
+    caseIndex: 176,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/baz"
-      }
+        pathname: '/foo/baz',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/baz"
+    params: {
+      pathname: {
+        '0': '/foo/baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/baz"
+    expectedUrl: 'http://example.com/foo/baz',
   },
   {
-    "caseIndex": 177,
-    "urlPatternArgs": [
+    caseIndex: 177,
+    urlPatternArgs: [
       {
-        "pathname": "/caf%C3%A9"
-      }
+        pathname: '/caf%C3%A9',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/café"
+    params: {
+      pathname: {
+        '0': '/café',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/caf%C3%A9"
+    expectedUrl: 'http://example.com/caf%C3%A9',
   },
   {
-    "caseIndex": 178,
-    "urlPatternArgs": [
+    caseIndex: 178,
+    urlPatternArgs: [
       {
-        "pathname": "/café"
-      }
+        pathname: '/café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/café"
+    params: {
+      pathname: {
+        '0': '/café',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/caf%C3%A9"
+    expectedUrl: 'http://example.com/caf%C3%A9',
   },
   {
-    "caseIndex": 181,
-    "urlPatternArgs": [
+    caseIndex: 181,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 182,
-    "urlPatternArgs": [
+    caseIndex: 182,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/../bar"
-      }
+        pathname: '/foo/../bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/bar"
+    params: {
+      pathname: {
+        '0': '/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bar"
+    expectedUrl: 'http://example.com/bar',
   },
   {
-    "caseIndex": 183,
-    "urlPatternArgs": [
+    caseIndex: 183,
+    urlPatternArgs: [
       {
-        "pathname": "./foo/bar",
-        "baseURL": "https://example.com"
-      }
+        pathname: './foo/bar',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 184,
-    "urlPatternArgs": [
+    caseIndex: 184,
+    urlPatternArgs: [
       {
-        "pathname": "",
-        "baseURL": "https://example.com"
-      }
+        pathname: '',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/"
+    expectedUrl: 'https://example.com/',
   },
   {
-    "caseIndex": 187,
-    "urlPatternArgs": [
+    caseIndex: 187,
+    urlPatternArgs: [
       {
-        "pathname": "b",
-        "baseURL": "https://example.com/foo/"
-      }
+        pathname: 'b',
+        baseURL: 'https://example.com/foo/',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/b"
+    params: {
+      pathname: {
+        '0': '/foo/b',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/b"
+    expectedUrl: 'https://example.com/foo/b',
   },
   {
-    "caseIndex": 189,
-    "urlPatternArgs": [
+    caseIndex: 189,
+    urlPatternArgs: [
       {
-        "pathname": "foo/bar",
-        "baseURL": "https://example.com"
-      }
+        pathname: 'foo/bar',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 190,
-    "urlPatternArgs": [
+    caseIndex: 190,
+    urlPatternArgs: [
       {
-        "pathname": ":name.html",
-        "baseURL": "https://example.com"
-      }
+        pathname: ':name.html',
+        baseURL: 'https://example.com',
+      },
     ],
-    "params": {
-      "pathname": {
-        "name": "foo"
+    params: {
+      pathname: {
+        name: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo.html"
+    expectedUrl: 'https://example.com/foo.html',
   },
   {
-    "caseIndex": 191,
-    "urlPatternArgs": [
+    caseIndex: 191,
+    urlPatternArgs: [
       {
-        "search": "q=caf%C3%A9"
-      }
+        search: 'q=caf%C3%A9',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "q=café"
+      search: {
+        '0': 'q=café',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/?q=caf%C3%A9"
+    expectedUrl: 'http://example.com/?q=caf%C3%A9',
   },
   {
-    "caseIndex": 192,
-    "urlPatternArgs": [
+    caseIndex: 192,
+    urlPatternArgs: [
       {
-        "search": "q=café"
-      }
+        search: 'q=café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "q=café"
+      search: {
+        '0': 'q=café',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/?q=caf%C3%A9"
+    expectedUrl: 'http://example.com/?q=caf%C3%A9',
   },
   {
-    "caseIndex": 194,
-    "urlPatternArgs": [
+    caseIndex: 194,
+    urlPatternArgs: [
       {
-        "hash": "caf%C3%A9"
-      }
+        hash: 'caf%C3%A9',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "0": "café"
+      search: {},
+      hash: {
+        '0': 'café',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/#caf%C3%A9"
+    expectedUrl: 'http://example.com/#caf%C3%A9',
   },
   {
-    "caseIndex": 195,
-    "urlPatternArgs": [
+    caseIndex: 195,
+    urlPatternArgs: [
       {
-        "hash": "café"
-      }
+        hash: 'café',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "0": "café"
+      search: {},
+      hash: {
+        '0': 'café',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/#caf%C3%A9"
+    expectedUrl: 'http://example.com/#caf%C3%A9',
   },
   {
-    "caseIndex": 200,
-    "urlPatternArgs": [
+    caseIndex: 200,
+    urlPatternArgs: [
       {
-        "pathname": "/foo!"
-      }
+        pathname: '/foo!',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo!"
+    params: {
+      pathname: {
+        '0': '/foo!',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo!"
+    expectedUrl: 'http://example.com/foo!',
   },
   {
-    "caseIndex": 201,
-    "urlPatternArgs": [
+    caseIndex: 201,
+    urlPatternArgs: [
       {
-        "pathname": "/foo\\:"
-      }
+        pathname: '/foo\\:',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo:"
+    params: {
+      pathname: {
+        '0': '/foo:',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo:"
+    expectedUrl: 'http://example.com/foo:',
   },
   {
-    "caseIndex": 202,
-    "urlPatternArgs": [
+    caseIndex: 202,
+    urlPatternArgs: [
       {
-        "pathname": "/foo\\{"
-      }
+        pathname: '/foo\\{',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo{"
+    params: {
+      pathname: {
+        '0': '/foo{',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo%7B"
+    expectedUrl: 'http://example.com/foo%7B',
   },
   {
-    "caseIndex": 203,
-    "urlPatternArgs": [
+    caseIndex: 203,
+    urlPatternArgs: [
       {
-        "pathname": "/foo\\("
-      }
+        pathname: '/foo\\(',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo("
+    params: {
+      pathname: {
+        '0': '/foo(',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo("
+    expectedUrl: 'http://example.com/foo(',
   },
   {
-    "caseIndex": 204,
-    "urlPatternArgs": [
+    caseIndex: 204,
+    urlPatternArgs: [
       {
-        "protocol": "javascript",
-        "pathname": "var x = 1;"
-      }
+        protocol: 'javascript',
+        pathname: 'var x = 1;',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "var x = 1;"
+    params: {
+      pathname: {
+        '0': 'var x = 1;',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "javascript"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'javascript',
       },
-      "hostname": {},
-      "port": {}
+      hostname: {},
+      port: {},
     },
-    "expectedUrl": "javascript:var x = 1;"
+    expectedUrl: 'javascript:var x = 1;',
   },
   {
-    "caseIndex": 206,
-    "urlPatternArgs": [
+    caseIndex: 206,
+    urlPatternArgs: [
       {
-        "protocol": "javascript",
-        "pathname": "var x = 1;"
-      }
+        protocol: 'javascript',
+        pathname: 'var x = 1;',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "var x = 1;"
+    params: {
+      pathname: {
+        '0': 'var x = 1;',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "javascript"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'javascript',
       },
-      "hostname": {},
-      "port": {}
+      hostname: {},
+      port: {},
     },
-    "expectedUrl": "javascript:var x = 1;"
+    expectedUrl: 'javascript:var x = 1;',
   },
   {
-    "caseIndex": 207,
-    "urlPatternArgs": [
+    caseIndex: 207,
+    urlPatternArgs: [
       {
-        "protocol": "(data|javascript)",
-        "pathname": "var x = 1;"
-      }
+        protocol: '(data|javascript)',
+        pathname: 'var x = 1;',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "var x = 1;"
+    params: {
+      pathname: {
+        '0': 'var x = 1;',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "javascript"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'javascript',
       },
-      "hostname": {},
-      "port": {}
+      hostname: {},
+      port: {},
     },
-    "expectedUrl": "javascript:var x = 1;"
+    expectedUrl: 'javascript:var x = 1;',
   },
   {
-    "caseIndex": 209,
-    "urlPatternArgs": [
+    caseIndex: 209,
+    urlPatternArgs: [
       {
-        "pathname": "var x = 1;"
-      }
+        pathname: 'var x = 1;',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "var x = 1;"
+    params: {
+      pathname: {
+        '0': 'var x = 1;',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "javascript"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'javascript',
       },
-      "hostname": {},
-      "port": {}
+      hostname: {},
+      port: {},
     },
-    "expectedUrl": "javascript:var x = 1;"
+    expectedUrl: 'javascript:var x = 1;',
   },
   {
-    "caseIndex": 210,
-    "urlPatternArgs": [
+    caseIndex: 210,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 211,
-    "urlPatternArgs": [
+    caseIndex: 211,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
-      }
+        pathname: '/foo/bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo/bar"
+    params: {
+      pathname: {
+        '0': '/foo/bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo/bar"
+    expectedUrl: 'https://example.com/foo/bar',
   },
   {
-    "caseIndex": 212,
-    "urlPatternArgs": [
-      "https://example.com:8080/foo?bar#baz"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 212,
+    urlPatternArgs: ['https://example.com:8080/foo?bar#baz'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {
-        "0": "baz"
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "8080"
-      }
+      port: {
+        '0': '8080',
+      },
     },
-    "expectedUrl": "https://example.com:8080/foo?bar#baz"
+    expectedUrl: 'https://example.com:8080/foo?bar#baz',
   },
   {
-    "caseIndex": 213,
-    "urlPatternArgs": [
-      "/foo?bar#baz",
-      "https://example.com:8080"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 213,
+    urlPatternArgs: ['/foo?bar#baz', 'https://example.com:8080'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {
-        "0": "baz"
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "8080"
-      }
+      port: {
+        '0': '8080',
+      },
     },
-    "expectedUrl": "https://example.com:8080/foo?bar#baz"
+    expectedUrl: 'https://example.com:8080/foo?bar#baz',
   },
   {
-    "caseIndex": 216,
-    "urlPatternArgs": [
-      "http{s}?://{*.}?example.com/:product/:endpoint",
-      "http://example.com"
+    caseIndex: 216,
+    urlPatternArgs: [
+      'http{s}?://{*.}?example.com/:product/:endpoint',
+      'http://example.com',
     ],
-    "params": {
-      "pathname": {
-        "product": "foo",
-        "endpoint": "bar"
+    params: {
+      pathname: {
+        product: 'foo',
+        endpoint: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "sub"
+      hostname: {
+        '0': 'sub',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://sub.example.com/foo/bar"
+    expectedUrl: 'https://sub.example.com/foo/bar',
   },
   {
-    "caseIndex": 217,
-    "urlPatternArgs": [
-      "https://example.com?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 217,
+    urlPatternArgs: ['https://example.com?foo'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/?foo"
+    expectedUrl: 'https://example.com/?foo',
   },
   {
-    "caseIndex": 218,
-    "urlPatternArgs": [
-      "https://example.com#foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 218,
+    urlPatternArgs: ['https://example.com#foo'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "0": "foo"
+      search: {},
+      hash: {
+        '0': 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/#foo"
+    expectedUrl: 'https://example.com/#foo',
   },
   {
-    "caseIndex": 219,
-    "urlPatternArgs": [
-      "https://example.com:8080?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 219,
+    urlPatternArgs: ['https://example.com:8080?foo'],
+    params: {
+      pathname: {
+        '0': '/',
+      },
+      search: {
+        '0': 'foo',
       },
-      "search": {
-        "0": "foo"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hostname: {
+        '0': 'example.com',
       },
-      "hostname": {
-        "0": "example.com"
+      port: {
+        '0': '8080',
       },
-      "port": {
-        "0": "8080"
-      }
     },
-    "expectedUrl": "https://example.com:8080/?foo"
+    expectedUrl: 'https://example.com:8080/?foo',
   },
   {
-    "caseIndex": 220,
-    "urlPatternArgs": [
-      "https://example.com:8080#foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 220,
+    urlPatternArgs: ['https://example.com:8080#foo'],
+    params: {
+      pathname: {
+        '0': '/',
+      },
+      search: {},
+      hash: {
+        '0': 'foo',
       },
-      "search": {},
-      "hash": {
-        "0": "foo"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hostname: {
+        '0': 'example.com',
       },
-      "hostname": {
-        "0": "example.com"
+      port: {
+        '0': '8080',
       },
-      "port": {
-        "0": "8080"
-      }
     },
-    "expectedUrl": "https://example.com:8080/#foo"
+    expectedUrl: 'https://example.com:8080/#foo',
   },
   {
-    "caseIndex": 221,
-    "urlPatternArgs": [
-      "https://example.com/?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 221,
+    urlPatternArgs: ['https://example.com/?foo'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/?foo"
+    expectedUrl: 'https://example.com/?foo',
   },
   {
-    "caseIndex": 222,
-    "urlPatternArgs": [
-      "https://example.com/#foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 222,
+    urlPatternArgs: ['https://example.com/#foo'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {
-        "0": "foo"
+      search: {},
+      hash: {
+        '0': 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/#foo"
+    expectedUrl: 'https://example.com/#foo',
   },
   {
-    "caseIndex": 224,
-    "urlPatternArgs": [
-      "https://example.com/*\\?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": ""
+    caseIndex: 224,
+    urlPatternArgs: ['https://example.com/*\\?foo'],
+    params: {
+      pathname: {
+        '0': '',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/?foo"
+    expectedUrl: 'https://example.com/?foo',
   },
   {
-    "caseIndex": 226,
-    "urlPatternArgs": [
-      "https://example.com/:name\\?foo"
-    ],
-    "params": {
-      "pathname": {
-        "name": "bar"
+    caseIndex: 226,
+    urlPatternArgs: ['https://example.com/:name\\?foo'],
+    params: {
+      pathname: {
+        name: 'bar',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/bar?foo"
+    expectedUrl: 'https://example.com/bar?foo',
   },
   {
-    "caseIndex": 228,
-    "urlPatternArgs": [
-      "https://example.com/(bar)\\?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "bar"
+    caseIndex: 228,
+    urlPatternArgs: ['https://example.com/(bar)\\?foo'],
+    params: {
+      pathname: {
+        '0': 'bar',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/bar?foo"
+    expectedUrl: 'https://example.com/bar?foo',
   },
   {
-    "caseIndex": 230,
-    "urlPatternArgs": [
-      "https://example.com/{bar}\\?foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/bar"
+    caseIndex: 230,
+    urlPatternArgs: ['https://example.com/{bar}\\?foo'],
+    params: {
+      pathname: {
+        '0': '/bar',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/bar?foo"
+    expectedUrl: 'https://example.com/bar?foo',
   },
   {
-    "caseIndex": 234,
-    "urlPatternArgs": [
-      "https://{sub.}?example.com/foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 234,
+    urlPatternArgs: ['https://{sub.}?example.com/foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo"
+    expectedUrl: 'https://example.com/foo',
   },
   {
-    "caseIndex": 235,
-    "urlPatternArgs": [
-      "https://{sub.}?example{.com/}foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 235,
+    urlPatternArgs: ['https://{sub.}?example{.com/}foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo"
+    expectedUrl: 'https://example.com/foo',
   },
   {
-    "caseIndex": 237,
-    "urlPatternArgs": [
-      "https://(sub.)?example.com/foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 237,
+    urlPatternArgs: ['https://(sub.)?example.com/foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": null
+      hostname: {
+        '0': null,
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo"
+    expectedUrl: 'https://example.com/foo',
   },
   {
-    "caseIndex": 241,
-    "urlPatternArgs": [
-      "https://(sub(?:.))?example.com/foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 241,
+    urlPatternArgs: ['https://(sub(?:.))?example.com/foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": null
+      hostname: {
+        '0': null,
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo"
+    expectedUrl: 'https://example.com/foo',
   },
   {
-    "caseIndex": 247,
-    "urlPatternArgs": [
+    caseIndex: 247,
+    urlPatternArgs: [
       {
-        "protocol": "http{s}?:",
-        "search": "?bar",
-        "hash": "#baz"
-      }
+        protocol: 'http{s}?:',
+        search: '?bar',
+        hash: '#baz',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {
-        "0": "baz"
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo?bar#baz"
+    expectedUrl: 'http://example.com/foo?bar#baz',
   },
   {
-    "caseIndex": 248,
-    "urlPatternArgs": [
-      "?bar#baz",
-      "https://example.com/foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 248,
+    urlPatternArgs: ['?bar#baz', 'https://example.com/foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {
-        "0": "baz"
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo?bar#baz"
+    expectedUrl: 'https://example.com/foo?bar#baz',
   },
   {
-    "caseIndex": 249,
-    "urlPatternArgs": [
-      "?bar",
-      "https://example.com/foo#baz"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 249,
+    urlPatternArgs: ['?bar', 'https://example.com/foo#baz'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo?bar"
+    expectedUrl: 'https://example.com/foo?bar',
   },
   {
-    "caseIndex": 250,
-    "urlPatternArgs": [
-      "#baz",
-      "https://example.com/foo?bar"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 250,
+    urlPatternArgs: ['#baz', 'https://example.com/foo?bar'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {
-        "0": "bar"
+      search: {
+        '0': 'bar',
       },
-      "hash": {
-        "0": "baz"
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo?bar#baz"
+    expectedUrl: 'https://example.com/foo?bar#baz',
   },
   {
-    "caseIndex": 251,
-    "urlPatternArgs": [
-      "#baz",
-      "https://example.com/foo"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/foo"
+    caseIndex: 251,
+    urlPatternArgs: ['#baz', 'https://example.com/foo'],
+    params: {
+      pathname: {
+        '0': '/foo',
       },
-      "search": {},
-      "hash": {
-        "0": "baz"
+      search: {},
+      hash: {
+        '0': 'baz',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/foo#baz"
+    expectedUrl: 'https://example.com/foo#baz',
   },
   {
-    "caseIndex": 254,
-    "urlPatternArgs": [
-      "https://foo\\:bar@example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 254,
+    urlPatternArgs: ['https://foo\\:bar@example.com'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "0": "foo"
+      search: {},
+      hash: {},
+      username: {
+        '0': 'foo',
       },
-      "password": {
-        "0": "bar"
+      password: {
+        '0': 'bar',
       },
-      "protocol": {
-        "0": "https"
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://foo:bar@example.com/"
+    expectedUrl: 'https://foo:bar@example.com/',
   },
   {
-    "caseIndex": 255,
-    "urlPatternArgs": [
-      "https://foo@example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 255,
+    urlPatternArgs: ['https://foo@example.com'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "0": "foo"
+      search: {},
+      hash: {},
+      username: {
+        '0': 'foo',
       },
-      "password": {},
-      "protocol": {
-        "0": "https"
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://foo@example.com/"
+    expectedUrl: 'https://foo@example.com/',
   },
   {
-    "caseIndex": 256,
-    "urlPatternArgs": [
-      "https://\\:bar@example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 256,
+    urlPatternArgs: ['https://\\:bar@example.com'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {
-        "0": "bar"
+      search: {},
+      hash: {},
+      username: {},
+      password: {
+        '0': 'bar',
       },
-      "protocol": {
-        "0": "https"
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://:bar@example.com/"
+    expectedUrl: 'https://:bar@example.com/',
   },
   {
-    "caseIndex": 257,
-    "urlPatternArgs": [
-      "https://:user::pass@example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 257,
+    urlPatternArgs: ['https://:user::pass@example.com'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "user": "foo"
+      search: {},
+      hash: {},
+      username: {
+        user: 'foo',
       },
-      "password": {
-        "pass": "bar"
+      password: {
+        pass: 'bar',
       },
-      "protocol": {
-        "0": "https"
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://foo:bar@example.com/"
+    expectedUrl: 'https://foo:bar@example.com/',
   },
   {
-    "caseIndex": 258,
-    "urlPatternArgs": [
-      "https\\:foo\\:bar@example.com",
-      "http://example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 258,
+    urlPatternArgs: ['https\\:foo\\:bar@example.com', 'http://example.com'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {
-        "0": "foo"
+      search: {},
+      hash: {},
+      username: {
+        '0': 'foo',
       },
-      "password": {
-        "0": "bar"
+      password: {
+        '0': 'bar',
       },
-      "protocol": {
-        "0": "https"
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://foo:bar@example.com/"
+    expectedUrl: 'https://foo:bar@example.com/',
   },
   {
-    "caseIndex": 261,
-    "urlPatternArgs": [
-      "data{\\:}channel.html",
-      "https://example.com"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/data:channel.html"
+    caseIndex: 261,
+    urlPatternArgs: ['data{\\:}channel.html', 'https://example.com'],
+    params: {
+      pathname: {
+        '0': '/data:channel.html',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/data:channel.html"
+    expectedUrl: 'https://example.com/data:channel.html',
   },
   {
-    "caseIndex": 262,
-    "urlPatternArgs": [
-      "http://[\\:\\:1]/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 262,
+    urlPatternArgs: ['http://[\\:\\:1]/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "[::1]"
+      hostname: {
+        '0': '[::1]',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::1]/"
+    expectedUrl: 'http://[::1]/',
   },
   {
-    "caseIndex": 263,
-    "urlPatternArgs": [
-      "http://[\\:\\:1]:8080/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 263,
+    urlPatternArgs: ['http://[\\:\\:1]:8080/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "[::1]"
+      hostname: {
+        '0': '[::1]',
       },
-      "port": {
-        "0": "8080"
-      }
+      port: {
+        '0': '8080',
+      },
     },
-    "expectedUrl": "http://[::1]:8080/"
+    expectedUrl: 'http://[::1]:8080/',
   },
   {
-    "caseIndex": 264,
-    "urlPatternArgs": [
-      "http://[\\:\\:a]/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 264,
+    urlPatternArgs: ['http://[\\:\\:a]/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "[::a]"
+      hostname: {
+        '0': '[::a]',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::a]/"
+    expectedUrl: 'http://[::a]/',
   },
   {
-    "caseIndex": 265,
-    "urlPatternArgs": [
-      "http://[:address]/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 265,
+    urlPatternArgs: ['http://[:address]/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "address": "::1"
+      hostname: {
+        address: '::1',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::1]/"
+    expectedUrl: 'http://[::1]/',
   },
   {
-    "caseIndex": 266,
-    "urlPatternArgs": [
-      "http://[\\:\\:AB\\::num]/"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 266,
+    urlPatternArgs: ['http://[\\:\\:AB\\::num]/'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "num": "1"
+      hostname: {
+        num: '1',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::ab:1]/"
+    expectedUrl: 'http://[::ab:1]/',
   },
   {
-    "caseIndex": 267,
-    "urlPatternArgs": [
+    caseIndex: 267,
+    urlPatternArgs: [
       {
-        "hostname": "[\\:\\:AB\\::num]"
-      }
+        hostname: '[\\:\\:AB\\::num]',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "num": "1"
+      hostname: {
+        num: '1',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::ab:1]/"
+    expectedUrl: 'http://[::ab:1]/',
   },
   {
-    "caseIndex": 269,
-    "urlPatternArgs": [
+    caseIndex: 269,
+    urlPatternArgs: [
       {
-        "hostname": "{[\\:\\:ab\\::num]}"
-      }
+        hostname: '{[\\:\\:ab\\::num]}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "num": "1"
+      hostname: {
+        num: '1',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::ab:1]/"
+    expectedUrl: 'http://[::ab:1]/',
   },
   {
-    "caseIndex": 271,
-    "urlPatternArgs": [
+    caseIndex: 271,
+    urlPatternArgs: [
       {
-        "hostname": "{[\\:\\::num\\:1]}"
-      }
+        hostname: '{[\\:\\::num\\:1]}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "num": "ab"
+      hostname: {
+        num: 'ab',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::ab:1]/"
+    expectedUrl: 'http://[::ab:1]/',
   },
   {
-    "caseIndex": 273,
-    "urlPatternArgs": [
+    caseIndex: 273,
+    urlPatternArgs: [
       {
-        "hostname": "[*\\:1]"
-      }
+        hostname: '[*\\:1]',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "::ab"
+      hostname: {
+        '0': '::ab',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://[::ab:1]/"
+    expectedUrl: 'http://[::ab:1]/',
   },
   {
-    "caseIndex": 282,
-    "urlPatternArgs": [
+    caseIndex: 282,
+    urlPatternArgs: [
       {
-        "pathname": ":name*"
-      }
+        pathname: ':name*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "name": "foobar"
+    params: {
+      pathname: {
+        name: 'foobar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 283,
-    "urlPatternArgs": [
+    caseIndex: 283,
+    urlPatternArgs: [
       {
-        "pathname": ":name+"
-      }
+        pathname: ':name+',
+      },
     ],
-    "params": {
-      "pathname": {
-        "name": "foobar"
+    params: {
+      pathname: {
+        name: 'foobar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 284,
-    "urlPatternArgs": [
+    caseIndex: 284,
+    urlPatternArgs: [
       {
-        "pathname": ":name"
-      }
+        pathname: ':name',
+      },
     ],
-    "params": {
-      "pathname": {
-        "name": "foobar"
+    params: {
+      pathname: {
+        name: 'foobar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 289,
-    "urlPatternArgs": [
+    caseIndex: 289,
+    urlPatternArgs: [
       {
-        "hostname": "bad#hostname"
-      }
+        hostname: 'bad#hostname',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "bad"
+      hostname: {
+        '0': 'bad',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://bad/"
+    expectedUrl: 'http://bad/',
   },
   {
-    "caseIndex": 291,
-    "urlPatternArgs": [
+    caseIndex: 291,
+    urlPatternArgs: [
       {
-        "hostname": "bad/hostname"
-      }
+        hostname: 'bad/hostname',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "bad"
+      hostname: {
+        '0': 'bad',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://bad/"
+    expectedUrl: 'http://bad/',
   },
   {
-    "caseIndex": 302,
-    "urlPatternArgs": [
+    caseIndex: 302,
+    urlPatternArgs: [
       {
-        "hostname": "bad\nhostname"
-      }
+        hostname: 'bad\nhostname',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "badhostname"
+      hostname: {
+        '0': 'badhostname',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://badhostname/"
+    expectedUrl: 'http://badhostname/',
   },
   {
-    "caseIndex": 303,
-    "urlPatternArgs": [
+    caseIndex: 303,
+    urlPatternArgs: [
       {
-        "hostname": "bad\rhostname"
-      }
+        hostname: 'bad\rhostname',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "badhostname"
+      hostname: {
+        '0': 'badhostname',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://badhostname/"
+    expectedUrl: 'http://badhostname/',
   },
   {
-    "caseIndex": 304,
-    "urlPatternArgs": [
+    caseIndex: 304,
+    urlPatternArgs: [
       {
-        "hostname": "bad\thostname"
-      }
+        hostname: 'bad\thostname',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "badhostname"
+      hostname: {
+        '0': 'badhostname',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://badhostname/"
+    expectedUrl: 'http://badhostname/',
   },
   {
-    "caseIndex": 305,
-    "urlPatternArgs": [
-      {}
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 305,
+    urlPatternArgs: [{}],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/"
+    expectedUrl: 'https://example.com/',
   },
   {
-    "caseIndex": 309,
-    "urlPatternArgs": [
+    caseIndex: 309,
+    urlPatternArgs: [
       {
-        "pathname": "(foo)(.*)"
-      }
+        pathname: '(foo)(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "barbaz"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'barbaz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 310,
-    "urlPatternArgs": [
+    caseIndex: 310,
+    urlPatternArgs: [
       {
-        "pathname": "{(foo)bar}(.*)"
-      }
+        pathname: '{(foo)bar}(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "baz"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 311,
-    "urlPatternArgs": [
+    caseIndex: 311,
+    urlPatternArgs: [
       {
-        "pathname": "(foo)?(.*)"
-      }
+        pathname: '(foo)?(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "barbaz"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'barbaz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 312,
-    "urlPatternArgs": [
+    caseIndex: 312,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}(.*)"
-      }
+        pathname: '{:foo}(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "oobarbaz",
-        "foo": "f"
+    params: {
+      pathname: {
+        '0': 'oobarbaz',
+        foo: 'f',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 313,
-    "urlPatternArgs": [
+    caseIndex: 313,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}(barbaz)"
-      }
+        pathname: '{:foo}(barbaz)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "barbaz",
-        "foo": "foo"
+    params: {
+      pathname: {
+        '0': 'barbaz',
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 314,
-    "urlPatternArgs": [
+    caseIndex: 314,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}{(.*)}"
-      }
+        pathname: '{:foo}{(.*)}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "oobarbaz",
-        "foo": "f"
+    params: {
+      pathname: {
+        '0': 'oobarbaz',
+        foo: 'f',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 316,
-    "urlPatternArgs": [
+    caseIndex: 316,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}{bar(.*)}"
-      }
+        pathname: '{:foo}{bar(.*)}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "baz",
-        "foo": "foo"
+    params: {
+      pathname: {
+        '0': 'baz',
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 317,
-    "urlPatternArgs": [
+    caseIndex: 317,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}:bar(.*)"
-      }
+        pathname: '{:foo}:bar(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "f",
-        "bar": "oobarbaz"
+    params: {
+      pathname: {
+        foo: 'f',
+        bar: 'oobarbaz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 318,
-    "urlPatternArgs": [
+    caseIndex: 318,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}?(.*)"
-      }
+        pathname: '{:foo}?(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "oobarbaz",
-        "foo": "f"
+    params: {
+      pathname: {
+        '0': 'oobarbaz',
+        foo: 'f',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobarbaz"
+    expectedUrl: 'http://example.com/foobarbaz',
   },
   {
-    "caseIndex": 319,
-    "urlPatternArgs": [
+    caseIndex: 319,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo\\bar}"
-      }
+        pathname: '{:foo\\bar}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 320,
-    "urlPatternArgs": [
+    caseIndex: 320,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo\\.bar}"
-      }
+        pathname: '{:foo\\.bar}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo.bar"
+    expectedUrl: 'http://example.com/foo.bar',
   },
   {
-    "caseIndex": 321,
-    "urlPatternArgs": [
+    caseIndex: 321,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo(foo)bar}"
-      }
+        pathname: '{:foo(foo)bar}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 322,
-    "urlPatternArgs": [
+    caseIndex: 322,
+    urlPatternArgs: [
       {
-        "pathname": "{:foo}bar"
-      }
+        pathname: '{:foo}bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 323,
-    "urlPatternArgs": [
+    caseIndex: 323,
+    urlPatternArgs: [
       {
-        "pathname": ":foo\\bar"
-      }
+        pathname: ':foo\\bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 324,
-    "urlPatternArgs": [
+    caseIndex: 324,
+    urlPatternArgs: [
       {
-        "pathname": ":foo{}(.*)"
-      }
+        pathname: ':foo{}(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "oobar",
-        "foo": "f"
+    params: {
+      pathname: {
+        '0': 'oobar',
+        foo: 'f',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 325,
-    "urlPatternArgs": [
+    caseIndex: 325,
+    urlPatternArgs: [
       {
-        "pathname": ":foo{}bar"
-      }
+        pathname: ':foo{}bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 326,
-    "urlPatternArgs": [
+    caseIndex: 326,
+    urlPatternArgs: [
       {
-        "pathname": ":foo{}?bar"
-      }
+        pathname: ':foo{}?bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "foo"
+    params: {
+      pathname: {
+        foo: 'foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 327,
-    "urlPatternArgs": [
+    caseIndex: 327,
+    urlPatternArgs: [
       {
-        "pathname": "*{}**?"
-      }
+        pathname: '*{}**?',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foobar",
-        "1": null
+    params: {
+      pathname: {
+        '0': 'foobar',
+        '1': null,
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foobar"
+    expectedUrl: 'http://example.com/foobar',
   },
   {
-    "caseIndex": 328,
-    "urlPatternArgs": [
+    caseIndex: 328,
+    urlPatternArgs: [
       {
-        "pathname": ":foo(baz)(.*)"
-      }
+        pathname: ':foo(baz)(.*)',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "bar",
-        "foo": "baz"
+    params: {
+      pathname: {
+        '0': 'bar',
+        foo: 'baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bazbar"
+    expectedUrl: 'http://example.com/bazbar',
   },
   {
-    "caseIndex": 329,
-    "urlPatternArgs": [
+    caseIndex: 329,
+    urlPatternArgs: [
       {
-        "pathname": ":foo(baz)bar"
-      }
+        pathname: ':foo(baz)bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "baz"
+    params: {
+      pathname: {
+        foo: 'baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bazbar"
+    expectedUrl: 'http://example.com/bazbar',
   },
   {
-    "caseIndex": 330,
-    "urlPatternArgs": [
+    caseIndex: 330,
+    urlPatternArgs: [
       {
-        "pathname": "*/*"
-      }
+        pathname: '*/*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "bar"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 331,
-    "urlPatternArgs": [
+    caseIndex: 331,
+    urlPatternArgs: [
       {
-        "pathname": "*\\/*"
-      }
+        pathname: '*\\/*',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "bar"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 332,
-    "urlPatternArgs": [
+    caseIndex: 332,
+    urlPatternArgs: [
       {
-        "pathname": "*/{*}"
-      }
+        pathname: '*/{*}',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "foo",
-        "1": "bar"
+    params: {
+      pathname: {
+        '0': 'foo',
+        '1': 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo/bar"
+    expectedUrl: 'http://example.com/foo/bar',
   },
   {
-    "caseIndex": 334,
-    "urlPatternArgs": [
+    caseIndex: 334,
+    urlPatternArgs: [
       {
-        "pathname": "/:foo."
-      }
+        pathname: '/:foo.',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "bar"
+    params: {
+      pathname: {
+        foo: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bar."
+    expectedUrl: 'http://example.com/bar.',
   },
   {
-    "caseIndex": 335,
-    "urlPatternArgs": [
+    caseIndex: 335,
+    urlPatternArgs: [
       {
-        "pathname": "/:foo.."
-      }
+        pathname: '/:foo..',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "bar"
+    params: {
+      pathname: {
+        foo: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bar.."
+    expectedUrl: 'http://example.com/bar..',
   },
   {
-    "caseIndex": 336,
-    "urlPatternArgs": [
+    caseIndex: 336,
+    urlPatternArgs: [
       {
-        "pathname": "./foo"
-      }
+        pathname: './foo',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "./foo"
+    params: {
+      pathname: {
+        '0': './foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 337,
-    "urlPatternArgs": [
+    caseIndex: 337,
+    urlPatternArgs: [
       {
-        "pathname": "../foo"
-      }
+        pathname: '../foo',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "../foo"
+    params: {
+      pathname: {
+        '0': '../foo',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/foo"
+    expectedUrl: 'http://example.com/foo',
   },
   {
-    "caseIndex": 338,
-    "urlPatternArgs": [
+    caseIndex: 338,
+    urlPatternArgs: [
       {
-        "pathname": ":foo./"
-      }
+        pathname: ':foo./',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "bar"
+    params: {
+      pathname: {
+        foo: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bar./"
+    expectedUrl: 'http://example.com/bar./',
   },
   {
-    "caseIndex": 339,
-    "urlPatternArgs": [
+    caseIndex: 339,
+    urlPatternArgs: [
       {
-        "pathname": ":foo../"
-      }
+        pathname: ':foo../',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "bar"
+    params: {
+      pathname: {
+        foo: 'bar',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bar../"
+    expectedUrl: 'http://example.com/bar../',
   },
   {
-    "caseIndex": 340,
-    "urlPatternArgs": [
+    caseIndex: 340,
+    urlPatternArgs: [
       {
-        "pathname": "/:foo\\bar"
-      }
+        pathname: '/:foo\\bar',
+      },
     ],
-    "params": {
-      "pathname": {
-        "foo": "baz"
+    params: {
+      pathname: {
+        foo: 'baz',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/bazbar"
+    expectedUrl: 'http://example.com/bazbar',
   },
   {
-    "caseIndex": 341,
-    "urlPatternArgs": [
+    caseIndex: 341,
+    urlPatternArgs: [
       {
-        "pathname": "/foo/bar"
+        pathname: '/foo/bar',
       },
       {
-        "ignoreCase": true
-      }
+        ignoreCase: true,
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/FOO/BAR"
+    params: {
+      pathname: {
+        '0': '/FOO/BAR',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/FOO/BAR"
+    expectedUrl: 'http://example.com/FOO/BAR',
   },
   {
-    "caseIndex": 342,
-    "urlPatternArgs": [
+    caseIndex: 342,
+    urlPatternArgs: [
       {
-        "ignoreCase": true
-      }
+        ignoreCase: true,
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/FOO/BAR"
+    params: {
+      pathname: {
+        '0': '/FOO/BAR',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/FOO/BAR"
+    expectedUrl: 'http://example.com/FOO/BAR',
   },
   {
-    "caseIndex": 343,
-    "urlPatternArgs": [
-      "https://example.com:8080/foo?bar#baz",
+    caseIndex: 343,
+    urlPatternArgs: [
+      'https://example.com:8080/foo?bar#baz',
       {
-        "ignoreCase": true
-      }
+        ignoreCase: true,
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/FOO"
+    params: {
+      pathname: {
+        '0': '/FOO',
       },
-      "search": {
-        "0": "BAR"
+      search: {
+        '0': 'BAR',
       },
-      "hash": {
-        "0": "BAZ"
+      hash: {
+        '0': 'BAZ',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "8080"
-      }
+      port: {
+        '0': '8080',
+      },
     },
-    "expectedUrl": "https://example.com:8080/FOO?BAR#BAZ"
+    expectedUrl: 'https://example.com:8080/FOO?BAR#BAZ',
   },
   {
-    "caseIndex": 344,
-    "urlPatternArgs": [
-      "/foo?bar#baz",
-      "https://example.com:8080",
+    caseIndex: 344,
+    urlPatternArgs: [
+      '/foo?bar#baz',
+      'https://example.com:8080',
       {
-        "ignoreCase": true
-      }
+        ignoreCase: true,
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/FOO"
+    params: {
+      pathname: {
+        '0': '/FOO',
       },
-      "search": {
-        "0": "BAR"
+      search: {
+        '0': 'BAR',
       },
-      "hash": {
-        "0": "BAZ"
+      hash: {
+        '0': 'BAZ',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {
-        "0": "8080"
-      }
+      port: {
+        '0': '8080',
+      },
     },
-    "expectedUrl": "https://example.com:8080/FOO?BAR#BAZ"
+    expectedUrl: 'https://example.com:8080/FOO?BAR#BAZ',
   },
   {
-    "caseIndex": 346,
-    "urlPatternArgs": [
+    caseIndex: 346,
+    urlPatternArgs: [
       {
-        "search": "foo",
-        "baseURL": "https://example.com/a/+/b"
-      }
+        search: 'foo',
+        baseURL: 'https://example.com/a/+/b',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/a/+/b"
+    params: {
+      pathname: {
+        '0': '/a/+/b',
       },
-      "search": {
-        "0": "foo"
+      search: {
+        '0': 'foo',
       },
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/a/+/b?foo"
+    expectedUrl: 'https://example.com/a/+/b?foo',
   },
   {
-    "caseIndex": 347,
-    "urlPatternArgs": [
+    caseIndex: 347,
+    urlPatternArgs: [
       {
-        "hash": "foo",
-        "baseURL": "https://example.com/?q=*&v=?&hmm={}&umm=()"
-      }
+        hash: 'foo',
+        baseURL: 'https://example.com/?q=*&v=?&hmm={}&umm=()',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "q=*&v=?&hmm={}&umm=()"
+      search: {
+        '0': 'q=*&v=?&hmm={}&umm=()',
       },
-      "hash": {
-        "0": "foo"
+      hash: {
+        '0': 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo"
+    expectedUrl: 'https://example.com/?q=*&v=?&hmm={}&umm=()#foo',
   },
   {
-    "caseIndex": 348,
-    "urlPatternArgs": [
-      "#foo",
-      "https://example.com/?q=*&v=?&hmm={}&umm=()"
-    ],
-    "params": {
-      "pathname": {
-        "0": "/"
+    caseIndex: 348,
+    urlPatternArgs: ['#foo', 'https://example.com/?q=*&v=?&hmm={}&umm=()'],
+    params: {
+      pathname: {
+        '0': '/',
       },
-      "search": {
-        "0": "q=*&v=?&hmm={}&umm=()"
+      search: {
+        '0': 'q=*&v=?&hmm={}&umm=()',
       },
-      "hash": {
-        "0": "foo"
+      hash: {
+        '0': 'foo',
       },
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "https"
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'https',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "https://example.com/?q=*&v=?&hmm={}&umm=()#foo"
+    expectedUrl: 'https://example.com/?q=*&v=?&hmm={}&umm=()#foo',
   },
   {
-    "caseIndex": 350,
-    "urlPatternArgs": [
+    caseIndex: 350,
+    urlPatternArgs: [
       {
-        "pathname": "/([[a-z]--a])"
-      }
+        pathname: '/([[a-z]--a])',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "z"
+    params: {
+      pathname: {
+        '0': 'z',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/z"
+    expectedUrl: 'http://example.com/z',
   },
   {
-    "caseIndex": 351,
-    "urlPatternArgs": [
+    caseIndex: 351,
+    urlPatternArgs: [
       {
-        "pathname": "/([\\d&&[0-1]])"
-      }
+        pathname: '/([\\d&&[0-1]])',
+      },
     ],
-    "params": {
-      "pathname": {
-        "0": "0"
+    params: {
+      pathname: {
+        '0': '0',
       },
-      "search": {},
-      "hash": {},
-      "username": {},
-      "password": {},
-      "protocol": {
-        "0": "http"
+      search: {},
+      hash: {},
+      username: {},
+      password: {},
+      protocol: {
+        '0': 'http',
       },
-      "hostname": {
-        "0": "example.com"
+      hostname: {
+        '0': 'example.com',
       },
-      "port": {}
+      port: {},
     },
-    "expectedUrl": "http://example.com/0"
-  }
+    expectedUrl: 'http://example.com/0',
+  },
 ];

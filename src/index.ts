@@ -395,9 +395,13 @@ function buildFromTokens(
 
     const rawValue = params[token.name];
     if (rawValue === undefined || rawValue === null) {
-      if (!optionalContext && (token.modifier === '' || token.modifier === '+')) {
+      if (
+        !optionalContext &&
+        (token.modifier === '' || token.modifier === '+')
+      ) {
         throw new MissingParamError(token.name);
       }
+
       continue;
     }
 
@@ -461,6 +465,7 @@ function defaultHandler(
       prefix: '',
       allowSlash: true,
     };
+
     return encoder(stringifyValue(fallback, stringifier), token);
   }
 

@@ -7,7 +7,8 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'URLGenerator',
-      fileName: (format) => (format === 'es' ? 'url-generator.js' : 'url-generator.cjs'),
+      fileName: (format) =>
+        format === 'es' ? 'url-generator.js' : 'url-generator.cjs',
       formats: ['es', 'cjs'],
     },
     sourcemap: true,
