@@ -16,3 +16,5 @@
 - [ ] Review code
 - [ ] Clean up parsing code
 - [ ] Performance
+- [ ] Make repo public and publish to npm
+- [ ] Create an action that deploys all the code + the index.html file to gh pages
