@@ -18,7 +18,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=22.2"
+    "node": ">=24.2.0"
   },
   "scripts": {
     "start": "vite --config vite.demo.config.ts",

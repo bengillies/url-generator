@@ -5,7 +5,7 @@ A minimal, URLPattern-first URL generator. It intentionally does the least possi
 ## Requirements
 
 - Runtime support for `URLPattern` and `URL`.
-- Node: `>= 22.2`.
+- Node: `>= 24.2.0`.
 - Works in modern browsers and Node.
 
 ## Install
