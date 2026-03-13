@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <title>URL-Generator Explorer Tool</title>
     <style>
       :root {
@@ -25,6 +26,25 @@
         background: var(--bg);
         color: var(--ink);
         font-family: var(--sans);
+        position: relative;
+      }
+      .top-links {
+        position: absolute;
+        top: 40px;
+        right: 48px;
+        display: flex;
+        gap: 12px;
+        color: var(--ink);
+      }
+      .top-link {
+      }
+      .top-links a {
+        color: blue;
+        text-decoration: none;
+        font-family: Courier, monospace;
+      }
+      .top-links a:hover {
+        text-decoration: underline;
       }
       h1 {
         margin: 0 0 8px;
@@ -294,6 +314,24 @@
     </style>
   </head>
   <body>
+    <div class="top-links">
+      <span class="top-link"
+        >[ <a
+          href="https://github.com/bengillies/url-generator/blob/main/README.md"
+          target="_blank"
+          rel="noreferrer"
+          >About</a
+        > ]</span
+      >
+      <span class="top-link"
+        >[ <a
+          href="https://github.com/bengillies/url-generator"
+          target="_blank"
+          rel="noreferrer"
+          >GitHub</a
+        > ]</span
+      >
+    </div>
     <h1>URL-Generator Explorer Tool</h1>
     <p>Generate URLs from URLPattern with per-component controls.</p>
 
