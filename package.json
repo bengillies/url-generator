@@ -24,6 +24,7 @@
     "start": "vite --config vite.demo.config.ts",
     "build:demo": "vite build --config vite.demo.config.ts",
     "dist": "vite build",
+    "release:npm": "node scripts/publish-npm.mjs",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "test": "vitest run",
