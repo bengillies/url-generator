@@ -895,9 +895,9 @@ describe('generate encoding behavior', () => {
     const params = emptyParams();
     params.search.groups = { 0: { q: { a: 1 } } };
     const stringifier = (value: unknown) =>
-      typeof value === 'string'
-        ? value
-        : new URLSearchParams(value as Record<string, string>).toString();
+      typeof value === 'string' ? value : (
+        new URLSearchParams(value as Record<string, string>).toString()
+      );
 
     params.search.stringify = stringifier;
     const result = generate(pattern, params);

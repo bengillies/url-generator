@@ -36,14 +36,13 @@ export class MissingParamError extends Error {
 
 /** Converts a value to a string when building components. */
 export type StringifyFunction = (value: unknown) => string;
+
 /** Component handler signature for building a component from a pattern. */
 type HandlerFunction = (
   pattern: string,
   group: ParamValues,
-  encoder: EncodeFunction,
+  encoder?: EncodeFunction,
 ) => string;
-/** Handler map by URLPattern component key. */
-type Handlers = Record<ParamKeys, HandlerFunction>;
 
 const identifierRegExp = /[\p{ID_Start}\p{ID_Continue}$_0-9]+/u;
 
@@ -67,6 +66,20 @@ interface GroupToken {
 type PatternToken = string | ParamToken | GroupToken;
 /** Encoder used when inserting param values into a component. */
 type EncodeFunction = (value: string, token?: ParamToken) => string;
+
+/**
+ * Result of building a component from tokens */
+interface BuiltToken {
+  /** Built component string. */
+  value: string;
+  /** Whether any param was used in building the component.
+   * Used for internal to buildFromToken purposes only
+   * */
+  usedParam: boolean;
+}
+
+/** Result of splitting a trailing '/' literal for optional param handling. */
+type OptionalPrefixSplit = { prefix: string; rest: string };
 
 /**
  * Coerces any value into a string using JavaScript's default string conversion.
@@ -182,7 +195,7 @@ function findClosingGroup(pattern: string, startIndex: number): number {
  * @param literal - Literal to split.
  * @returns Prefix and remainder for the literal.
  */
-function takeOptionalPrefix(literal: string): { prefix: string; rest: string } {
+function takeOptionalPrefix(literal: string): OptionalPrefixSplit {
   if (!literal.endsWith('/')) {
     return { prefix: '', rest: literal };
   }
@@ -243,6 +256,7 @@ function tokenizePattern(
       const name = match[0];
       index += name.length + 1;
       let allowSlash = false;
+
       if (pattern[index] === '(') {
         const end = findClosingGroup(pattern, index + 1);
         allowSlash = true;
@@ -349,6 +363,7 @@ function tokenizePattern(
 
 /**
  * Builds a component string from tokens and params, applying encoding rules.
+ *
  * @param tokens - Tokens describing the component pattern.
  * @param params - Param values to insert.
  * @param stringifier - Stringifier for non-string values.
@@ -359,9 +374,9 @@ function buildFromTokens(
   tokens: PatternToken[],
   params: ParamGroups,
   stringifier: StringifyFunction = defaultStringify,
-  encoder: EncodeFunction = encodeURIComponent,
-  optionalContext = false,
-): { value: string; usedParam: boolean } {
+  encoder?: EncodeFunction,
+  optionalContext: boolean = false,
+): BuiltToken {
   let output = '';
   let usedParam = false;
 
@@ -374,6 +389,7 @@ function buildFromTokens(
     if (token.type === 'group') {
       const groupOptional =
         optionalContext || token.modifier === '?' || token.modifier === '*';
+
       const groupResult = buildFromTokens(
         token.tokens,
         params,
@@ -381,10 +397,12 @@ function buildFromTokens(
         encoder,
         groupOptional,
       );
+
       const shouldInclude =
-        token.modifier === '' || token.modifier === '+'
-          ? true
-          : groupResult.usedParam;
+        token.modifier === '' || token.modifier === '+' ?
+          true
+        : groupResult.usedParam;
+
       if (shouldInclude) {
         output += groupResult.value;
         usedParam = usedParam || groupResult.usedParam;
@@ -393,6 +411,7 @@ function buildFromTokens(
       continue;
     }
 
+    // Enforce required params; skip optional/missing values.
     const rawValue = params[token.name];
     if (rawValue === undefined || rawValue === null) {
       if (
@@ -412,7 +431,8 @@ function buildFromTokens(
       continue;
     }
 
-    output += token.prefix + encoder(stringValue, token);
+    const encoded = encoder ? encoder(stringValue, token) : stringValue;
+    output += token.prefix + encoded;
     usedParam = true;
   }
 
@@ -421,6 +441,7 @@ function buildFromTokens(
 
 /**
  * Returns true if any token in the pattern is a param token.
+ *
  * @param tokens - Tokens describing the pattern.
  * @returns True when params are present.
  */
@@ -439,7 +460,8 @@ function tokensHaveParams(tokens: PatternToken[]): boolean {
 }
 
 /**
- * Default handler for building a URL component from a pattern and params.
+ * Builds a component string by tokenizing the pattern and inserting params.
+ *
  * @param pattern - Pattern string for the component.
  * @param group - Param configuration for the component.
  * @param encoder - Encoder for inserted values.
@@ -448,7 +470,7 @@ function tokensHaveParams(tokens: PatternToken[]): boolean {
 function defaultHandler(
   pattern: string,
   group: ParamValues,
-  encoder: EncodeFunction,
+  encoder?: EncodeFunction,
 ): string {
   const stringifier = group.stringify ?? defaultStringify;
   const groups = group.groups ?? {};
@@ -466,7 +488,9 @@ function defaultHandler(
       allowSlash: true,
     };
 
-    return encoder(stringifyValue(fallback, stringifier), token);
+    const value = stringifyValue(fallback, stringifier);
+
+    return encoder ? encoder(value, token) : value;
   }
 
   const tokens = tokenizePattern(pattern);
@@ -480,20 +504,19 @@ function defaultHandler(
   return buildFromTokens(tokens, groups, stringifier, encoder).value;
 }
 
-/** Handler table per URL component. */
-const handlers: Handlers = {
-  pathname: defaultHandler,
-  search: searchHandler,
-  hash: defaultHandler,
-  username: defaultHandler,
-  password: defaultHandler,
-  protocol: defaultHandler,
-  hostname: defaultHandler,
-  port: defaultHandler,
-};
+/**
+ * Returns the component handler for a given URLPattern key.
+ */
+function getHandler(key: ParamKeys): HandlerFunction {
+  if (key === 'search') {
+    return searchHandler;
+  }
+
+  return defaultHandler;
+}
 
 /**
- * Encodes a value while leaving existing percent-encoded octets intact.
+ * Encodes a value while leaving existing percent-encodings intact.
  * @param value - Value to encode.
  * @param encoder - Encoder applied to non-percent segments.
  * @returns Encoded value preserving existing percent-escapes.
@@ -569,7 +592,12 @@ function isURLSearchParams(value: unknown): value is URLSearchParams {
 }
 
 /**
- * Serializes search input for wildcard/no-pattern search, applying stringifier to non-strings.
+ * Serializes wildcard/no-pattern search input without re-encoding literal delimiters.
+ *
+ * Accepts strings, URLSearchParams, tuple arrays, or plain objects; values are stringified
+ * as needed and encoded in a URLSearchParams-style format while preserving literal `&`/`=`
+ * that already exist in string inputs.
+ *
  * @param input - Search input data to serialize.
  * @param stringifier - Stringifier for non-string values.
  * @returns Serialized search string without leading '?'.
@@ -586,33 +614,33 @@ function serializeSearchInput(
     return input.toString();
   }
 
-  const coerceValue = (value: unknown) => stringifyValue(value, stringifier);
-
   if (Array.isArray(input)) {
     const entries: [string, string][] = [];
     for (const entry of input) {
       if (Array.isArray(entry)) {
         const [key, value] = entry as [unknown, unknown];
-        entries.push([String(key), coerceValue(value)]);
+        entries.push([String(key), stringifyValue(value, stringifier)]);
       }
     }
-
-    return encodeUsingURLSearchParamsStyle(entries).toString();
-  }
-
-  if (input && typeof input === 'object') {
-    const entries = Object.entries(input as Record<string, unknown>).map(
-      ([key, value]) => [key, coerceValue(value)] as [string, string],
-    );
 
     return encodeUsingURLSearchParamsStyle(entries);
   }
 
-  return coerceValue(input);
+  if (input && typeof input === 'object') {
+    const entries: [string, string][] = [];
+    for (const [key, value] of Object.entries(input)) {
+      entries.push([key, stringifyValue(value, stringifier)]);
+    }
+
+    return encodeUsingURLSearchParamsStyle(entries);
+  }
+
+  return stringifyValue(input, stringifier);
 }
 
 /**
- * Builds the search component, handling wildcard/no-param patterns specially.
+ * Builds the search component with special handling for wildcard and param-free patterns.
+ *
  * @param pattern - Search pattern string.
  * @param group - Param configuration for the search component.
  * @param encoder - Encoder for inserted values.
@@ -621,7 +649,7 @@ function serializeSearchInput(
 function searchHandler(
   pattern: string,
   group: ParamValues,
-  encoder: EncodeFunction,
+  encoder?: EncodeFunction,
 ): string {
   const tokens = tokenizePattern(pattern);
   const stringifier = group.stringify ?? defaultStringify;
@@ -641,93 +669,83 @@ function searchHandler(
 }
 
 /**
+ * Handler table per URL component, with encoding handlers for components that require special handling.
+ *
+ * Encodes non-url safe characters. Any ParamKeys missing get encoded by default when adding to the URL object
+ */
+const encodersByKey: Partial<Record<ParamKeys, EncodeFunction>> = {
+  pathname: encodePathname,
+  search: encodeSearchComponent,
+  hash: encodeURIComponent,
+};
+
+/**
+ * Creates a fresh empty param group for components without provided params.
+ */
+function emptyGroup(): ParamValues {
+  return { groups: {} };
+}
+
+/**
  * Generates a URL from a URLPattern and params, applying encoding rules per component.
  * @param pattern - URLPattern instance used for generation.
  * @param params - Param values for each URLPattern component.
  * @returns Generated URL instance.
  */
 export function generate(pattern: URLPattern, params: Params): URL {
-  const defaultGroup: ParamValues = { groups: {} };
-  const protocolValue = handlers.protocol(
-    pattern.protocol,
-    params.protocol ?? defaultGroup,
-    (value) => value,
-  );
-  const built: Partial<Record<ParamKeys, string>> = {
-    protocol: protocolValue,
-  };
-  const encodeByKey: Partial<Record<ParamKeys, EncodeFunction>> = {
-    pathname: encodePathname,
-    search: encodeSearchComponent,
-    hash: encodeURIComponent,
-    username: (value) => value,
-    password: (value) => value,
-    hostname: (value) => value,
-    port: (value) => value,
-  };
+  // Generate url parts step
+
+  const built: Partial<Record<ParamKeys, string>> = {};
 
   for (const key of PARAM_KEYS) {
-    if (key === 'protocol') {
-      continue;
-    }
+    const group = params[key] ?? emptyGroup();
 
-    const group = params[key] ?? defaultGroup;
-    const encoder = group.disableEncoding
-      ? (value: string) => value
-      : encodeByKey[key]!;
-    built[key] = handlers[key](pattern[key], group, encoder);
+    const encoder = !group.disableEncoding ? encodersByKey[key] : undefined;
+
+    built[key] = getHandler(key)(pattern[key], group, encoder);
   }
 
-  const urlParts: Record<ParamKeys, string> = built as Record<
-    ParamKeys,
-    string
-  >;
+  const urlParts = built as Record<ParamKeys, string>;
 
-  const protocol = urlParts.protocol
-    ? urlParts.protocol.endsWith(':')
-      ? urlParts.protocol
-      : `${urlParts.protocol}:`
-    : '';
-  const host = urlParts.hostname
-    ? urlParts.port
-      ? `${urlParts.hostname}:${urlParts.port}`
-      : urlParts.hostname
-    : '';
-  const url =
-    protocol && host
-      ? new URL(`${protocol}//${host}`)
-      : protocol
-        ? new URL(`${protocol}${urlParts.pathname}`)
-        : new URL(`${host}${urlParts.pathname}`);
+  // Construct URL object step
+
+  let protocol = '';
+  if (urlParts.protocol) {
+    protocol = urlParts.protocol.endsWith(':') ? urlParts.protocol : `${urlParts.protocol}:`;
+  }
+
+  let host = '';
+  if (urlParts.hostname) {
+    host = urlParts.port ? `${urlParts.hostname}:${urlParts.port}` : urlParts.hostname;
+  }
+
+  let urlStr = protocol;
+  if (host) {
+    urlStr += protocol ? `//${host}` : `${host}${urlParts.pathname}`;
+  } else {
+    urlStr += urlParts.pathname;
+  }
+
+  const url = new URL(urlStr);
 
   if (host) {
     if (urlParts.username) {
       url.username = urlParts.username;
-    } else {
-      url.username = '';
     }
 
     if (urlParts.password) {
       url.password = urlParts.password;
-    } else {
-      url.password = '';
     }
   }
 
   url.pathname = urlParts.pathname;
 
   if (urlParts.search) {
-    url.search = urlParts.search.startsWith('?')
-      ? urlParts.search
-      : `?${urlParts.search}`;
-  } else {
-    url.search = '';
+    url.search = urlParts.search.replace(/^\??/, '?');
   }
 
   if (urlParts.hash) {
     url.hash = `#${urlParts.hash}`;
-  } else {
-    url.hash = '';
   }
 
   return url;

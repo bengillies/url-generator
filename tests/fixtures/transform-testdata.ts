@@ -196,17 +196,14 @@ function buildUrlPatternArgs(entryPattern: unknown[]): UrlPatternArgs | null {
   const hasScheme =
     typeof input === 'string' && /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(input);
   const baseURL =
-    typeof maybeBaseURL === 'string'
-      ? maybeBaseURL
-      : !hasScheme && typeof input === 'string'
-        ? DEFAULT_PATTERN_BASE_URL
-        : undefined;
+    typeof maybeBaseURL === 'string' ? maybeBaseURL
+    : !hasScheme && typeof input === 'string' ? DEFAULT_PATTERN_BASE_URL
+    : undefined;
   const options =
-    maybeOptions && typeof maybeOptions === 'object'
-      ? (maybeOptions as URLPatternOptions)
-      : typeof maybeBaseURL === 'object'
-        ? (maybeBaseURL as URLPatternOptions)
-        : undefined;
+    maybeOptions && typeof maybeOptions === 'object' ?
+      (maybeOptions as URLPatternOptions)
+    : typeof maybeBaseURL === 'object' ? (maybeBaseURL as URLPatternOptions)
+    : undefined;
 
   const args: UrlPatternArgs = [input];
   if (baseURL !== undefined) {
@@ -324,9 +321,9 @@ export function transformTestData(entries: PatternEntry[]): Fixture[] {
 
     const params = buildParams(
       entry.expected_match,
-      parsedInput.input && typeof parsedInput.input === 'object'
-        ? (parsedInput.input as InputObject)
-        : undefined,
+      parsedInput.input && typeof parsedInput.input === 'object' ?
+        (parsedInput.input as InputObject)
+      : undefined,
     );
     const url = new URL(expectedUrl.href);
     const fallbackValues = {
