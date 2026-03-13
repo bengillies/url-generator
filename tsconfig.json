@@ -34,7 +34,9 @@
   },
   "include": [
     "src",
+    "demo/**/*.ts",
     "vite.config.ts",
+    "vite.demo.config.ts",
     "vitest.config.ts"
   ],
   "exclude": [

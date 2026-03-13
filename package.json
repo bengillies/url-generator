@@ -21,7 +21,8 @@
     "node": ">=22.2"
   },
   "scripts": {
-    "start": "vite",
+    "start": "vite --config vite.demo.config.ts",
+    "build:demo": "vite build --config vite.demo.config.ts",
     "dist": "vite build",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",

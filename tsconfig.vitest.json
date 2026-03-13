@@ -9,8 +9,10 @@
   },
   "include": [
     "src",
+    "demo/**/*.ts",
     "tests",
     "vite.config.ts",
+    "vite.demo.config.ts",
     "vitest.config.ts"
   ]
 }

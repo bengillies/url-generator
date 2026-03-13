@@ -116,7 +116,7 @@ const nodeTypeScriptConfig = {
 
 export default [
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'demo/dist', 'node_modules'],
   },
   {
     plugins: {

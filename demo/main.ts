@@ -1,11 +1,14 @@
 import JSON5 from 'json5';
+import * as prettier from 'prettier/standalone';
+import * as prettierPluginBabel from 'prettier/plugins/babel';
+import * as prettierPluginEstree from 'prettier/plugins/estree';
 
 import {
   generate,
   type ParamKeys,
   type Params,
   type StringifyFunction,
-} from './index';
+} from '../src/index';
 
 declare global {
   interface Window {
@@ -284,6 +287,19 @@ function buildParamsCode(params: Params): string {
   return `const params = {\n${serialized.join(',\n')}\n};`;
 }
 
+async function formatCode(code: string): Promise<string> {
+  try {
+    return await prettier.format(code, {
+      parser: 'babel',
+      plugins: [prettierPluginBabel, prettierPluginEstree],
+      singleQuote: true,
+      trailingComma: 'all',
+    });
+  } catch {
+    return code;
+  }
+}
+
 function updatePatternCode(): void {
   try {
     const { code } = buildPatternFromUI();
@@ -309,7 +325,6 @@ function execPattern(): void {
     }
 
     const rootDetails = document.createElement('details');
-    rootDetails.open = true;
 
     const rootSummary = document.createElement('summary');
     rootSummary.textContent = 'match';
@@ -349,7 +364,7 @@ function execPattern(): void {
   }
 }
 
-function generateUrl(): void {
+async function generateUrl(): Promise<void> {
   setStatus('');
 
   let patternInfo: PatternInfo | undefined;
@@ -361,12 +376,15 @@ function generateUrl(): void {
     params = buildParams();
     paramsCode = buildParamsCode(params);
 
-    const outputCode = `${patternInfo.code}\n\n${paramsCode}\n\nconst url = generate(pattern, params);`;
+    const outputCode = await formatCode(
+      `${patternInfo.code}\n\n${paramsCode}\n\nconst url = generate(pattern, params);`,
+    );
     const url = generate(patternInfo.pattern, params);
 
     setCode(patternCodeEl, patternInfo.code);
     setCode(outputCodeEl, outputCode);
     setOutput(url.href);
+    execInput.value = url.href;
   } catch (error) {
     if (patternInfo?.code) {
       setCode(patternCodeEl, patternInfo.code);
@@ -393,8 +411,9 @@ function generateUrl(): void {
     }
 
     const errorLine = `// Error: ${getErrorMessage(error)}`;
-    const outputCode =
-      parts.length > 0 ? `${parts.join('\n\n')}\n\n${errorLine}` : errorLine;
+    const outputCode = await formatCode(
+      parts.length > 0 ? `${parts.join('\n\n')}\n\n${errorLine}` : errorLine,
+    );
 
     setCode(outputCodeEl, outputCode, true);
     setOutput(`Error: ${getErrorMessage(error)}`, true);
@@ -563,8 +582,16 @@ setupTabs();
 renderOptions();
 renderGroups();
 updatePatternCode();
-generateUrl();
+
+async function initializeDemo(): Promise<void> {
+  await generateUrl();
+  execPattern();
+}
+
+void initializeDemo();
 
 document.body.addEventListener('click', handleCopy);
 execButton.addEventListener('click', execPattern);
-generateButton.addEventListener('click', generateUrl);
+generateButton.addEventListener('click', () => {
+  void generateUrl();
+});

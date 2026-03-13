@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL-Generator Explorer Tool</title>
+    <style>
+      :root {
+        --bg: #faf9f5;
+        --panel: #fffffd;
+        --ink: #1f1b16;
+        --muted: #6d6d6d;
+        --accent: #d26a2a;
+        --accent-soft: #f9f9f9;
+        --border: #e4e4e4;
+        --mono: Monaco, Courier, monospace;
+        --sans: Georgia, serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 32px;
+        letter-spacing: 0.3px;
+        padding: 16px 0 0;
+      }
+      p {
+        margin: 0 0 24px;
+        color: var(--muted);
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+        gap: 20px;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 24px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      }
+      .panel h2 {
+        margin: 0 0 12px;
+      }
+      label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-family: var(--sans);
+      }
+      input,
+      textarea {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        padding: 8px;
+        font-family: var(--mono);
+        background: white;
+      }
+      select {
+        width: 100%;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        padding: 8px;
+        font-family: var(--sans);
+        background: white;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      button {
+        border: none;
+        background: transparent;
+        color: var(--accent);
+        padding: 0;
+        border-radius: 0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.secondary {
+        color: var(--ink);
+      }
+      button.copy {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+      }
+      .small {
+        color: var(--muted);
+      }
+      .tab-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        align-items: flex-end;
+      }
+      .tab-row button {
+        color: var(--ink);
+        font-family: var(--sans);
+      }
+      .tab-row .tab-label {
+        display: inline-block;
+        padding: 6px 12px;
+        border: 1px solid var(--border);
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+        background: #f2f1ec;
+        margin-bottom: -1px;
+      }
+      .tab-row button.active {
+        color: var(--accent);
+      }
+      .tab-row button.active .tab-label {
+        background: var(--panel);
+        color: var(--ink);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .pattern-output {
+        position: relative;
+        margin-top: 16px;
+      }
+      .pattern-output pre {
+        margin: 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #2f2a25;
+        color: #f8efe6;
+        font-family: var(--mono);
+        overflow: auto;
+      }
+      .exec-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .exec-output {
+        margin-top: 10px;
+      }
+      details {
+        border: none;
+        padding: 0;
+        background: transparent;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+        font-family: var(--sans);
+      }
+      .exec-output details {
+        margin-bottom: 10px;
+      }
+      .exec-output details details {
+        margin-left: 14px;
+      }
+      .code-block {
+        margin: 8px 0 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #2f2a25;
+        color: #f8efe6;
+        font-family: var(--mono);
+        overflow: auto;
+      }
+      .options-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .options-table th,
+      .options-table td {
+        text-align: left;
+        padding: 8px 6px;
+        border-bottom: 1px solid var(--border);
+      }
+      .options-table th {
+        color: var(--muted);
+        font-weight: 600;
+        font-family: var(--sans);
+      }
+      .options-table th:nth-child(4),
+      .options-table td:nth-child(4) {
+        min-width: 90px;
+      }
+      .options-table select {
+        padding: 6px 8px;
+        border-radius: 8px;
+      }
+      .inline {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .groups-panel {
+        grid-column: 1 / 2;
+      }
+      .output-panel {
+        grid-column: 2 / 3;
+      }
+      .groups-grid {
+        display: grid;
+        gap: 12px;
+      }
+      .groups-row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .groups-row textarea {
+        min-height: 90px;
+      }
+      .output-code {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      .output-code pre {
+        margin: 0;
+        padding: 14px;
+        border-radius: 8px;
+        background: #2f2a25;
+        color: #f8efe6;
+        font-family: var(--mono);
+        overflow: auto;
+      }
+      .code-error {
+        background: #3a1f1a;
+        color: #ffd9d1;
+      }
+      .result-url {
+        font-weight: 700;
+        padding: 12px;
+        background: var(--accent-soft);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        word-break: break-all;
+        font-family: var(--sans);
+      }
+      .result-url.error {
+        background: #ffe9e6;
+        border-color: #e5b0a7;
+        color: #7a1f12;
+      }
+      .prominent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .popover {
+        position: relative;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: white;
+        width: 360px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+      }
+      .popover-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        font-family: var(--sans);
+        transform: scale(1.6);
+      }
+      .popover textarea {
+        min-height: 180px;
+      }
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .groups-panel,
+        .output-panel {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>URL-Generator Explorer Tool</h1>
+    <p>Generate URLs from URLPattern with per-component controls.</p>
+
+    <div class="layout">
+      <section class="panel" id="pattern-panel">
+        <h2>Pattern</h2>
+        <div class="tab-row">
+          <button type="button" class="tab-button active" data-tab="object">
+            <span class="tab-label">Structured</span>
+          </button>
+          <button type="button" class="tab-button" data-tab="string">
+            <span class="tab-label">Plain string</span>
+          </button>
+        </div>
+
+        <div class="tab-content" data-tab="object">
+          <div class="grid">
+            <div>
+              <label for="protocol">protocol</label>
+              <input id="protocol" value="https" />
+            </div>
+            <div>
+              <label for="hostname">hostname</label>
+              <input id="hostname" value="example.com" />
+            </div>
+            <div>
+              <label for="port">port</label>
+              <input id="port" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="username">username</label>
+              <input id="username" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="password">password</label>
+              <input id="password" placeholder="(optional)" />
+            </div>
+            <div>
+              <label for="pathname">pathname</label>
+              <input id="pathname" value="/users/:id" />
+            </div>
+            <div>
+              <label for="search">search</label>
+              <input id="search" value="q=:q" />
+            </div>
+            <div>
+              <label for="hash">hash</label>
+              <input id="hash" placeholder=":section" />
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" data-tab="string" hidden>
+          <label for="pattern-string">URLPattern string</label>
+          <input id="pattern-string" value="https://example.com/users/:id?q=:q#section-:section" />
+        </div>
+
+        <div class="pattern-output">
+          <button class="copy secondary copy" data-copy="pattern">Copy</button>
+          <pre id="pattern-code"></pre>
+        </div>
+
+        <div class="exec-row">
+          <input id="exec-input" placeholder="Paste a URL to exec" />
+          <button type="button" id="exec-button">Exec</button>
+        </div>
+        <div class="exec-output" id="exec-output"></div>
+      </section>
+
+      <section class="panel" id="options-panel">
+        <h2>Options</h2>
+        <table class="options-table">
+          <thead>
+            <tr>
+              <th>param</th>
+              <th>disableEncoding</th>
+              <th>stringifier</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="options-body"></tbody>
+        </table>
+      </section>
+
+      <section class="panel groups-panel">
+        <h2>Params</h2>
+        <p class="small">Each textarea is JSON5 for the <code>groups</code> object.</p>
+        <div class="groups-grid" id="groups-grid"></div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="prominent">
+          <h2>Output</h2>
+          <button type="button" id="generate">Generate URL</button>
+        </div>
+        <div class="output-code">
+          <button class="copy secondary copy" data-copy="output">Copy</button>
+          <pre id="output-code"></pre>
+        </div>
+        <div id="output" class="result-url">Ready.</div>
+        <p id="status" class="small"></p>
+      </section>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
