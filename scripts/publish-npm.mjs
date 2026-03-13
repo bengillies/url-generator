@@ -46,7 +46,7 @@ if (!options.dryRun) {
   run('npm', ['whoami']);
 }
 
-let newVersion = currentVersion;
+let newVersion;
 let published = false;
 
 try {
