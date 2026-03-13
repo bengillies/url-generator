@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: "lts/*"
+          node-version: "24.14.0"
           cache: npm
 
       - name: Install dependencies
@@ -34,7 +34,7 @@ jobs:
         run: npm run test:types
 
       - name: Node Tests
-        run: npm run test:node
+        run: npm run test:node -- --maxWorkers 1
 
       - name: Browser Tests
         run: npm run test:browser
