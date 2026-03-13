@@ -14,7 +14,7 @@
 - [x] error handling
 - [x] GitHub Actions - dep updates, tests, linting
 - [ ] Review code
-- [ ] Clean up parsing code
-- [ ] Performance
+- [x] Clean up parsing code
+- [x] Performance
 - [ ] Make repo public and publish to npm
 - [ ] Create an action that deploys all the code + the index.html file to gh pages
