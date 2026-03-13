@@ -264,6 +264,8 @@ const url = generate(pattern, {
 
 This package is a barebones extension of `URLPattern` itself: it only adds what is needed to generate URLs from patterns. It does not try to become a router, a URL serializer, or a standards wrapper. The goal is to keep `URLPattern` at the center and make it work in both directions.
 
-## Manual testing
+## Testing
 
-There is a manual test page at `index.html` that exercises the generator in the browser.
+Test coverage is 100%, and runs in both node and the browser.
+
+There is also a manual test page at `index.html` that exercises the generator in the browser.
