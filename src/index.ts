@@ -79,7 +79,10 @@ interface BuiltToken {
 }
 
 /** Result of splitting a trailing '/' literal for optional param handling. */
-type OptionalPrefixSplit = { prefix: string; rest: string };
+interface OptionalPrefixSplit {
+  prefix: string;
+  rest: string;
+}
 
 /**
  * Coerces any value into a string using JavaScript's default string conversion.
@@ -375,7 +378,7 @@ function buildFromTokens(
   params: ParamGroups,
   stringifier: StringifyFunction = defaultStringify,
   encoder?: EncodeFunction,
-  optionalContext: boolean = false,
+  optionalContext = false,
 ): BuiltToken {
   let output = '';
   let usedParam = false;
@@ -711,12 +714,18 @@ export function generate(pattern: URLPattern, params: Params): URL {
 
   let protocol = '';
   if (urlParts.protocol) {
-    protocol = urlParts.protocol.endsWith(':') ? urlParts.protocol : `${urlParts.protocol}:`;
+    protocol =
+      urlParts.protocol.endsWith(':') ?
+        urlParts.protocol
+      : `${urlParts.protocol}:`;
   }
 
   let host = '';
   if (urlParts.hostname) {
-    host = urlParts.port ? `${urlParts.hostname}:${urlParts.port}` : urlParts.hostname;
+    host =
+      urlParts.port ?
+        `${urlParts.hostname}:${urlParts.port}`
+      : urlParts.hostname;
   }
 
   let urlStr = protocol;
