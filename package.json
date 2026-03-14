@@ -4,6 +4,14 @@
   "description": "Lightweight URL/path building library based on URLPattern",
   "type": "module",
   "license": "BSD-3-Clause",
+  "homepage": "https://bengillies.github.io/url-generator/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bengillies/url-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bengillies/url-generator/issues"
+  },
   "main": "./dist/url-generator.cjs",
   "module": "./dist/url-generator.js",
   "types": "./dist/types/index.d.ts",
@@ -17,6 +25,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=24.2.0"
   },
@@ -24,7 +35,7 @@
     "start": "vite --config vite.demo.config.ts",
     "build:demo": "vite build --config vite.demo.config.ts",
     "dist": "vite build",
-    "release:npm": "node scripts/publish-npm.mjs",
+    "release": "node scripts/publish-npm.mjs",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "test": "vitest run",

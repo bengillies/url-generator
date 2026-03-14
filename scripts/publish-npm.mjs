@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+  cpSync,
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -29,25 +37,60 @@ if (typeof packageName !== 'string' || typeof currentVersion !== 'string') {
   fail('package.json must contain string "name" and "version" fields.');
 }
 
-const inGitRepo = canRunGit();
-
-if (inGitRepo && !options.allowDirty) {
-  const status = run('git', ['status', '--porcelain'], {
-    capture: true,
-  }).trim();
-  if (status) {
-    fail(
-      'Git working tree is not clean. Commit or stash changes first, or rerun with --allow-dirty.',
-    );
-  }
+if (!canRunGit()) {
+  fail('This release command must run inside a git repository.');
 }
+
+const currentBranch = run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], {
+  capture: true,
+}).trim();
+
+if (currentBranch !== 'main') {
+  fail(`Release must run from main. Current branch is ${currentBranch}.`);
+}
+
+const status = run('git', ['status', '--porcelain'], {
+  capture: true,
+}).trim();
+
+if (status) {
+  fail('Git working tree is not clean. Commit or stash changes first.');
+}
+
+run('git', ['remote', 'get-url', 'origin'], { capture: true });
 
 if (!options.dryRun) {
-  run('npm', ['whoami']);
+  run('gh', ['auth', 'status']);
 }
 
-let newVersion;
-let published = false;
+const newVersion = calculateVersionInTemp(options.release, options.preid);
+
+if (newVersion === currentVersion) {
+  fail(`Version did not change. Current version is already ${currentVersion}.`);
+}
+
+const publishedVersion = getPublishedVersion(packageName);
+if (publishedVersion === newVersion) {
+  fail(`Version ${newVersion} is already published to npm.`);
+}
+
+run('npm', ['ci']);
+run('npm', ['run', 'lint']);
+run('npm', ['test']);
+run('npm', ['run', 'test:types']);
+run('npm', ['run', 'dist']);
+
+if (options.dryRun) {
+  run('npm', ['pack', '--dry-run']);
+  log(`Dry run complete. Next version would be ${newVersion}.`);
+  process.exit(0);
+}
+
+let versionApplied = false;
+let commitCreated = false;
+let tagCreated = false;
+let pushed = false;
+const tagName = `v${newVersion}`;
 
 try {
   run('npm', [
@@ -56,66 +99,54 @@ try {
     '--no-git-tag-version',
     ...(options.preid ? ['--preid', options.preid] : []),
   ]);
+  versionApplied = true;
 
-  newVersion = JSON.parse(readFileSync(packageJsonPath, 'utf8')).version;
-
-  if (newVersion === currentVersion) {
-    fail(
-      `Version did not change. Current version is already ${currentVersion}.`,
-    );
-  }
-
-  const publishedVersion = getPublishedVersion(packageName);
-  if (publishedVersion === newVersion) {
-    fail(`Version ${newVersion} is already published to npm.`);
-  }
-
-  if (!options.skipChecks) {
-    run('npm', ['run', 'lint']);
-    run('npm', ['test']);
-    run('npm', ['run', 'test:types']);
-  }
-
-  run('npm', ['run', 'dist']);
   run('npm', ['pack', '--dry-run']);
 
-  const publishArgs = [
-    'publish',
-    '--access',
-    options.access,
-    ...(options.tag ? ['--tag', options.tag] : []),
-    ...(options.dryRun ? ['--dry-run'] : []),
-  ];
-
-  run('npm', publishArgs);
-  published = !options.dryRun;
-
-  if (options.dryRun) {
-    restorePackageFiles();
-    log(
-      `Dry run complete. Version changes were reverted to ${currentVersion}.`,
-    );
-    process.exit(0);
+  const filesToAdd = ['package.json'];
+  if (hasPackageLock) {
+    filesToAdd.push('package-lock.json');
   }
 
-  if (inGitRepo && !options.skipGit) {
-    const filesToAdd = ['package.json'];
-    if (hasPackageLock) {
-      filesToAdd.push('package-lock.json');
-    }
+  run('git', ['add', ...filesToAdd]);
+  run('git', ['commit', '-m', `Release v${newVersion}`]);
+  commitCreated = true;
 
-    run('git', ['add', ...filesToAdd]);
-    run('git', ['commit', '-m', `Release v${newVersion}`]);
-    run('git', ['tag', `v${newVersion}`]);
+  run('git', ['tag', '-a', tagName, '-m', tagName]);
+  tagCreated = true;
+
+  run('git', ['push', 'origin', 'main']);
+  run('git', ['push', 'origin', tagName]);
+  pushed = true;
+
+  const releaseArgs = ['release', 'create', tagName];
+  if (isPrereleaseVersion(newVersion)) {
+    releaseArgs.push('--prerelease');
   }
 
-  log(`Published ${packageName}@${newVersion} to npm.`);
-  if (inGitRepo && !options.skipGit) {
-    log(`Created git commit and tag v${newVersion}.`);
+  if (options.notes) {
+    releaseArgs.push('--notes', options.notes);
+  } else {
+    releaseArgs.push('--generate-notes');
   }
+
+  run('gh', releaseArgs);
+
+  log(`Created GitHub Release ${tagName}.`);
+  log(`GitHub Actions will publish ${packageName}@${newVersion} to npm.`);
 } catch (error) {
-  if (!published) {
-    restorePackageFiles();
+  if (!pushed) {
+    rollbackLocalRelease(tagCreated, commitCreated, versionApplied);
+  } else {
+    log('');
+    log(
+      `Git push succeeded, but GitHub Release creation failed for ${tagName}.`,
+    );
+    log('Release state was not rolled back automatically.');
+    log('Recovery steps:');
+    log(`  gh release create ${tagName} --generate-notes`);
+    log(`  git push origin main`);
+    log(`  git push origin ${tagName}`);
   }
 
   throw error;
@@ -124,14 +155,10 @@ try {
 function parseArgs(argv) {
   const positional = [];
   const parsed = {
-    release: '',
-    access: 'public',
-    allowDirty: false,
-    dryRun: false,
+    notes: '',
     preid: '',
-    skipGit: false,
-    skipChecks: false,
-    tag: '',
+    release: '',
+    dryRun: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -147,40 +174,16 @@ function parseArgs(argv) {
       continue;
     }
 
-    if (arg === '--allow-dirty') {
-      parsed.allowDirty = true;
-      continue;
-    }
-
-    if (arg === '--skip-git') {
-      parsed.skipGit = true;
-      continue;
-    }
-
-    if (arg === '--skip-checks') {
-      parsed.skipChecks = true;
-      continue;
-    }
-
-    if (arg === '--tag' || arg === '--preid' || arg === '--access') {
+    if (arg === '--preid' || arg === '--notes') {
       const value = argv[index + 1];
       if (!value || value.startsWith('-')) {
         fail(`Missing value for ${arg}.`);
       }
 
-      if (arg === '--tag') {
-        parsed.tag = value;
-      }
-
       if (arg === '--preid') {
         parsed.preid = value;
-      }
-
-      if (arg === '--access') {
-        if (value !== 'public' && value !== 'restricted') {
-          fail('--access must be either "public" or "restricted".');
-        }
-        parsed.access = value;
+      } else {
+        parsed.notes = value;
       }
 
       index += 1;
@@ -209,6 +212,33 @@ function canRunGit() {
   }
 }
 
+function calculateVersionInTemp(release, preid) {
+  const tempDir = mkdtempSync(path.join(os.tmpdir(), 'url-generator-release-'));
+
+  try {
+    cpSync(packageJsonPath, path.join(tempDir, 'package.json'));
+    if (hasPackageLock) {
+      cpSync(packageLockPath, path.join(tempDir, 'package-lock.json'));
+    }
+
+    run(
+      'npm',
+      [
+        'version',
+        release,
+        '--no-git-tag-version',
+        ...(preid ? ['--preid', preid] : []),
+      ],
+      { cwd: tempDir },
+    );
+
+    return JSON.parse(readFileSync(path.join(tempDir, 'package.json'), 'utf8'))
+      .version;
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
 function getPublishedVersion(name) {
   try {
     return run('npm', ['view', name, 'version', '--json'], { capture: true })
@@ -217,6 +247,28 @@ function getPublishedVersion(name) {
   } catch {
     return '';
   }
+}
+
+function isPrereleaseVersion(version) {
+  return version.includes('-');
+}
+
+function rollbackLocalRelease(tagCreated, commitCreated, versionApplied) {
+  if (tagCreated) {
+    run('git', ['tag', '-d', `v${readCurrentVersion()}`]);
+  }
+
+  if (commitCreated) {
+    run('git', ['reset', '--mixed', 'HEAD~1']);
+  }
+
+  if (versionApplied) {
+    restorePackageFiles();
+  }
+}
+
+function readCurrentVersion() {
+  return JSON.parse(readFileSync(packageJsonPath, 'utf8')).version;
 }
 
 function restorePackageFiles() {
@@ -229,7 +281,7 @@ function restorePackageFiles() {
 
 function run(command, commandArgs, options = {}) {
   const result = execFileSync(command, commandArgs, {
-    cwd: rootDir,
+    cwd: options.cwd ?? rootDir,
     stdio: options.capture ? ['ignore', 'pipe', 'pipe'] : 'inherit',
     encoding: 'utf8',
   });
@@ -239,16 +291,12 @@ function run(command, commandArgs, options = {}) {
 
 function printUsage() {
   process.stdout.write(`Usage:
-  npm run release:npm -- <patch|minor|major|prepatch|preminor|premajor|prerelease|x.y.z> [options]
+  npm run release -- <patch|minor|major|prepatch|preminor|premajor|prerelease|x.y.z> [options]
 
 Options:
-  --tag <tag>             Publish with an npm dist-tag, e.g. beta
   --preid <name>          Pre-release identifier, e.g. beta
-  --access <mode>         npm access level: public or restricted
-  --dry-run               Preview the release without publishing or keeping version changes
-  --allow-dirty           Allow running with uncommitted git changes
-  --skip-git              Do not create a git commit and tag after publishing
-  --skip-checks           Skip lint, tests, and typecheck before publishing
+  --notes <text>          Release notes for gh release create
+  --dry-run               Validate and calculate the next version without changing tracked files
 `);
 }
 
