@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: "24.2.0"
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -34,7 +34,7 @@ jobs:
         run: npm run test:types
 
       - name: Node Tests
-        run: npm run test:node -- --pool forks --maxWorkers 1
+        run: npm run test:node
 
       - name: Browser Tests
         run: npm run test:browser
