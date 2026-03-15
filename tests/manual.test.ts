@@ -769,6 +769,19 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo?q=x%26y&literal=a=b');
   });
 
+  it('should preserve literal search patterns with no params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=1',
+    });
+    const params = emptyParams();
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo?q=1');
+  });
+
   it('should apply stringifier to non-string search pattern params before encoding', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -786,6 +799,20 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo?q=bar+baz&limit=num+5');
   });
 
+  it('should not double-encode pre-encoded search pattern params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=:q',
+    });
+    const params = emptyParams();
+    params.search.groups = { q: 'a%20b' };
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo?q=a%20b');
+  });
+
   it('should treat search=* string input as a preformatted query string without re-encoding', () => {
     const pattern = new URLPattern({
       protocol: 'https',
@@ -798,6 +825,20 @@ describe('generate encoding behavior', () => {
 
     const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo?q=bar+baz');
+  });
+
+  it('should treat pre-encoded search=* string input as opaque input', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: '*',
+    });
+    const params = emptyParams();
+    params.search.groups = { 0: 'q=a%20b' };
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo?q=a%20b');
   });
 
   it('should serialize search=* URLSearchParams input as-is', () => {
@@ -952,6 +993,20 @@ describe('generate encoding behavior', () => {
     params.hash.stringify = stringifier;
     const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo#num%205');
+  });
+
+  it('should not double-encode pre-encoded hash params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      hash: ':frag',
+    });
+    const params = emptyParams();
+    params.hash.groups = { frag: 'a%20b' };
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo#a%20b');
   });
 
   it('should keep hash patterns that include a leading # literal', () => {

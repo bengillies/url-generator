@@ -556,7 +556,18 @@ function encodePathname(value: string, token?: ParamToken): string {
  * @returns Encoded search component value.
  */
 function encodeSearchComponent(value: string): string {
-  return encodeURIComponent(value).replace(/%20/g, '+');
+  return encodePreservingPercents(value, (segment) =>
+    encodeURIComponent(segment).replace(/%20/g, '+'),
+  );
+}
+
+/**
+ * Encodes a hash param value while leaving existing percent-encodings intact.
+ * @param value - Value to encode.
+ * @returns Encoded hash component value.
+ */
+function encodeHashComponent(value: string): string {
+  return encodePreservingPercents(value, encodeURIComponent);
 }
 
 /**
@@ -660,12 +671,20 @@ function searchHandler(
   const fallback = groups[0];
   const hasParams = tokensHaveParams(tokens);
 
-  if (!hasParams || pattern === '*') {
+  if (pattern === '*') {
     if (fallback === undefined || fallback === null || fallback === '') {
       return '';
     }
 
     return serializeSearchInput(fallback, stringifier);
+  }
+
+  if (!hasParams) {
+    if (fallback !== undefined && fallback !== null && fallback !== '') {
+      return serializeSearchInput(fallback, stringifier);
+    }
+
+    return buildFromTokens(tokens, groups, stringifier, encoder).value;
   }
 
   return buildFromTokens(tokens, groups, stringifier, encoder).value;
@@ -679,7 +698,7 @@ function searchHandler(
 const encodersByKey: Partial<Record<ParamKeys, EncodeFunction>> = {
   pathname: encodePathname,
   search: encodeSearchComponent,
-  hash: encodeURIComponent,
+  hash: encodeHashComponent,
 };
 
 /**
