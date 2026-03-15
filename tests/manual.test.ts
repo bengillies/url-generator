@@ -769,6 +769,19 @@ describe('generate encoding behavior', () => {
     expect(result.href).toBe('https://example.com/foo?q=x%26y&literal=a=b');
   });
 
+  it('should preserve literal search patterns with no params', () => {
+    const pattern = new URLPattern({
+      protocol: 'https',
+      hostname: 'example.com',
+      pathname: '/foo',
+      search: 'q=1',
+    });
+    const params = emptyParams();
+
+    const result = generate(pattern, params);
+    expect(result.href).toBe('https://example.com/foo?q=1');
+  });
+
   it('should apply stringifier to non-string search pattern params before encoding', () => {
     const pattern = new URLPattern({
       protocol: 'https',

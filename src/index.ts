@@ -671,12 +671,20 @@ function searchHandler(
   const fallback = groups[0];
   const hasParams = tokensHaveParams(tokens);
 
-  if (!hasParams || pattern === '*') {
+  if (pattern === '*') {
     if (fallback === undefined || fallback === null || fallback === '') {
       return '';
     }
 
     return serializeSearchInput(fallback, stringifier);
+  }
+
+  if (!hasParams) {
+    if (fallback !== undefined && fallback !== null && fallback !== '') {
+      return serializeSearchInput(fallback, stringifier);
+    }
+
+    return buildFromTokens(tokens, groups, stringifier, encoder).value;
   }
 
   return buildFromTokens(tokens, groups, stringifier, encoder).value;
