@@ -416,14 +416,14 @@ describe('generate manual cases', () => {
       hostname: 'example.com{:host}?',
       port: '{:port}?',
       pathname: '/base{:path}?',
-      search: '{q=:q}?',
-      hash: '{section-:section}?',
+      search: 'fixed=1{:q}?',
+      hash: 'intro{:section}?',
     });
 
     const params = emptyParams();
 
     const result = generate(pattern, params);
-    expect(result.href).toBe('http://user:pass@example.com/base');
+    expect(result.href).toBe('http://user:pass@example.com/base?fixed=1#intro');
   });
 
   it('throws when required params are missing across components', () => {
