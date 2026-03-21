@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { generate, type Params } from '../src/index';
+import { generate, type GenerateParams } from '../src/index';
 import { fixtureData } from './fixtures/fixture-data';
 
 describe('generate matches urlpattern test data', () => {
@@ -11,7 +11,7 @@ describe('generate matches urlpattern test data', () => {
           key,
           { groups },
         ]),
-      ) as Params;
+      ) as GenerateParams;
       const result = generate(pattern, params);
       expect(
         result.href,

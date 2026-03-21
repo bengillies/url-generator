@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { generate, MissingParamError, type Params } from '../src/index';
+import { generate, MissingParamError, type GenerateParams } from '../src/index';
 
-function emptyParams(): Required<Params> {
+function emptyParams(): Required<GenerateParams> {
   return {
     pathname: { groups: {} },
     search: { groups: {} },
@@ -95,7 +95,7 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of searchCases) {
-      const params: Required<Params> = {
+      const params: Required<GenerateParams> = {
         ...baseParams,
         search: { groups: {} },
       };
@@ -113,7 +113,10 @@ describe('generate manual cases', () => {
       ['undefined', undefined],
     ];
     for (const [, value] of hashCases) {
-      const params: Required<Params> = { ...baseParams, hash: { groups: {} } };
+      const params: Required<GenerateParams> = {
+        ...baseParams,
+        hash: { groups: {} },
+      };
       if (value !== undefined) {
         params.hash.groups = { 0: value };
       }
@@ -364,14 +367,14 @@ describe('generate manual cases', () => {
     const nullParams = {
       ...baseParams,
       pathname: { groups: { bar: null } },
-    } as Params;
+    } as GenerateParams;
     const nullResult = generate(pattern, nullParams);
     expect(nullResult.href).toBe('https://example.com/foo');
 
     const undefinedParams = {
       ...baseParams,
       pathname: { groups: { bar: undefined } },
-    } as Params;
+    } as GenerateParams;
     const undefinedResult = generate(pattern, undefinedParams);
     expect(undefinedResult.href).toBe('https://example.com/foo');
   });
@@ -447,7 +450,7 @@ describe('generate manual cases', () => {
     baseParams.search.groups = { q: '1' };
     baseParams.hash.groups = { section: 'intro' };
 
-    const cases: [string, Params][] = [
+    const cases: [string, GenerateParams][] = [
       ['protocol', { ...baseParams, protocol: { groups: {} } }],
       ['username', { ...baseParams, username: { groups: {} } }],
       ['password', { ...baseParams, password: { groups: {} } }],
@@ -569,7 +572,7 @@ describe('generate manual cases', () => {
       pathname: { groups: { 0: '/foo' } },
       protocol: { groups: { 0: 'https' } },
       hostname: { groups: { 0: 'example.com' } },
-    } as Params;
+    } as GenerateParams;
 
     const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');
@@ -580,9 +583,9 @@ describe('generate manual cases', () => {
     const params = {
       protocol: { groups: { 0: 'https' } },
       hostname: { groups: { 0: 'example.com' } },
-      pathname: {} as Params['pathname'],
-      search: {} as Params['search'],
-    } as Params;
+      pathname: {} as GenerateParams['pathname'],
+      search: {} as GenerateParams['search'],
+    } as GenerateParams;
 
     const result = generate(pattern, params);
     expect(result.href).toBe('https://example.com/foo');

@@ -6,7 +6,7 @@ import * as prettierPluginEstree from 'prettier/plugins/estree';
 import {
   generate,
   type ParamKeys,
-  type Params,
+  type GenerateParams,
   type StringifyFunction,
 } from '../src/index';
 
@@ -37,7 +37,7 @@ interface PatternInfo {
   code: string;
 }
 
-type ParamInputValue = Params[ParamKeys];
+type ParamInputValue = GenerateParams[ParamKeys];
 
 const stringifierOptions: StringifierOption[] = [
   { value: 'default', label: 'default (String)' },
@@ -213,8 +213,8 @@ function resolveStringifier(key: ParamKeys): StringifyFunction | undefined {
   return undefined;
 }
 
-function buildParams(): Params {
-  const params: Params = {};
+function buildParams(): GenerateParams {
+  const params: GenerateParams = {};
 
   for (const key of PARAM_KEYS) {
     let groups: Record<string, unknown>;
@@ -247,7 +247,7 @@ function buildParams(): Params {
   return params;
 }
 
-function buildParamsCode(params: Params): string {
+function buildParamsCode(params: GenerateParams): string {
   const entries = Object.entries(params) as [
     ParamKeys,
     NonNullable<ParamInputValue>,
@@ -368,7 +368,7 @@ async function generateUrl(): Promise<void> {
   setStatus('');
 
   let patternInfo: PatternInfo | undefined;
-  let params: Params | undefined;
+  let params: GenerateParams | undefined;
   let paramsCode = '';
 
   try {
