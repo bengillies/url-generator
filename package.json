@@ -1,5 +1,5 @@
 {
-  "name": "url-generator",
+  "name": "@bengillies/url-generator",
   "version": "0.1.0",
   "description": "Lightweight URL/path building library based on URLPattern",
   "type": "module",

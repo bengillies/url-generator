@@ -11,13 +11,13 @@ A minimal, URLPattern-first URL generator. It intentionally does the least possi
 ## Install
 
 ```sh
-npm install url-generator
+npm install @bengillies/url-generator
 ```
 
 ## Quick start
 
 ```ts
-import { generate } from 'url-generator';
+import { generate } from '@bengillies/url-generator';
 
 const decode = (match) => {
   if (!match) throw new Error('No match');
@@ -53,7 +53,7 @@ console.log(url.href);
 Builds a URL from a `URLPattern` and a parameter map. Returns a `URL` instance.
 
 ```ts
-import { generate, type Params } from 'url-generator';
+import { generate, type Params } from '@bengillies/url-generator';
 
 const pattern = new URLPattern({ pathname: '/posts/:slug' });
 const params: Params = {
