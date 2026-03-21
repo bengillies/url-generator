@@ -58,7 +58,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@types/debug": "^4.1.12",
     "@types/node": "^25.5.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.1",
     "@typescript-eslint/parser": "^8.57.0",
     "@vitest/browser": "^4.0.7",
     "@vitest/browser-playwright": "^4.0.7",
