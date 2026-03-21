@@ -24,7 +24,7 @@ export interface ParamValues {
   groups: ParamGroups;
 }
 /** Parameter map keyed by URLPattern component, with optional component entries. */
-export type Params = Partial<Record<ParamKeys, ParamValues>>;
+export type GenerateParams = Partial<Record<ParamKeys, ParamValues>>;
 
 /** Error thrown when a required parameter is missing during generation. */
 export class MissingParamError extends Error {
@@ -714,7 +714,7 @@ function emptyGroup(): ParamValues {
  * @param params - Param values for each URLPattern component.
  * @returns Generated URL instance.
  */
-export function generate(pattern: URLPattern, params: Params): URL {
+export function generate(pattern: URLPattern, params: GenerateParams): URL {
   // Generate url parts step
 
   const built: Partial<Record<ParamKeys, string>> = {};
